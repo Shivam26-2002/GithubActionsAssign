@@ -19,7 +19,7 @@ jobs:
     if: success()
     steps:
       - name: Print Job3 Output
-      - run: echo "Job3"
+        run: echo "Job3"
   fourth_job:
     name: Job4
     runs-on: ubuntu-latest
@@ -27,4 +27,4 @@ jobs:
     if: failure()
     steps: 
       - name : Print Job4 output
-      - run : echo "Job4"
+        run : echo "Job4"
