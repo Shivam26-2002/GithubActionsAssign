@@ -3,3 +3,4 @@ This is line written in newbranch
 Written in newbranch
 Writing something
 What's happening
+Nothing
