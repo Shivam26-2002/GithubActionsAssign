@@ -1,0 +1,11 @@
+name : Workflow for creating a branch starts with release or fix
+on:
+  push:
+    branches:
+      - 'release-*'
+      - 'fix-*'
+jobs:
+  build:
+    runs-on : ubuntu-latest
+    steps:
+      - run : echo "Hello, World"
