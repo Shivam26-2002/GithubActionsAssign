@@ -10,7 +10,8 @@ jobs:
     - name : Before If condition
       run: echo ${{github.event.pull_request.base.ref}}
     - name: After IF condition
-      if: contains('release-', github.event.pull_request.base.ref)
+      # if: contains('release-', github.event.pull_request.base.ref)
+      if: ${{ contains(github.event.pull_request.base.ref, 'release-') || contains(github.event.pull_request.base.ref, 'fix-') }}
       run : echo "Run pull request"
 
 
