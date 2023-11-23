@@ -1,3 +1,2 @@
-This is NewBranch
-This is release branch
-This is to main branch
+Check this is release branch 
+What changes do you want to do
