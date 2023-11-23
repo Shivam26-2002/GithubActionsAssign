@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: Before If condition
         run: echo ${{github.event.pull_request.base.ref}}
-        if: ${{ github.event.pull_request.base.ref == 'release-*' || github.event.pull_request.base.ref == 'fix-*' }} 
       - name: After If condition
+        if: ${{ github.event.pull_request.base.ref == 'release-*' || github.event.pull_request.base.ref == 'fix-*' }}   
         run : echo "Hello World"
