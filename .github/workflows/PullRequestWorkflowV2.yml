@@ -9,14 +9,9 @@ jobs:
     steps:
     - name : Before If condition
       run: echo ${{github.event.pull_request.base.ref}}
-    - name : Check if branch name is right or not
-      run : |
-        if[[ ${{github.event_name}} == 'pull_request' && ( ${{ github.event.pull_request.base.ref}} =~ ^release-.*$|^fix-.*$ )]]
-          echo "Running workflow for release or fix branch"
-        else
-          echo " Not running workflow for this branch"
-          exit 0
-        fi
+    - name: After IF condition
+      if: contains('release-', github.event.pull_request.base.ref)
+      run : echo "Run pull request"
 
 
 
