@@ -1,12 +1,9 @@
 name : Pull Request Workflow
 on: 
   pull_request:
-    branches:
-      - 'release-*'
-      - 'fix-*'
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: ${{ github.event_name == 'pull_request' }}
+    if: github.event.pull_request.base.ref == 'release-*' 
     steps:
       - run: echo "Hello, World!"
