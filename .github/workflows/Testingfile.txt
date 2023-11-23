@@ -1,3 +1,1 @@
-This is written in newbranch
-This is written in release app
-
+This is release branch
