@@ -1,0 +1,11 @@
+name : Hello World Workflow
+on : workflow_dispatch
+jobs:
+  HelloJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Hello World output
+        id : step1
+        run : echo "test=Hello" >> "$GITHUB_OUTPUT"
+    outputs:
+      output1: ${{steps.step1.outputs.test}}
