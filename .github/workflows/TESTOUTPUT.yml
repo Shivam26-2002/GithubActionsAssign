@@ -16,4 +16,4 @@ jobs:
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
       - id : step3
-        run : echo "$output1 output2"
+        run : echo "$output1 $output2"
