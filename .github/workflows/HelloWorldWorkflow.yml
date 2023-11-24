@@ -3,11 +3,9 @@ on : workflow_dispatch
 jobs:
   HelloJob:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{steps.step1.outputs.test}}
     steps:
-      - name : Hello World output
-        id : step1
-        run: echo "test=hello world" >> $GITHUB_OUTPUT
-      # - name : Print Output
-      #   run: echo ${{output1}}
+      - name: Set output
+        id: step1
+        run: echo "::set-output name=output1::hello world"
+    outputs:
+      output1: ${{ steps.step1.outputs.output1 }}
