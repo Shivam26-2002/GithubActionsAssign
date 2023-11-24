@@ -1,13 +1,40 @@
 name: Test Output through Github actions
 on : workflow_dispatch
 jobs:
-  TestJob:
+  job1:
     runs-on: ubuntu-latest
-    outputs:
-      output1 : ${{steps.step1.outputs.test}}
-      output2 : ${{steps.step2.outputs.test}}
     steps:
-      - id : step1
-        run : echo "test=Hello" >> "$GITHUB_OUTPUT"
-      - id : step2
-        run : echo "test=World" >> "$GITHUB_OUTPUT"
+      - name: Set output
+        id: step1
+        run: echo "::set-output name=output1::hello world"
+    outputs:
+      output1: ${{ steps.step1.outputs.output1 }}
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Check output
+        run: |
+          if [ -z "${{ needs.job1.outputs.output1 }}" ]; then
+            echo "Output not generated"
+          else
+            echo "Output generated: ${{ needs.job1.outputs.output1 }}"
+          fi
+
+
+
+
+
+
+# jobs:
+#   TestJob:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       output1 : ${{steps.step1.outputs.test}}
+#       output2 : ${{steps.step2.outputs.test}}
+#     steps:
+#       - id : step1
+#         run : echo "test=Hello" >> "$GITHUB_OUTPUT"
+#       - id : step2
+#         run : echo "test=World" >> "$GITHUB_OUTPUT"
