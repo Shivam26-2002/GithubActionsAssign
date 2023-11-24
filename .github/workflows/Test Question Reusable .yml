@@ -1,0 +1,21 @@
+name: Example Workflow
+on:
+  workflow_dispatch:
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    inputs:
+      configuration:
+        description: 'A boolean input'
+        required: true
+    outputs:
+      output1: ${{ steps.step1.outputs.output1 }}
+    steps:
+      - name: Set output
+        id: step1
+        run: |
+          if [ ${{ inputs.configuration }} = true ]; then
+            echo "::set-output name=output1::hello world true"
+          else
+            echo "::set-output name=output1::hello world false"
+          fi
