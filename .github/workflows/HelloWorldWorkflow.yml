@@ -10,4 +10,4 @@ jobs:
         id : step1
         run: echo "test=hello world" >> $GITHUB_OUTPUT
       - name : Print Output
-        run: echo ${{outputs.output1}}
+        run: echo ${{output1}}
