@@ -6,6 +6,6 @@ jobs:
     steps:
       - name : Hello World output
         id : step1
-        run : echo "test=Hello">>"$env:GITHUB_OUTPUT"
+        run: echo "output1=hello world" >> $GITHUB_OUTPUT
     outputs:
-      output1: ${{steps.step1.outputs.test}}
+      output1: ${{steps.step1.outputs.output1}}
