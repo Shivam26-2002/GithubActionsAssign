@@ -9,6 +9,7 @@ jobs:
       - name : Hello World output
         id : step1
         run: echo "test=hello world" >> $GITHUB_OUTPUT
-      - env:
+      - name : Print Output
+        env:
           OUTPUT1: ${{outputs.output1}}
         run: echo "$OUTPUT1"
