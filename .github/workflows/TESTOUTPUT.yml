@@ -12,7 +12,7 @@ jobs:
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
-      - env:
+        env:
           OUTPUT1: ${{job1.outputs.output1}}
           OUTPUT2: ${{job1.outputs.output2}}
       - id: step3
