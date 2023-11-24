@@ -9,5 +9,5 @@ jobs:
       - name : Hello World output
         id : step1
         run: echo "test=hello world" >> $GITHUB_OUTPUT
-      - name : Print Output
-        run: echo ${{output1}}
+      # - name : Print Output
+      #   run: echo ${{output1}}
