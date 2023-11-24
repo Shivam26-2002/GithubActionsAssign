@@ -6,6 +6,6 @@ jobs:
     steps:
       - name: Set output
         id: step1
-        run: echo "::set-output name=output1::hello world"
+        run: echo "output1 = hello world" >> "$GITHUB_OUTPUT"
     outputs:
       output1: ${{ steps.step1.outputs.output1 }}
