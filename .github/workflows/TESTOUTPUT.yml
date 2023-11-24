@@ -7,13 +7,13 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
+    env:
+      OUTPUT1: ${{job1.outputs.output1}}
+      OUTPUT2: ${{job1.outputs.output2}}
     steps:
       - id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
-        env:
-          OUTPUT1: ${{job1.outputs.output1}}
-          OUTPUT2: ${{job1.outputs.output2}}
-      - id: step3
-        run: echo "$OUTPUT1 OUTPUT2"
+      - id : step3
+        run : echo "$OUTPUT1 OUTPUT2"
