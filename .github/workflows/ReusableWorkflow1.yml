@@ -11,8 +11,6 @@ on:
 jobs:
   hello-world:
     runs-on: ubuntu-latest
-    env:
-      foo : ${{ github.event.inputs.configuration }} 
     steps:
       - name: Print Configuration
       - if: ${{ github.event.inputs.configuration  == 'true' }}
