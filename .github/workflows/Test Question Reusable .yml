@@ -1,4 +1,4 @@
-name: Input workflow
+name: Input Test workflow
 on:
   workflow_dispatch: 
 jobs:
