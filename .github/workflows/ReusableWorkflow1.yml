@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Print Configuration
         run : echo " Value is $foo"
-      - if: $foo
+      - if: $foo == true
         run: echo "Hello World"
       - if: $foo == false
         run : echo "Nothing"
