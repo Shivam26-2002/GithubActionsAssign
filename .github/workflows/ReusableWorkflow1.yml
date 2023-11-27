@@ -1,6 +1,6 @@
 name: Reusable Workflow
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       configuration:
         description: 'Boolean configuration '
