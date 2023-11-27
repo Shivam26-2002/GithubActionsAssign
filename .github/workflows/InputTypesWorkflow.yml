@@ -25,7 +25,7 @@ jobs:
   WriteInput:
     runs-on: ubuntu-latest
     env:
-      input_number: ${github.event.inputs.ConfigCode}
+      input_number: ${{ ConfigCode }}
     steps:
       - name : Print Inputs string
         run : echo " Hello ${{github.event.inputs.Configuration}}"
