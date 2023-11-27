@@ -24,12 +24,8 @@ jobs:
   WriteInput:
     runs-on: ubuntu-latest
     steps:
-      - name : Print Inputs string
-        run : echo " Hello ${{github.event.inputs.Configuration}}"
-      - name : Print Input Dropdown
-        run : echo "${{github.event.inputs.ConfigType}}"
-      - name : Print Input Number
-        run : echo "${{github.event.inputs.ConfigCode}}"
+      - name : Print Inputs
+        run : echo " ${{github.event.inputs.Configuration}},${{github.event.inputs.ConfigCode}}, ${{github.event.inputs.ConfigType}}"
     
         
         
