@@ -24,13 +24,15 @@ on :
 jobs:
   WriteInput:
     runs-on: ubuntu-latest
+    env:
+      input_number: ${github.event.inputs.ConfigCode}
     steps:
       - name : Print Inputs string
         run : echo " Hello ${{github.event.inputs.Configuration}}"
       - name : Print Input Dropdown
         run : echo "${{github.event.inputs.ConfigType}}"
-      # - name : Print Input Number
-      #   run : echo " The provided number is ${{github.event.inputs.ConfigCode}}"
+      - name : Print Input Number
+        run : echo " The provided number is ${input_number}"
     
         
         
