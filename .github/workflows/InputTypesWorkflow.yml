@@ -23,9 +23,11 @@ on :
 jobs:
   WriteInput:
     runs-on: ubuntu-latest
+    env:
+      input_number:  ${{github.event.inputs.ConfigCode}}
     steps:
       - name : Print Another Inputs
-        if : ${{github.event.inputs.ConfigCode == 10}}
+        if : $input_number == ''
         run : echo "${{github.event.inputs.Configuration}},${{github.event.inputs.ConfigType}} "
       - name : Print Inputs
         if: ${{github.event.inputs.ConfigCode}}
