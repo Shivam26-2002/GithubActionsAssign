@@ -1,34 +1,14 @@
-name: Input Test workflow
+name : Input Reusable workflow
 on:
-  workflow_call: 
+  workflow_dispatch:
     inputs:
-        input_name: # name of the input
-        description: 'Description of the input'
-        required: true # whether the input is required or not
-        default: 'Default value' # default value of the input
+      name:
+        description: 'Name for the workflow'
+        required : true
+
 jobs:
-  example_job:
+  hello-world:
     runs-on: ubuntu-latest
     steps:
-      - name: Step name
-        run: |
-          echo "Input value: ${{ inputs.input_name }}"
-# jobs:
-#   example_job:
-#     runs-on: ubuntu-latest
-#     inputs:
-#       input_name:
-#         configuration: null
-#         description: A boolean input
-#         required: true
-#     outputs:
-#       output1: ${{ steps.step1.outputs.output1 }}
-#     steps:
-#       - name: Set output
-#         id: step1
-#         run: |
-#           if [ ${{ inputs.configuration }} = true ]; then
-#             echo "::set-output name=output1::hello world true"
-#           else
-#             echo "::set-output name=output1::hello world false"
-#           fi
+      - name: Print Hello World
+        run : echo "Hello World, ${{github.event.inputs.name}}"
