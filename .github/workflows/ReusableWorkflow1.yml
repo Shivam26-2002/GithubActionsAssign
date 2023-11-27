@@ -18,7 +18,7 @@ jobs:
         run : echo " Value is $foo"
       - if: $foo
         run: echo "Hello World"
-      - if: !$foo
+      - if: $foo == false
         run : echo "Nothing"
      
         
