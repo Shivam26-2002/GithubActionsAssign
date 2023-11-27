@@ -13,7 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Configuration
-        run : |
-          if ${{github.event.inputs.configuration}}
-            echo "Hello World"
+        if: ${{github.event.inputs.configuration}}
+        run: echo "Hello World"
+      - name : Print Configuration second
+        if: ${{github.event.inputs.configuration}} == false
+        run : echo "Nothing"
+     
         
