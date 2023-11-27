@@ -16,7 +16,7 @@ jobs:
         if: ${{github.event.inputs.configuration}}
         run: echo "Hello World"
       - name : Print Configuration second
-        if: ${{github.event.inputs.configuration}} == false
+        if: (${{github.event.inputs.configuration}} == false)
         run : echo "Nothing"
      
         
