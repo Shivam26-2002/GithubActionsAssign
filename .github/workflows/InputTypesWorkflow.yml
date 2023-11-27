@@ -8,10 +8,9 @@ on :
         required: true
         default: 'Hello'
       ConfigCode:
-        description: 'A number input'
+        description: A string input
         required: false
-        type: number
-        # default: 10
+        default: '10'
       ConfigType:
         description: 'Dropdown input'
         required: true
@@ -24,15 +23,13 @@ on :
 jobs:
   WriteInput:
     runs-on: ubuntu-latest
-    env:
-      input_number: ${ github.event.inputs.ConfigCode } 
     steps:
       - name : Print Inputs string
         run : echo " Hello ${{github.event.inputs.Configuration}}"
       - name : Print Input Dropdown
         run : echo "${{github.event.inputs.ConfigType}}"
       - name : Print Input Number
-        run : echo " The provided number is $input_number"
+        run : echo "${{github.event.inputs.ConfigCode}}"
     
         
         
