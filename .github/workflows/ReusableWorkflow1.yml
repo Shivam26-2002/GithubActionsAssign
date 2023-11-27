@@ -18,7 +18,7 @@ jobs:
         run : echo " Value is $foo"
       - if: ${{ github.event.inputs.configuration }}
         run: echo "Hello World"
-      - if: ${{ github.event.inputs.configuration }} == false
+      - if: ${{ github.event.inputs.configuration == false}} 
         run : echo "Nothing"
      
         
