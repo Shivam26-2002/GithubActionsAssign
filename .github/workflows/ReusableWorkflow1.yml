@@ -4,6 +4,7 @@ on:
     inputs:
       configuration:
         description: 'Boolean configuration '
+        type: boolean
         required: true
         default: false
 
