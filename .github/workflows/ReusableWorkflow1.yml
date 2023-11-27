@@ -17,6 +17,6 @@ jobs:
       - name: Print Configuration
         run : echo " Value is $foo"
       - if: ${{ github.event.inputs.configuration  == 'true' }}
-        run: echo "Hello World"
+        run: echo "Hello World True"
       - if: ${{ github.event.inputs.configuration  == 'false' }}
-        run : echo "Nothing"
+        run : echo "Hello World False"
