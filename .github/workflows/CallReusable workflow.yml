@@ -1,6 +1,7 @@
 name : Call a reusable workflow
 on:
-  workflow_dispatch
+  workflow_run:
+    workflows: ["Reusable Workflow"]
 
 jobs:
   call_workflow:
