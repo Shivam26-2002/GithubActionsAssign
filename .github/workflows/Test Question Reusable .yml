@@ -4,7 +4,7 @@ on:
 jobs:
   example_job:
     runs-on: ubuntu-latest
-    needs:
+    inputs:
       input_name: # name of the input
         description: 'Description of the input'
         required: true # whether the input is required or not
