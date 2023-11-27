@@ -25,7 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name : Print Inputs
+        if: ${{github.event.inputs.ConfigCode}}
         run : echo " ${{github.event.inputs.Configuration}},${{github.event.inputs.ConfigCode}}, ${{github.event.inputs.ConfigType}}"
-    
+      - name : Print Another Inputs
+        if : ${{github.event.inputs.ConfigCode == ''}}
+        run : echo "${{github.event.inputs.Configuration}},${{github.event.inputs.ConfigType}} "
         
         
