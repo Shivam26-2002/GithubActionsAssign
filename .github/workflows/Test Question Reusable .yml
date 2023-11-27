@@ -1,4 +1,4 @@
-name : Input Reusable workflow
+name : Input Test Reusable workflow
 on:
   workflow_dispatch:
     inputs:
