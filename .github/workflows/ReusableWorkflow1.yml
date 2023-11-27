@@ -6,17 +6,16 @@ on:
         description: 'Boolean configuration '
         required: true
         default: false
-        # type: bool
 
 jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
       - name: Print Configuration
-        if: ${{github.event.inputs.configuration}}
+        if: ${{ github.event.inputs.configuration }}
         run: echo "Hello World"
       - name : Print Configuration second
-        if: (${{github.event.inputs.configuration}} == false)
+        if: ${{ !github.event.inputs.configuration }}
         run : echo "Nothing"
      
         
