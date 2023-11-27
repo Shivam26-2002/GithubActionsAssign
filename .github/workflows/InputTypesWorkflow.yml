@@ -27,8 +27,8 @@ jobs:
     steps:
       - name : Print Inputs string
         run : echo " Hello ${{github.event.inputs.Configuration}}"
-      # - name : Print Input number
-      #   run : echo  ${{github.event.inputs.ConfigCode}}
+      - name : Print Input number
+        run : echo "${{github.event.inputs.ConfigType}}"
     
         
         
