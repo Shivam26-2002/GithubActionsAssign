@@ -6,7 +6,7 @@ on:
         description: 'Boolean configuration '
         required: true
         default: false
-        type: bool
+        # type: bool
 
 jobs:
   hello-world:
