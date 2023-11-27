@@ -13,10 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       foo : ${{ github.event.inputs.configuration }} 
+    outputs:
+      my-output: ${{ steps.my-step.outputs.my-output }}
     steps:
       - name: Print Configuration
+        id: my-step
         run : echo " Value is $foo"
       - if: ${{ github.event.inputs.configuration  == 'true' }}
-        run: echo "Hello World True"
+        run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
       - if: ${{ github.event.inputs.configuration  == 'false' }}
-        run : echo "Hello World False"
+        run : echo "my-output = Hello World False" >> $GITHUB_OUTPUT
