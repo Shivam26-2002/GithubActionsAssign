@@ -12,9 +12,10 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Configuration
+      - name: True Condition
       - if: ${{ github.event.inputs.configuration  == 'true' }}
         run: echo "Hello World True"
+      - name : False condition
       - if: ${{ github.event.inputs.configuration  == 'false' }}
         run : echo "Hello World False"
      
