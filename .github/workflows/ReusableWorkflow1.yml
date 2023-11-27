@@ -1,0 +1,16 @@
+name: Reusable Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: 'Boolean configuration '
+        required: true
+        default: false
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Configuration
+        run: echo "Configuration value ${{github.event.inputs.configuration}}"
+        
