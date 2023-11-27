@@ -1,14 +1,14 @@
 name: Input Test workflow
 on:
-  workflow_dispatch: 
-jobs:
-  example_job:
-    runs-on: ubuntu-latest
+  workflow_call: 
     inputs:
-      input_name: # name of the input
+        input_name: # name of the input
         description: 'Description of the input'
         required: true # whether the input is required or not
         default: 'Default value' # default value of the input
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
     steps:
       - name: Step name
         run: |
