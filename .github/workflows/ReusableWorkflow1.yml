@@ -16,6 +16,6 @@ jobs:
         run : |
           if ${{github.event.inputs.configuration}}
             echo "Hello World"
-          if ${{github.event.inputs.configuration}} == false
-            echo " I can't say anything"
+          # if ${{github.event.inputs.configuration}} == false
+          #   echo " I can't say anything"
         
