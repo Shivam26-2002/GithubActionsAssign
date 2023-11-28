@@ -22,16 +22,21 @@ jobs:
     # uses: ./.github/workflows/Reusableworkflowww.yml
     # with:
     #   config-path: .github/labeler.yml
-    env:
+    # env:
       # foo : ${{ github.event.inputs.configuration }} 
-      foo : $configuration-path 
+      # foo : $configuration-path 
     outputs:
       my-output: ${{ steps.my-step.outputs.my-output }}
     steps:
       - name: Print Configuration
         id: my-step
-        run : echo " Value is $foo and $configuration-path"
-      - if: ${{ github.event.inputs.configuration  == 'true' }}
-        run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
-      - if: ${{ github.event.inputs.configuration  == 'false' }}
-        run : echo "my-output = Hello World False" >> $GITHUB_OUTPUT
+        run : |
+           if [ ${{ github.event.inputs.configuration  == 'true' }}]; then
+            run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
+           else
+            run : echo "my-output = Hello World False" >> $GITHUB_OUTPUT
+           fi
+      # - if: ${{ github.event.inputs.configuration  == 'true' }}
+      #   run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
+      # - if: ${{ github.event.inputs.configuration  == 'false' }}
+      #   run : echo "my-output = Hello World False" >> $GITHUB_OUTPUT
