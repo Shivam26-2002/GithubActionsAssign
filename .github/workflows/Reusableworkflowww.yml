@@ -20,4 +20,4 @@ jobs:
     steps:
        - env:
           OUTPUT1: ${{needs.job1.outputs.my-output}}
-       - run : echo $OUTPUT1
+         run : echo $OUTPUT1
