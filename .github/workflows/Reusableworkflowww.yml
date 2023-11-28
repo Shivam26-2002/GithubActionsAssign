@@ -5,6 +5,8 @@ on:
 jobs:
   job1:
     uses: ./.github/workflows/ReusableWorkflow1.yml
+    with:
+      configuration: .github/labeler.yml
 
   job2:
     runs-on: ubuntu-latest
