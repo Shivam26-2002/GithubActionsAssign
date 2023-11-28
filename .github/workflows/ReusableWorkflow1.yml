@@ -9,10 +9,19 @@ on:
         default: false
 
 jobs:
+  job1:
+   runs-on: ubuntu-latest
+   steps:
+     - with:
+          configuration-path: ${{ inputs.configuration}}
+     
+
   hello-world:
     runs-on: ubuntu-latest
+    needs: job1
     env:
-      foo : ${{ github.event.inputs.configuration }} 
+      # foo : ${{ github.event.inputs.configuration }} 
+      foo : $configuration-path 
     outputs:
       my-output: ${{ steps.my-step.outputs.my-output }}
     steps:
