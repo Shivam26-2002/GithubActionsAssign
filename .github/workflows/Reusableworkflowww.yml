@@ -1,12 +1,18 @@
 name : Call a reusable workflow
 on:
   workflow_dispatch:
+    inputs:
+      push_configuration:
+        description: 'Boolean configuration '
+        type: boolean
+        required: true
+        default: false
 
 jobs:
   job1:
     uses: ./.github/workflows/ReusableWorkflow1.yml
     with:
-       config-path: .github/labeler.yml
+      configuration: ${{ inputs.push_configuration }}
 
   job2:
     runs-on: ubuntu-latest
