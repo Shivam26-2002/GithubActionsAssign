@@ -16,8 +16,8 @@ jobs:
     outputs:
       my-output: ${{ steps.my-step.outputs.my-output }}
     steps:
-      - with:
-          configuration-path: ${{ inputs.configuration}}
+      # - with:
+      #     configuration-path: ${{ inputs.configuration}}
       - name: Print Configuration
         id: my-step
         run : echo " Value is $foo and $configuration-path"
