@@ -1,9 +1,13 @@
 name : Call a reusable workflow
 on:
-  workflow_run:
-    workflows: ["Reusable Workflow"]
+  workflow_dispatch:
 
 jobs:
-  call_workflow:
+  job1:
     uses: Shivam26-2002/GithubActionsAssign/.github/workflows/ReusableWorkflow1.yml@main
-    # needs: hello-world
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run : echo ${{needs.job1.outputs.my-output}}
