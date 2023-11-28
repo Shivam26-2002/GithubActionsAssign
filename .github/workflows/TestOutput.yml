@@ -9,14 +9,14 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - id: step1
-        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        run: echo test=hello >> "$GITHUB_OUTPUT"
       - id: step2
-        run: echo "test=world" >> "$GITHUB_OUTPUT"
+        run: echo test=world >> "$GITHUB_OUTPUT"
       - env:
           OUTPUT1: ${{job1.outputs.output1}}
           OUTPUT2: ${{job1.outputs.output2}}
       - id: step3
-        run: echo "$OUTPUT1 OUTPUT2"
+        run: echo "$output1 $output2"
   job2:
     runs-on: ubuntu-latest
     needs: job1
@@ -25,20 +25,3 @@ jobs:
           OUTPUT1: ${{needs.job1.outputs.output1}}
           OUTPUT2: ${{needs.job1.outputs.output2}}
         run: echo "$OUTPUT1 $OUTPUT2"
-
-
-
-
-
-
-# jobs:
-#   TestJob:
-#     runs-on: ubuntu-latest
-#     outputs:
-#       output1 : ${{steps.step1.outputs.test}}
-#       output2 : ${{steps.step2.outputs.test}}
-#     steps:
-#       - id : step1
-#         run : echo "test=Hello" >> "$GITHUB_OUTPUT"
-#       - id : step2
-#         run : echo "test=World" >> "$GITHUB_OUTPUT"
