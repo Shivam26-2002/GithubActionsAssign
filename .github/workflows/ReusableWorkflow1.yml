@@ -9,7 +9,7 @@ on:
         default: false
     outputs:
       first_word:
-        value: ${{jobs.hello-world.outputs.printoutput}}
+        value: ${{jobs.hello-world.outputs.output1}}
 
 jobs:
   # job1:
@@ -25,19 +25,16 @@ jobs:
     # uses: ./.github/workflows/Reusableworkflowww.yml
     # with:
     #   config-path: .github/labeler.yml
-    # env:
-      # foo : ${{ github.event.inputs.configuration }} 
-      # foo : $configuration-path 
     outputs:
-      printoutput: ${{ steps.my-step.outputs.Trueoutput }}
+      printoutput: ${{ steps.my-step.outputs.firstword }}
     steps:
       - name: Print Configuration
         id: my-step
         run : |
            if [[ ${{ github.event.inputs.configuration  == 'true' }} ]]; then
-             echo "Trueoutput = Hello World True" >> $GITHUB_OUTPUT
+             echo "firstword = Hello World True" >> $GITHUB_OUTPUT
            else
-             echo "Trueoutput = Hello World False" >> $GITHUB_OUTPUT
+             echo "firstword = Hello World False" >> $GITHUB_OUTPUT
            fi
       # - if: ${{ github.event.inputs.configuration  == 'true' }}
       #   run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
