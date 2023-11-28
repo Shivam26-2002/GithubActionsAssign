@@ -4,7 +4,7 @@ on:
 
 jobs:
   job1:
-    uses: Shivam26-2002/GithubActionsAssign/.github/workflows/ReusableWorkflow1.yml@main
+    uses: ./.github/workflows/ReusableWorkflow1.yml
 
   job2:
     runs-on: ubuntu-latest
