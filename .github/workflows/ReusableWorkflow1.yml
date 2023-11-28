@@ -26,7 +26,7 @@ jobs:
     # with:
     #   config-path: .github/labeler.yml
     outputs:
-      printoutput: ${{ steps.my-step.outputs.firstword }}
+      output1: ${{ steps.my-step.outputs.firstword }}
     steps:
       - name: Print Configuration
         id: my-step
