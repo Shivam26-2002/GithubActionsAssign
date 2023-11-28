@@ -2,7 +2,7 @@ name : Call a reusable workflow
 on:
   workflow_dispatch:
     inputs:
-      push_configuration:
+      configuration:
         description: 'Boolean configuration '
         type: boolean
         required: true
@@ -12,7 +12,7 @@ jobs:
   job1:
     uses: ./.github/workflows/ReusableWorkflow1.yml
     with:
-      configuration: ${{ inputs.push_configuration }}
+      configuration: ${{ inputs.configuration }}
 
   job2:
     runs-on: ubuntu-latest
