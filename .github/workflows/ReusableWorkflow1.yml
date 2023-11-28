@@ -19,6 +19,9 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     # needs: job1
+    # uses: ./.github/workflows/Reusableworkflowww.yml
+    # with:
+    #   config-path: .github/labeler.yml
     env:
       # foo : ${{ github.event.inputs.configuration }} 
       foo : $configuration-path 
