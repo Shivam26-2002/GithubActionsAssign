@@ -13,6 +13,6 @@ jobs:
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
       - env:
-          OUTPUT1: ${{outputs.output1}}
-          OUTPUT2: ${{outputs.output2}}
+          OUTPUT1: ${{output1}}
+          OUTPUT2: ${{output2}}
         run: echo "$OUTPUT1 $OUTPUT2"
