@@ -31,7 +31,7 @@ jobs:
       - name: Print Configuration
         id: my-step
         run : |
-           if [ ${{ github.event.inputs.configuration  == 'true' }}]; then
+           if [[ ${{ github.event.inputs.configuration  == 'true' }} ]]; then
             run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
            else
             run : echo "my-output = Hello World False" >> $GITHUB_OUTPUT
