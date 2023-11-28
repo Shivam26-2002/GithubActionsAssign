@@ -32,9 +32,9 @@ jobs:
         id: my-step
         run : |
            if [[ ${{ github.event.inputs.configuration  == 'true' }} ]]; then
-            run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
+             echo "my-output = Hello World True" >> $GITHUB_OUTPUT
            else
-            run: echo "my-output = Hello World False" >> $GITHUB_OUTPUT
+             echo "my-output = Hello World False" >> $GITHUB_OUTPUT
            fi
       # - if: ${{ github.event.inputs.configuration  == 'true' }}
       #   run: echo "my-output = Hello World True" >> $GITHUB_OUTPUT
