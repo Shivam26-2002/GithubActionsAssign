@@ -29,9 +29,9 @@ jobs:
         run: |
           if [ -z "${{ github.event.inputs.ConfigCode }}" ]
           then
-            echo "${{ github.event.inputs.configuration }} - ${{ github.event.inputs.ConfigType }}"
+            echo "${{ github.event.inputs.configuration }}  ${{ github.event.inputs.configtype }}"
           else
-            echo "${{ github.event.inputs.configuration }} - ${{ github.event.inputs.ConfigCode }} - ${{ github.event.inputs.ConfigType }}"
+            echo "${{ github.event.inputs.configuration }}  ${{ github.event.inputs.configcode }}  ${{ github.event.inputs.configtype }}"
           fi
         
         
