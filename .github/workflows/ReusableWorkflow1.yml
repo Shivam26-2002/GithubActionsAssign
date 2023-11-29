@@ -16,20 +16,22 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.step1.outputs.first_word }}
+      output2: ${{ steps.step2.outputs.first_word }}
     steps:
-      - name: Print Configuration
+      - name: If True
         id: step1
-        env:
-          some_bool: ${{ github.event.inputs.configuration }}
-        run: |
-          if [ ${{ env.some_bool }} = true ]; then
-            echo "first_word = Hello World True" >> $GITHUB_OUTPUT
-          else
-            echo "first_word = Hello World False" >> $GITHUB_OUTPUT
-          fi
+        if : ${{github.event.inputs.configuration == 'true'}}
+        run: echo "first_word = Hello World True" >> $GITHUB_OUTPUT
+      - name: If False
+        id: step2
+        if : ${{github.event.inputs.configuration == 'false'}}
+        run: echo "first_word = Hello World False" >> $GITHUB_OUTPUT
   job2:
     runs-on: ubuntu-latest
     needs: job1
     steps:
-      - run: echo ${{ needs.job1.outputs.output1 }}
+     - env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+          OUTPUT2: ${{needs.job1.outputs.output2}}
+       run: echo "$OUTPUT1 $OUTPUT2"
           
