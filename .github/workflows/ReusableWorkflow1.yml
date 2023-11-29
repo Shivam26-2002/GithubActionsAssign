@@ -8,8 +8,8 @@ on:
         required: true
         default: false
     outputs:
-      output1: ${{ steps.step1.outputs.first_word }}
-
+      output1:
+        value: ${{jobs.hello-world.outputs.output1}}
 jobs:  
   hello-world:
     runs-on: ubuntu-latest
