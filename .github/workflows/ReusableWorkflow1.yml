@@ -20,7 +20,7 @@ jobs:
         run: echo "test=hello world true" >> "$GITHUB_OUTPUT"
       - id: step2
         if : ${{github.event.inputs.configuration == 'false'}}
-        run: echo "test=world" >> "$GITHUB_OUTPUT"
+        run: echo "test=hello world false" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
     needs: job1
