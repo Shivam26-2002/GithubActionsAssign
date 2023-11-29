@@ -19,8 +19,10 @@ jobs:
     steps:
       - name: Print Configuration
         id: step1
+        env:
+          some_bool: ${{ github.event.inputs.configuration }}
         run: |
-          if [ ${{ github.event.inputs.configuration }} = true ]; then
+          if [ ${{ env.some_bool }} = true ]; then
             echo "first_word = Hello World True" >> $GITHUB_OUTPUT
           else
             echo "first_word = Hello World False" >> $GITHUB_OUTPUT
