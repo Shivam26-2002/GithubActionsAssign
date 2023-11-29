@@ -8,8 +8,8 @@ on:
         required: true
         default: false
     outputs:
-      output1:
-        value: ${{jobs.job1.outputs.output1}}
+      first_word:
+        value: ${{jobs.job1.outputs.first_word}}
 jobs:  
   job1:
     runs-on: ubuntu-latest
