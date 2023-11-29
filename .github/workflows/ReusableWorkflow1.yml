@@ -18,12 +18,10 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
     steps:
-      - name: If True
-        id: step1
+      - id: step1
         if : ${{github.event.inputs.configuration == 'true'}}
         run: echo "test = Hello" >> "$GITHUB_OUTPUT"
-      - name: If False
-        id: step2
+      - id: step2
         if : ${{github.event.inputs.configuration == 'false'}}
         run: echo "test = Hello" >> "$GITHUB_OUTPUT"
   job2:
