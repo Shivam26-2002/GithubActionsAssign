@@ -10,10 +10,10 @@ on :
 jobs:
   WriteInput:
     runs-on: ubuntu-latest
-    env:
-      input_number:  ${{github.event.inputs.configcode}}
     steps:
       - name : Print Number Inputs
+        env:
+         input_number:  ${{github.event.inputs.configcode}}
         run : echo "$env.input_number"
         
         
