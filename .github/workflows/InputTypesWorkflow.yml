@@ -13,7 +13,7 @@ jobs:
     steps:
       - name : Print Number Inputs
         env:
-         input_number:  ${{github.event.inputs.configcode}}
-        run : echo "$env.input_number"
+         input_number: ${{github.event.inputs.configcode}}
+        run : echo "$input_number"
         
         
