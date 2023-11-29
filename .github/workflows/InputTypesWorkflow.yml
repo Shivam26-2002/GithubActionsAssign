@@ -27,7 +27,7 @@ jobs:
     #   input_number:  ${{github.event.inputs.ConfigCode}}
     steps:
       - name : Print Another Inputs
-        if : ${{github.event.inputs.ConfigCode = ''}}
+        if : ${{github.event.inputs.ConfigCode == ''}}
         run : echo "${{github.event.inputs.Configuration}},${{github.event.inputs.ConfigType}} "
       - name : Print Inputs
         if: ${{github.event.inputs.ConfigCode}}
