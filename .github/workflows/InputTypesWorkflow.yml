@@ -11,7 +11,6 @@ on :
         description: 'A number input'
         type: number
         required: false
-        # default: '10'
       configtype:
         description: 'Dropdown input'
         required: true
