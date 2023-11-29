@@ -1,5 +1,12 @@
 name: Reusable Workflow
-on : workflow_dispatch
+on : 
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: 'Boolean configuration '
+        type: boolean
+        required: true
+        default: false
 jobs:
   job1:
     runs-on: ubuntu-latest
