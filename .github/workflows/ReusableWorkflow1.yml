@@ -20,7 +20,7 @@ jobs:
       - name: Print Configuration
         id: step1
         run: |
-          if [ "${{github.event.inputs.configuration}}" = "true" ]; then
+          if [ "${{github.event.inputs.configuration}}" == "true" ]; then
             echo "::set-output name=output1::hello world true"
           else
             echo "::set-output name=output1::hello world false"
