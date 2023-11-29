@@ -17,7 +17,7 @@ jobs:
     steps:
       - id: step1
         if : ${{github.event.inputs.configuration == 'true'}}
-        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        run: echo "test=hello world true" >> "$GITHUB_OUTPUT"
       - id: step2
         if : ${{github.event.inputs.configuration == 'false'}}
         run: echo "test=world" >> "$GITHUB_OUTPUT"
