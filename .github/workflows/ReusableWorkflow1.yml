@@ -15,13 +15,13 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.my-step.outputs.first_word }}
+      output1: ${{ steps.step1.outputs.first_word }}
     steps:
       - name: Print Configuration
-        id: my-step
-        run : |
-           if [[ ${{ github.event.inputs.configuration  == 'true' }} ]]; then
-             echo "first_word = Hello World True" >> "$GITHUB_OUTPUT"
-           else
-             echo "first_word = Hello World False" >> "$GITHUB_OUTPUT"
-           fi
+        id: step1
+        run: |
+          if [ "${{github.event.inputs.configuration}}" = "true" ]; then
+            echo "::set-output name=output1::hello world true"
+          else
+            echo "::set-output name=output1::hello world false"
+          fi
