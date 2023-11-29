@@ -17,6 +17,6 @@ jobs:
         if: input_number==' '
         run : echo "$input_number"
       - name: Print else number
-        run: echo "$input_number"
+        run: echo "Nothing"
         
         
