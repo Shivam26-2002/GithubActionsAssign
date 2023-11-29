@@ -21,11 +21,11 @@ jobs:
       - name: If True
         id: step1
         if : ${{github.event.inputs.configuration == 'true'}}
-        run: echo "test = Hello World True" >> "$GITHUB_OUTPUT"
+        run: echo "test = Hello" >> "$GITHUB_OUTPUT"
       - name: If False
         id: step2
         if : ${{github.event.inputs.configuration == 'false'}}
-        run: echo "test = Hello World False" >> "$GITHUB_OUTPUT"
+        run: echo "test = Hello" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
     needs: job1
