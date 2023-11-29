@@ -1,16 +1,16 @@
 name: Reusable Workflow
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       configuration:
         description: 'Boolean configuration '
         type: boolean
         required: true
         default: false
-    outputs:
-      first_word:
-        description: "The first output string"
-        value: ${{jobs.job1.outputs.output1}}
+    # outputs:
+    #   first_word:
+    #     description: "The first output string"
+    #     value: ${{jobs.job1.outputs.output1}}
 jobs:  
   job1:
     runs-on: ubuntu-latest
@@ -27,3 +27,9 @@ jobs:
           else
             echo "first_word = Hello World False" >> $GITHUB_OUTPUT
           fi
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo ${{ needs.job1.outputs.output1 }}
+          
