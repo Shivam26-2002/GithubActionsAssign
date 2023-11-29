@@ -19,5 +19,5 @@ jobs:
     needs: job1
     steps:
       - env:
-          OUTPUT1: ${{needs.job1.outputs.first_word}}
+          OUTPUT1: ${{needs.job1.outputs.output1}}
         run: echo "This is output $OUTPUT1"
