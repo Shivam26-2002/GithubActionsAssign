@@ -8,24 +8,24 @@ on:
         required: true
         default: false
     # outputs:
-    #   first_word:
+    #   test:
     #     description: "The first output string"
     #     value: ${{jobs.job1.outputs.output1}}
 jobs:  
   job1:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.first_word }}
-      output2: ${{ steps.step2.outputs.first_word }}
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
       - name: If True
         id: step1
         if : ${{github.event.inputs.configuration == 'true'}}
-        run: echo "first_word = Hello World True" >> $GITHUB_OUTPUT
+        run: echo "test = Hello World True" >> "$GITHUB_OUTPUT"
       - name: If False
         id: step2
         if : ${{github.event.inputs.configuration == 'false'}}
-        run: echo "first_word = Hello World False" >> $GITHUB_OUTPUT
+        run: echo "test = Hello World False" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
     needs: job1
