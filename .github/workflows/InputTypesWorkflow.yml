@@ -14,6 +14,9 @@ jobs:
       - name : Print Number Inputs
         env:
          input_number: ${{github.event.inputs.configcode}}
+        if: input_number==' '
         run : echo "$input_number"
+      - name: Print else number
+        run: echo "$input_number"
         
         
