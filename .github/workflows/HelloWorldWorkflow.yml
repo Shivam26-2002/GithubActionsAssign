@@ -19,4 +19,4 @@ jobs:
       - env:
           OUTPUT1: ${{needs.job1.outputs.output1}}
           OUTPUT2: ${{needs.job1.outputs.output2}}
-        run: echo "$OUTPUT1 $OUTPUT2"
+        run: echo "This is output $OUTPUT1 $OUTPUT2"
