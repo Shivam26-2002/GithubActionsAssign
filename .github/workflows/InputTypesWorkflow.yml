@@ -8,7 +8,7 @@ on :
         required: true
         default: 'Hello'
       ConfigCode:
-        description: A string input
+        description: 'A number input'
         required: false
         default: '10'
       ConfigType:
@@ -23,11 +23,11 @@ on :
 jobs:
   WriteInput:
     runs-on: ubuntu-latest
-    env:
-      input_number:  ${{github.event.inputs.ConfigCode}}
+    # env:
+    #   input_number:  ${{github.event.inputs.ConfigCode}}
     steps:
       - name : Print Another Inputs
-        if : env.input_number == ' '
+        if : ${{github.event.inputs.ConfigCode = ''}}
         run : echo "${{github.event.inputs.Configuration}},${{github.event.inputs.ConfigType}} "
       - name : Print Inputs
         if: ${{github.event.inputs.ConfigCode}}
