@@ -2,37 +2,18 @@ name : Input Types Workflow
 on :
   workflow_dispatch:
     inputs:
-      configuration:
-        description: 'A string input'
-        type: string
-        required: true
-        default: 'Hello'
-      # configcode:
-      #   description: 'A number input'
-      #   type: number
-      #   required: false
-      #   default: '10'
-      # configtype:
-      #   description: 'Dropdown input'
-      #   required: true
-      #   type: choice
-      #   options:
-      #     - Staging
-      #     - Prod
-      #     - QA
-      #   default : 'Prod'
+      configcode:
+        description: 'A number input'
+        required: false
+        default: '10'
+        # type: number
 jobs:
   WriteInput:
     runs-on: ubuntu-latest
-    # env:
-    #   input_number:  ${{github.event.inputs.configcode}}
+    env:
+      input_number:  ${{github.event.inputs.configcode}}
     steps:
-      - name : Print Another Inputs
-      #   if : ${{github.event.inputs.configcode == ' '}}
-      #   run : echo "${{github.event.inputs.configuration}},${{github.event.inputs.configtype}} "
-      # - name : Print Inputs
-      #   if: ${{github.event.inputs.configcode}}
-        # run : echo " ${{github.event.inputs.configuration}},${{github.event.inputs.configcode}}, ${{github.event.inputs.configtype}}"
-        run : echo " ${{github.event.inputs.configuration}}"
+      - name : Print Number Inputs
+        run : echo "$env.input_number"
         
         
