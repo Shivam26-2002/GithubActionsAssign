@@ -8,7 +8,7 @@ on:
         required: true
         default: false
     outputs:
-      first_word:
+      output1:
         value: ${{jobs.hello-world.outputs.output1}}
 
 jobs:  
