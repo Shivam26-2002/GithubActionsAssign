@@ -16,8 +16,10 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - id: step1
+        if : ${{github.event.inputs.configuration == 'true'}}
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
+        if : ${{github.event.inputs.configuration == 'false'}}
         run: echo "test=world" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
