@@ -23,6 +23,8 @@ jobs:
 
   Upload:
     runs-on: ubuntu-latest
+    needs: Build
+    if: success()
     steps:
       - name: Fourth Job
         run: echo "Upload Job"
@@ -35,13 +37,20 @@ jobs:
 
   Process:
     runs-on: ubuntu-latest
+    needs: Upload
+    if: success()
     steps:
       - name: Sixth Job
         run: echo "Process Job"
 
   Result:
     runs-on: ubuntu-latest
+    needs: [Build,Upload,Process]
     steps:
-      - name: Seventh Job
-        run: echo "Result Job"
-    
+      - name: Check Job Status
+        run: |
+          if[ "${{needs.Build.outcome}}" == "success" ] && [ "${{needs.Upload.outcome}}" == "success" ] && [ "${{needs.Process.outcome}}" == "success" ]; then
+            echo " All Jobs succeeded " 
+          else
+            echo "One or more jobs failed"
+          fi
