@@ -49,7 +49,7 @@ jobs:
     steps:
       - id: step1
         run: |
-          if [[ ["${{needs.Build.result}}" == "success"] && [ "${{needs.Upload.result}}" == "success" ] && [ "${{needs.Process.result}}" == "success" ] ]]; then
+          if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
             echo " All Jobs succeeded " 
           else
             echo "One or more jobs failed"
