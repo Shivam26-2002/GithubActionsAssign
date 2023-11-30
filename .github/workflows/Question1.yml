@@ -6,6 +6,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Job 1"
+
+
+  DeploytoDev:
+    name: Deploy to Dev
+    if: github.event_name == 'pull_request'
+    needs: first_job
+    runs-on: ubuntu-latest
+    environment:
+      name: Testing
+      url: 'http://dev.myapp.com'
+    steps:
+    - name: Deploy
+      run: echo Deploying
+    
+
+
+
+
   # second_job:
   #   name: Job2
   #   runs-on: ubuntu-latest
