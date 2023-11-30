@@ -23,6 +23,7 @@ jobs:
 
   Upload:
     runs-on: ubuntu-latest
+    continue-on-error: true
     needs: Build
     if: success()
     steps:
