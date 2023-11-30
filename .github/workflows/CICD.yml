@@ -48,5 +48,9 @@ jobs:
     needs: [Build,Upload,Process]
     steps:
       - id: step1
-        if: ${{ success() }}
-        run: echo "Success"
+        run: |
+          if [ ["${{needs.Build.outcome}}" == "success"] && [ "${{needs.Upload.outcome}}" == "success" ] && [ "${{needs.Process.outcome}}" == "success" ] ]; then
+            echo " All Jobs succeeded " 
+          else
+            echo "One or more jobs failed"
+          fi
