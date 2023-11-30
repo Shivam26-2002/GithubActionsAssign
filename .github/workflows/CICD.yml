@@ -47,9 +47,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [Build,Upload,Process]
     steps:
-      - name: Check Job Status
-        run: |
-          if[ ${{success()}} ]; then
-            echo " Success "
-          else
-            echo " Failure "
+      - id: step1
+        if: ${{ success() }}
+        run: echo "Success"
