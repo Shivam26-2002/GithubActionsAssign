@@ -66,6 +66,6 @@ jobs:
             echo " All Jobs succeeded " 
           elif [[ ("${{needs.Build.result}}" == "failure") || ( "${{needs.Upload.result}}" == "failure" ) || ( "${{needs.Process.result}}" == "failure" ) ]]; then
             echo " One of the jobs failed " 
-          else
+          elif  [[ ("${{needs.Build.result}}" == "skippped") || ( "${{needs.Upload.result}}" == "skippped" ) || ( "${{needs.Process.result}}" == "skippped" ) ]]; then
             echo "All Jobs cancelled"
           fi
