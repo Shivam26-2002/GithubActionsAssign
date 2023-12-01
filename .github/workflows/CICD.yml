@@ -68,4 +68,6 @@ jobs:
             echo " One of the jobs failed " 
           elif  [[ ("${{needs.Build.result}}" == "skippped") || ( "${{needs.Upload.result}}" == "skippped" ) || ( "${{needs.Process.result}}" == "skippped" ) ]]; then
             echo "All Jobs cancelled"
+          else
+            echo "All Jobs cancelled"
           fi
