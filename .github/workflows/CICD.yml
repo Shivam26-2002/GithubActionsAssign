@@ -58,9 +58,9 @@ jobs:
     name: Result
     needs: [Build,Upload,Process]
     steps:
-      # - id: step2
-      #   if: ${{ always() && contains(needs.*.result, 'failure') }}
-      #   run: echo "One of the Jobs failed"
+      - id: step2
+        if: ${{ always() && contains(needs.*.result, 'failure') }}
+        run: echo "One of the Jobs failed"
       - id: step1
         # run: buildAns
         run: |
