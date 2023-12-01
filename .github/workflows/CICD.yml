@@ -29,9 +29,9 @@ jobs:
     if: success()
     steps:
       - name: Fourth Job
-        # run: |
-        #   exit 1
-        run: echo "Upload Job"
+        run: |
+          exit 1
+        # run: echo "Upload Job"
 
   Message3:
     runs-on: ubuntu-latest
