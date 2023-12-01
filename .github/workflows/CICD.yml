@@ -40,9 +40,11 @@ jobs:
 
   Message3:
     runs-on: ubuntu-latest
+    needs: Upload
     steps: 
       - name: Fifth Job
-        run: echo "Processing"
+        # run: echo "Processing"
+        run: echo "test=${{needs.Upload.result}}" >> "GITHUB_OUTPUT"
 
   Process:
     runs-on: ubuntu-latest
