@@ -14,7 +14,9 @@ jobs:
     # envs
     steps:
       - id: step1
-        run: echo "Build Job"
+        # run: echo "Build Job"
+        run: |
+          exit 1
         # run: echo "test=${{Build.result}}" >> "GITHUB_OUTPUT"
 
   Message2:
