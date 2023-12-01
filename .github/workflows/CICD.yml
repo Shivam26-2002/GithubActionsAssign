@@ -22,7 +22,7 @@ jobs:
     needs: Build
     steps: 
       - name: Third Job
-        run: echo "test=${{jobs.Build.result}}" >> "GITHUB_OUTPUT"
+        run: echo "test=${{needs.Build.result}}" >> "GITHUB_OUTPUT"
         # run: echo "Uploading"
 
   Upload:
