@@ -27,7 +27,7 @@ jobs:
 
   Upload:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    # continue-on-error: true
     needs: Build
     if: success()
     steps:
@@ -58,6 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Result
     needs: [Build,Upload,Process]
+    if: always()
     steps:
       - id: step2
         if: ${{ always() && contains(needs.*.result, 'failure') }}
