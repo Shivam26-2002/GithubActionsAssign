@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Fourth Job
         run: |
-          exit 1
+          exit 0
       - name: Always
         run: echo " Always runs "
         # run: echo "Upload Job"
