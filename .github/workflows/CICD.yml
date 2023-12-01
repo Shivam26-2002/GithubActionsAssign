@@ -49,7 +49,7 @@ jobs:
 
   Result:
     runs-on: ubuntu-latest
-    needs: [Build,Upload,Process]
+    # needs: [Build,Upload,Process]
     steps:
       - name: Failure case
         if: ${{ always() && contains(needs.*.result, 'failure') }}
