@@ -29,15 +29,18 @@ jobs:
     environment:
       name: Testing
       url: 'http://dev.myapp.com'
+    outputs:
+      approved: ${{ steps.set-outputs.approved }}
     needs: Build
     if: success()
     steps:
-      - name: Fourth Job
-        run: |
-          exit 1
-      - name: Always
-        run: echo " Always runs "
-        # run: echo "Upload Job"
+     - name: Set outputs
+       id: set-outputs
+       run: |
+          echo "approved=true" >> $GITHUB_OUTPUT
+    #   - name: Fourth Job
+    #     run: |
+    #       exit 1
 
   Message3:
     runs-on: ubuntu-latest
@@ -64,7 +67,7 @@ jobs:
         run: |
           if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
             echo " All Jobs succeeded "
-          elif [[ (( "${{needs.Upload.result}}" == "failure" )) ]]; then
+          elif [[ "${{needs.Upload.outputs.approved}}" != "true") ]]; then
             echo "Upload Job cancelled"
           elif [[ ("${{needs.Build.result}}" == "failure") || ( "${{needs.Upload.result}}" == "failure" ) || ( "${{needs.Process.result}}" == "failure" ) ]]; then
             echo " One of the jobs failed " 
