@@ -1,0 +1,16 @@
+name: Always Fail Test
+on: 
+  workflow_dispatch:
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo "Hello, world!"
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Step 1
+        run: echo "Hello, world!"
