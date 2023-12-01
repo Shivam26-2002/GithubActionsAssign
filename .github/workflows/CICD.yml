@@ -52,10 +52,11 @@ jobs:
   Result:
     runs-on: ubuntu-latest
     name: Failure case
-    # if: ${{ always() && contains(needs.*.result, 'failure') }}
-    # run: echo "One of the Jobs failed"
     needs: [Build,Upload,Process]
     steps:
+      - id: step2
+        if: ${{ always() && contains(needs.*.result, 'failure') }}
+        run: echo "One of the Jobs failed"
       - id: step1
         # run: buildAns
         run: |
