@@ -52,7 +52,7 @@ jobs:
 
   Result:
     runs-on: ubuntu-latest
-    name: Failure case
+    name: Result
     needs: [Build,Upload,Process]
     steps:
       # - id: step2
