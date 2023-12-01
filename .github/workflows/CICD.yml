@@ -15,9 +15,7 @@ jobs:
     # envs
     steps:
       - id: step1
-        # run: echo "Build Job"
-        run: |
-          exit 1
+        run: echo "Build Job"
         # run: echo "test=${{Build.result}}" >> "GITHUB_OUTPUT"
 
   Message2:
@@ -28,13 +26,13 @@ jobs:
 
   Upload:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    # continue-on-error: true
     needs: Build
     if: success()
     steps:
       - name: Fourth Job
         run: |
-          exit 0
+          exit 1
       - name: Always
         run: echo " Always runs "
         # run: echo "Upload Job"
