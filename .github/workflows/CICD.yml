@@ -3,61 +3,40 @@ on:
   workflow_dispatch:
 
 jobs:
-  Message1:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: First Job
-        run : echo "Building"
-
-  Build:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: make build
+      - name: Store build result
+        id: build_result
+        run: echo "::set-output name=build_result::$?"
+  upload:
     runs-on: ubuntu-latest
-    # envs
+    needs: build
     steps:
-      - id: step1
-        run: echo "Build Job"
-        # run: echo "test=${{Build.result}}" >> "GITHUB_OUTPUT"
-
-  Message2:
+      - name: Upload
+        run: make upload
+      - name: Store upload result
+        id: upload_result
+        run: echo "::set-output name=upload_result::$?"
+  process:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Third Job
-        run: echo "Uploading"
-
-  Upload:
-    runs-on: ubuntu-latest
-    needs: Build
-    if: success()
+    needs: upload
     steps:
-      - name: Fourth Job
+      - name: Process
+        run: make process
+      - name: Store process result
+        id: process_result
+        run: echo "::set-output name=process_result::$?"
+  result:
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    steps:
+      - name: Print result
         run: |
-          exit 1
-        # run: echo "Upload Job"
-
-  Message3:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Fifth Job
-        run: echo "Processing"
-
-  Process:
-    runs-on: ubuntu-latest
-    needs: Upload
-    if: success()
-    steps:
-      - name: Sixth Job
-        run: echo "Process Job"
-
-  Result:
-    runs-on: ubuntu-latest
-    needs: [Build,Upload,Process]
-    steps:
-      - id: step1
-        # run: buildAns
-        run: |
-          if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
-            echo " All Jobs succeeded " 
-          elif [[ ("${{needs.Build.result}}" == "failure") || ( "${{needs.Upload.result}}" == "failure" ) || ( "${{needs.Process.result}}" == "failure" ) ]]; then
-            echo " One of the jobs failed " 
-          else
-            echo "All Jobs cancelled"
-          fi
+          echo "Build result: ${{ job.outputs.build_result }}"
+          echo "Upload result: ${{ job.outputs.upload_result }}"
+          echo "Process result: ${{ job.outputs.process_result }}"
