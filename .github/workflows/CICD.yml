@@ -30,14 +30,14 @@ jobs:
       name: Testing
       url: 'http://dev.myapp.com'
     outputs:
-      approved: ${{ steps.set-outputs.approved }}
+      approved: ${{ steps.set-outputs.outputs.approved }}
     needs: Build
     if: success()
     steps:
      - name: Set outputs
        id: set-outputs
        run: |
-          echo "approved=true" >> $GITHUB_OUTPUT
+          echo "approved=true" >> "$GITHUB_OUTPUT"
     #   - name: Fourth Job
     #     run: |
     #       exit 1
