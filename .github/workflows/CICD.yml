@@ -56,6 +56,8 @@ jobs:
         run: |
           if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
             echo " All Jobs succeeded " 
+          elif [[ ("${{needs.Build.result}}" == "failure") || ( "${{needs.Upload.result}}" == "failure" ) || ( "${{needs.Process.result}}" == "failure" ) ]]; then
+            echo " One of the jobs failed " 
           else
-            echo "One or more jobs failed"
+            echo "All Jobs cancelled"
           fi
