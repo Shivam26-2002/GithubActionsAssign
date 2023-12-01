@@ -22,12 +22,10 @@ jobs:
     needs: Build
     steps: 
       - name: Third Job
-        run: echo "test=${{needs.Build.result}}" >> "GITHUB_OUTPUT"
-        # run: echo "Uploading"
+        run: echo "Uploading"
 
   Upload:
     runs-on: ubuntu-latest
-    # continue-on-error: true
     needs: Build
     if: success()
     steps:
@@ -43,8 +41,7 @@ jobs:
     needs: Upload
     steps: 
       - name: Fifth Job
-        # run: echo "Processing"
-        run: echo "test=${{needs.Upload.result}}" >> "GITHUB_OUTPUT"
+        run: echo "Processing"
 
   Process:
     runs-on: ubuntu-latest
@@ -60,11 +57,7 @@ jobs:
     needs: [Build,Upload,Process]
     if: always()
     steps:
-      - id: step2
-        if: ${{ always() && contains(needs.*.result, 'failure') }}
-        run: echo "One of the Jobs failed"
       - id: step1
-        # run: buildAns
         run: |
           if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
             echo " All Jobs succeeded " 
