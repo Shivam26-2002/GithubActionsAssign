@@ -15,8 +15,8 @@ jobs:
     # envs
     steps:
       - id: step1
-        run: echo "Build Job"
-        # run: echo "test=${{Build.result}}" >> "GITHUB_OUTPUT"
+        # run: echo "Build Job"
+        run: echo "test=${{job.result}}" >> "GITHUB_OUTPUT"
 
   Message2:
     runs-on: ubuntu-latest
