@@ -26,6 +26,9 @@ jobs:
 
   Upload:
     runs-on: ubuntu-latest
+    environment:
+      name: Testing
+      url: 'http://dev.myapp.com'
     needs: Build
     if: success()
     steps:
