@@ -1,0 +1,18 @@
+name: New File Workflow
+on: 
+  workflow_dispatch:
+  
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create job1file.txt
+      run: |
+        echo "This is line 1" > job1file.txt
+        echo "This is line 2" >> job1file.txt
+        echo "This is line 3" >> job1file.txt
+    - name: Upload job1file.txt
+      uses: actions/upload-artifact@v2
+      with:
+        name: job1file
+        path: ./job1file.txt
