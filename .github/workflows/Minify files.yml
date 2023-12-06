@@ -17,7 +17,6 @@ jobs:
         run: |
           mkdir -p minified
           npx terser .github/JS/1.js -o minified/minified.js
-          npx cleancss .github/CSS/1.css -o minified/minified.css
           
   create-zip:
     needs: minify-files
