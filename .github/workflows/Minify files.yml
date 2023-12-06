@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Archive Minified Files
-        uses: montudor/action-zip@v0.2.1
+        uses: vimtor/action-zip@v1.1
         with:
           files: minified
           output-name: minified-files
@@ -32,3 +32,14 @@ jobs:
         with:
           name: minified-files
           path: minified
+
+
+# jobs:
+#   zip-files:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: vimtor/action-zip@v1.1
+#         with:
+#           files: dist/ manifest.json
+#           dest: result.zip
