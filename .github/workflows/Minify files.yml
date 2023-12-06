@@ -1,9 +1,8 @@
-name: Minify files
+name: Minify and Zip Workflow
 on:
-  workflow_dispatch:
-
+ workflow_dispatch:
 jobs:
-  minify-js:
+  minify-files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -14,7 +13,23 @@ jobs:
           node-version: '14'
       - name: Install Dependencies
         run: npm install
-      - name: Minify JS Files
+      - name: Minify JS and CSS Files
         run: |
-          mkdir -p dist
-          npx terser js/*.js -o dist/minified.js
+          mkdir -p minified
+          npx terser JS/!(1).js -o minified/minified.js
+          npx cleancss CSS/!(1).css -o minified/minified.css
+          
+  create-zip:
+    needs: minify-files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Archive Minified Files
+        uses: montudor/action-zip@v0.2.1
+        with:
+          files: minified
+          output-name: minified-files
+      - name: Upload Minified Files
+        uses: actions/upload-artifact@v2
+        with:
+          name: minified-files
+          path: minified
