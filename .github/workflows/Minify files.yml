@@ -3,16 +3,18 @@ on:
   workflow_dispatch:
 
 jobs:
-   minify:
+  minify-js:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Minify JavaScript files
-      uses: anthonyftwang/minify-action@v1.0.1
-      with:
-        directory: 'js'
-    - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Minify JavaScript files
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        run: npm install
+      - name: Minify JS Files
+        run: |
+          mkdir -p dist
+          npx terser js/*.js -o dist/minified.js
