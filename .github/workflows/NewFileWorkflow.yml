@@ -8,7 +8,8 @@ jobs:
     steps:
     - name: Create job1file.txt
       run: |
-        echo "Branch Name: ${{ github.ref }} Run URL: ${{ github.event.workflow_run.url }}" > job1file.txt
+        echo "Branch Name: ${{ github.ref }} Run URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} " > job1file.txt
+        "Workflow Run URL:
     - name: Upload job1file.txt
       uses: actions/upload-artifact@v2
       with:
