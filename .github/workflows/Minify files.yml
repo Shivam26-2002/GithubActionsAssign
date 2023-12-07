@@ -5,12 +5,8 @@ jobs:
   minify-files:
     runs-on: ubuntu-latest
     steps:
-     - name: Run Minify Action
-       uses: juliansangillo/minify-action@v1
-       with:
-         minify_files: "/*.js"
-         output_directory: "dist"
-
+      - name: Run Minify Action
+        uses: amireshoon/minifyAction@v1.1
           
   # create-zip:
   #   needs: minify-files
