@@ -67,10 +67,10 @@ jobs:
         run: |
           if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
             echo " All Jobs succeeded "
-          elif [[ ("${{needs.Upload.outputs.approved}}" != "true") ]]; then
-            echo "Upload Job cancelled"
           elif [[ ("${{needs.Build.result}}" == "failure") || ( "${{needs.Upload.result}}" == "failure" ) || ( "${{needs.Process.result}}" == "failure" ) ]]; then
             echo " One of the jobs failed " 
           elif  [[ ("${{needs.Build.result}}" == "skippped") || ( "${{needs.Upload.result}}" == "skippped" ) || ( "${{needs.Process.result}}" == "skippped" ) ]]; then
             echo "All Jobs cancelled"
+          elif [[ ("${{needs.Upload.outputs.approved}}" != "true") ]]; then
+            echo "Upload Job cancelled"
           fi
