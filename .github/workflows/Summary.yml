@@ -1,0 +1,9 @@
+name: Writing in summary
+on: workflow_dispatch
+jobs:
+  something:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write Summary
+        run: | 
+          echo "Something" >> $GITHUB_STEP_SUMMARY
