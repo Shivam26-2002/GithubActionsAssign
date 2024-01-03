@@ -1,10 +1,7 @@
 name: Nightwatch Test Summary
 
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 
 jobs:
