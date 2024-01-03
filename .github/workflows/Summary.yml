@@ -1,7 +1,10 @@
 name: Nightwatch Test Summary
 
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 
 jobs:
@@ -33,4 +36,19 @@ jobs:
 
 
       - name: Write Test Summary
-        run: node write-summary.js
+        run: |
+          const { JUnitReportBuilder } = require('junit-report-builder');
+          const fs = require('fs');
+
+
+          const builder = new JUnitReportBuilder();
+          builder.parseFiles(['test-results.xml']);
+          const testResults = builder.getTestResults();
+
+
+          // Process testResults and write summary
+          const summary = `Total Tests: ${testResults.tests}, Passed: ${testResults.tests - testResults.failures - testResults.errors}, Failed: ${testResults.failures}, Errors: ${testResults.errors}`;
+
+
+          fs.writeFileSync('test-summary.txt', summary);
+          echo "$summary"
