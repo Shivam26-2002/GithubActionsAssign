@@ -1,9 +1,26 @@
-name: Writing in summary
+name: Nightwatch Test Summary
 on: workflow_dispatch
+
 jobs:
-  something:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Write Summary
-        run: | 
-          echo "Something" >> $GITHUB_STEP_SUMMARY
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Set Up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Nightwatch Tests
+        run: npm run nightwatch
+
+      - name: Save Test Results
+        run: mv path/to/test-results.xml $GITHUB_WORKSPACE/test-results.xml
+
+      - name: Write Test Summary
+        run: node write-summary.js
