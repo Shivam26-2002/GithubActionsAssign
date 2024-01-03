@@ -1,51 +1,39 @@
-name: Nightwatch Test Summary
-
-
+name: Nightwatch.js Test
 on: workflow_dispatch
-
-
 jobs:
   test:
     runs-on: ubuntu-latest
-
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    - name: Install Dependencies
+      run: npm install
+    - name: Run Nightwatch.js Tests
+      run: npm run nightwatch
+    - name: Generate Test Results Summary
+      run: |
+        # Extract relevant information from Nightwatch.js output
+        SUMMARY=$(grep -E "Total\s+([0-9]+)\s+passed" nightwatch_output.txt | sed -E "s/Total\s+([0-9]+)\s+passed/\1 tests passed/")
 
 
-      - name: Set Up Node.js
-        uses: actions/setup-node@v4
-        with:
-         node-version: '14.x'
+        # Print summary to GitHub Actions
+        echo "::set-output name=summary::$SUMMARY"
+      
+    # - name: Upload Test Artifacts
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: nightwatch-results
+    #     path: ./path/to/nightwatch/output
 
 
-      - name: Install Dependencies
-        run: npm install
+    # - name: Set Build Status
+    #   if: ${{ success() }}
+    #   run: echo "Nightwatch tests passed!" || echo "Nightwatch tests failed!"
 
 
-      - name: Run Nightwatch Tests
-        run: npm run nightwatch
-
-
-      - name: Save Test Results
-        run: mv path/to/test-results.xml $GITHUB_WORKSPACE/test-results.xml
-
-
-      - name: Write Test Summary
-        run: |
-          const { JUnitReportBuilder } = require('junit-report-builder');
-          const fs = require('fs');
-
-
-          const builder = new JUnitReportBuilder();
-          builder.parseFiles(['test-results.xml']);
-          const testResults = builder.getTestResults();
-
-
-          // Process testResults and write summary
-          const summary = `Total Tests: ${testResults.tests}, Passed: ${testResults.tests - testResults.failures - testResults.errors}, Failed: ${testResults.failures}, Errors: ${testResults.errors}`;
-
-
-          fs.writeFileSync('test-summary.txt', summary);
-          echo "$summary"
+    # - name: Cleanup
+    #   run: npm run cleanup
