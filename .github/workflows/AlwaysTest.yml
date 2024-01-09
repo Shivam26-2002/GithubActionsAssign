@@ -2,10 +2,34 @@ name: Always Fail Test
 on: 
   workflow_dispatch:
 jobs:
-  job1:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
         run: |
-           echo ${{ github.repository }}
+          # Build your HTML file here
+          echo "<html><body><h1>Hello, world!</h1></body></html>" > index.html
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: html-file
+          path: index.html
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: html-file
+          path: ./
+      - name: Generate link to html report
+        if: always()
+        run: |
+          ls ./
+          echo "HTML Report: [Nightwatch Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/html-file/index.html)">> $GITHUB_STEP_SUMMARY
+
+
 
