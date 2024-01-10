@@ -10,7 +10,7 @@ jobs:
       - name: Build
         run: |
           # Build your HTML file here
-          echo "<html><body><h1>Hello, world!</h1><h2>I'm shivam srivastava</h2></body></html>" > index.html
+          echo "<html><body><h1>Hello, world!</h1><h2>I'm shivam srivastava Adding new line</h2></body></html>" > index.html
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
