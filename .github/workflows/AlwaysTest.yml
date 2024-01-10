@@ -16,15 +16,21 @@ jobs:
         with:
           name: html-file
           path: index.html
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+          
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: html-file
           path: ./
+
+      - name: Commit the file
+        run: |
+          git config --global user.email shivamvkas18@gmail.com
+          git config --global user.name shivam_srivastava             
+          git add index.html
+          git commit -m "Commited Index file"
+          git push 
+          
       - name: Generate link to html report
         if: always()
         run: |
