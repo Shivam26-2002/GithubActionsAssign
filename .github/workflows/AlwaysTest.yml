@@ -36,6 +36,18 @@ jobs:
         run: |
           ls ./
           echo "HTML Report: [Nightwatch Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/html-file/index.html)">> $GITHUB_STEP_SUMMARY
+      
+      - name: HTML Preview
+        id: html_preview
+        if: always()
+        uses: pavi2410/html-preview-action@v2
+        with:
+          html_file: 'index.html'
 
+      - name: HTML URL
+        if: always()
+        id: html-url
+        run: |
+          echo "${{ steps.html_preview.outputs.url }}" >> $GITHUB_STEP_SUMMARY
 
 
