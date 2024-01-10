@@ -5,45 +5,53 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build
-        run: |
-          # Build your HTML file here
-          echo "<html><body><h1>Hello, world!</h1><h2>I'm shivam srivastava Adding new line</h2></body></html>" > index.html
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: html-file
-          path: index.html
+      - name: Writing comments
+        run: | 
+          echo " completed :heavy_check_mark: "
+          echo " Success :white_check_mark: "
+          echo " Failed :negative_squared_cross_mark: "
+          echo " Failed :x: "
+
+    
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      # - name: Build
+      #   run: |
+      #     # Build your HTML file here
+      #     echo "<html><body><h1>Hello, world!</h1><h2>I'm shivam srivastava Adding new line</h2></body></html>" > index.html
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: html-file
+      #     path: index.html
           
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: html-file
-          path: ./
+      # - name: Download artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: html-file
+      #     path: ./
 
-      - name: Commit the file
-        run: |
-          git config --global user.email shivamvkas18@gmail.com
-          git config --global user.name shivam_srivastava             
-          git add index.html
-          git commit -m "Commited Index file"
-          git push 
+      # - name: Commit the file
+      #   run: |
+      #     git config --global user.email shivamvkas18@gmail.com
+      #     git config --global user.name shivam_srivastava             
+      #     git add index.html
+      #     git commit -m "Commited Index file"
+      #     git push 
                 
-      - name: HTML Preview
-        id: html_preview
-        if: always()
-        uses: pavi2410/html-preview-action@v2
-        with:
-          html_file: 'index.html'
+      # - name: HTML Preview
+      #   id: html_preview
+      #   if: always()
+      #   uses: pavi2410/html-preview-action@v2
+      #   with:
+      #     html_file: 'index.html'
 
-      - name: HTML URL
-        if: always()
-        id: html-url
-        run: |
-          echo "${{ steps.html_preview.outputs.url }}" >> $GITHUB_STEP_SUMMARY
-          echo "http://htmlpreview.github.io/?https://github.com/Shivam26-2002/GithubActionsAssign/blob/${{ github.ref }}/index.html" >> $GITHUB_STEP_SUMMARY
+      # - name: HTML URL
+      #   if: always()
+      #   id: html-url
+      #   run: |
+      #     echo "${{ steps.html_preview.outputs.url }}" >> $GITHUB_STEP_SUMMARY
+      #     echo "http://htmlpreview.github.io/?https://github.com/Shivam26-2002/GithubActionsAssign/blob/${{ github.ref }}/index.html" >> $GITHUB_STEP_SUMMARY
    
 
 
