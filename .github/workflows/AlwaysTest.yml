@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Writing comments
         run: | 
-          echo " completed :heavy_check_mark: "
+          echo " completed :heavy_check_mark:    	😄 "
           echo " Success :white_check_mark: "
           echo " Failed :negative_squared_cross_mark: "
           echo " Failed :x: "
