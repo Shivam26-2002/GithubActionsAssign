@@ -11,7 +11,7 @@ jobs:
       - name: Get branch name
         # run: echo "Branch name ${{github.ref}}"
         run: |
-          echo "Branch = ${{ GITHUB_REF#refs/heads/}}"
+          echo "Branch = ${{ github.ref#refs/heads/}}"
 
         
     
