@@ -10,7 +10,7 @@ jobs:
         
       - name: Get branch name
         # run: echo "Branch name ${{github.ref}}"
-        run: echo "Branch name ${{ github.ref.split('/').slice(2).join('/') }}"
+        run: echo "Branch name ${{ github.ref}}"
     
       # - name: Writing comments
       #   run: | 
