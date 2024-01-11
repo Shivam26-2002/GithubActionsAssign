@@ -10,7 +10,11 @@ jobs:
         
       - name: Get branch name
         # run: echo "Branch name ${{github.ref}}"
-        run: echo "Branch name ${{ github.ref}}"
+        run: |
+          echo "Branch = ${{ github.ref}}"
+          echo "shivam/sri/vas" | sed 's/shivam\/sriv\///g'
+
+        
     
       # - name: Writing comments
       #   run: | 
