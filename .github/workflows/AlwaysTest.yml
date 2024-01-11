@@ -5,12 +5,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Writing comments
-        run: | 
-          echo " completed :heavy_check_mark:    	😄 "
-          echo " Success :white_check_mark: "
-          echo " Failed :negative_squared_cross_mark: "
-          echo " Failed :x: "
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
+        
+      - name: Get branch name
+        # run: echo "Branch name ${{github.ref}}"
+        run: echo "Branch name ${{ github.ref.split('/').slice(2).join('/') }}"
+    
+      # - name: Writing comments
+      #   run: | 
+      #     echo " completed :heavy_check_mark:    	😄 "
+      #     echo " Success :white_check_mark: "
+      #     echo " Failed :negative_squared_cross_mark: "
+      #     echo " Failed :x: "
 
     
       # - name: Checkout
