@@ -27,7 +27,7 @@ jobs:
             $URL \
             -H "Content-Type: application/json" \
             -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body": "blah blah GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" }'
+            --data '{ "body": "blah blah GITHUB_WORKFLOW_URL=https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" }'
 
       # - name: Post comment
       #   uses: actions/github-script@v6
