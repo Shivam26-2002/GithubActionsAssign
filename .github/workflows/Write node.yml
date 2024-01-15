@@ -5,6 +5,14 @@ jobs:
   write-node:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+        
       - name: Write node script
         run: |
           echo "Start node script"
