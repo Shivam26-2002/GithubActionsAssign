@@ -15,7 +15,7 @@ jobs:
          node-version: '14.x'
       - run: npm install
       - name: Write node version
-        run: echo node --version
+        run: node --version
       - name: Set Status Check
         run: |
           npm install @actions/core
