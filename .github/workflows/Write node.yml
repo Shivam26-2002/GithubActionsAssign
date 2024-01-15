@@ -16,9 +16,9 @@ jobs:
       - name: Write node script
         run: |
           echo "Start node script"
+          npm install @actions/core
+          npm install @actions/github
           node - << EOF
-            npm install @actions/core
-            npm install @actions/github
             const core = require('@actions/core');
             const { GitHub, context } = require('@actions/github');
             
