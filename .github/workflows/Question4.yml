@@ -5,5 +5,5 @@ jobs:
   start:
     runs-on: ubuntu-latest
     steps:
-    - name: Try
-      run: echo ${{github.context}}
+    - name: Print GITHUB_SHA
+      run: echo "Commit SHA $GITHUB_SHA"
