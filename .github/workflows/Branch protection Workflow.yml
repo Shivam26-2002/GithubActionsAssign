@@ -1,0 +1,12 @@
+name: Branch protection Workflow
+on:
+  workflow_run:
+    workflows: ["Status-Check1"]
+    types:
+      - completed
+jobs:
+  onlyWhenCompleted:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running first job
+        run: echo "Running "
