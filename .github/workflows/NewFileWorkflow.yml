@@ -1,0 +1,30 @@
+name: New File Workflow
+on: 
+  workflow_dispatch:
+  
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create job1file.txt
+      run: |
+        echo "Branch Name: ${{ github.ref }} Run URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} " > job1file.txt
+    - name: Upload job1file.txt
+      uses: actions/upload-artifact@v2
+      with:
+        name: job1file
+        path: ./job1file.txt
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download job1file.txt
+      uses: actions/download-artifact@v2
+      with:
+        name: job1file
+    - name: Extract branch_name and run_url
+      run: |
+        branch_name=$(grep -oP 'Branch Name: \K.*' job1file.txt)
+        run_url=$(grep -oP 'Run URL: \K.*' job1file.txt)
+        echo "Branch Name Trial: $branch_name"
+        echo "Run URL Trial: $run_url" 

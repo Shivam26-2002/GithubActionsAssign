@@ -1,0 +1,39 @@
+name: Nightwatch.js Test
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    - name: Install Dependencies
+      run: npm install
+    - name: Run Nightwatch.js Tests
+      run: npm run nightwatch
+    - name: Generate Test Results Summary
+      run: |
+        # Extract relevant information from Nightwatch.js output
+        SUMMARY=$(grep -E "Total\s+([0-9]+)\s+passed" nightwatch_output.txt | sed -E "s/Total\s+([0-9]+)\s+passed/\1 tests passed/")
+
+
+        # Print summary to GitHub Actions
+        echo "::set-output name=summary::$SUMMARY"
+      
+    # - name: Upload Test Artifacts
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: nightwatch-results
+    #     path: ./path/to/nightwatch/output
+
+
+    # - name: Set Build Status
+    #   if: ${{ success() }}
+    #   run: echo "Nightwatch tests passed!" || echo "Nightwatch tests failed!"
+
+
+    # - name: Cleanup
+    #   run: npm run cleanup
