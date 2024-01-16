@@ -10,3 +10,17 @@ jobs:
     steps:
       - name: Running first job
         run: echo "Running "
+
+  set-commit-status:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set commit status (success)
+      uses: github/set-status@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        context: 'custom-status-check'
+        state: 'success'
+        description: 'All checks passed!'
