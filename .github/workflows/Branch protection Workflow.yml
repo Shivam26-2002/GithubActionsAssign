@@ -1,9 +1,9 @@
 name: Branch protection Workflow
-on:
-  workflow_run:
-    workflows: ["Status-Check1"]
-    types:
-      - completed
+on: workflow_dispatch
+  # workflow_run:
+  #   workflows: ["Status-Check1"]
+  #   types:
+  #     - completed
 jobs:
   onlyWhenCompleted:
     runs-on: ubuntu-latest
@@ -14,9 +14,6 @@ jobs:
   set-commit-status:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
     - name: Set commit status (success)
       uses: github/set-status@v2
       with:
