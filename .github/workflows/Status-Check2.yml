@@ -1,80 +1,80 @@
-name: Status-Check2
-on:
-  workflow_run:
-    workflows: ["Status-Check1"]
-    types:
-      - completed
-jobs:
-  Status_Job:
-    runs-on: ubuntu-latest
+# name: Status-Check2
+# on:
+#   workflow_run:
+#     workflows: ["Status-Check1"]
+#     types:
+#       - completed
+# jobs:
+#   Status_Job:
+#     runs-on: ubuntu-latest
   
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v4
-        with:
-         node-version: '18.x'
-      - run: npm install -g npm@latest
-      - name: Write node version
-        run: node --version
-      - name: Set Status Check
-        run: |
-          npm install @actions/core
-          npm install @actions/github
-          node - << EOF
-            import { getOctokit } from '@actions/github';
-            async function run() {
-              try {
-                const token = process.env.GITHUB_TOKEN || getInput('github-token');
-                const octokit = getOctokit(token);
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v4
+#         with:
+#          node-version: '18.x'
+#       - run: npm install -g npm@latest
+#       - name: Write node version
+#         run: node --version
+#       - name: Set Status Check
+#         run: |
+#           npm install @actions/core
+#           npm install @actions/github
+#           node - << EOF
+#             import { getOctokit } from '@actions/github';
+#             async function run() {
+#               try {
+#                 const token = process.env.GITHUB_TOKEN || getInput('github-token');
+#                 const octokit = getOctokit(token);
             
-                const commitSHA = context.sha;
-                const repo = context.repo;
-                const state = 'success';
-                const description = 'Build and deployment successful';
+#                 const commitSHA = context.sha;
+#                 const repo = context.repo;
+#                 const state = 'success';
+#                 const description = 'Build and deployment successful';
             
-                await octokit.repos.createCommitStatus({
-                  ...repo,
-                  sha: commitSHA,
-                  state,
-                  description,
-                  context: 'build-and-deploy'
-                });
+#                 await octokit.repos.createCommitStatus({
+#                   ...repo,
+#                   sha: commitSHA,
+#                   state,
+#                   description,
+#                   context: 'build-and-deploy'
+#                 });
             
-                console.log('Status check set successfully.');
-              } catch (error) {
-                setFailed(error.message);
-              }
-            }
+#                 console.log('Status check set successfully.');
+#               } catch (error) {
+#                 setFailed(error.message);
+#               }
+#             }
             
-            run();
+#             run();
 
-            # const core = require('@actions/core');
-            # const { GitHub, context } = require('@actions/github');
+#             # const core = require('@actions/core');
+#             # const { GitHub, context } = require('@actions/github');
             
-            # async function run() {
-            #   try {
-            #     const token = process.env.GITHUB_TOKEN || core.getInput('github-token');
-            #     const github = new GitHub(token);
+#             # async function run() {
+#             #   try {
+#             #     const token = process.env.GITHUB_TOKEN || core.getInput('github-token');
+#             #     const github = new GitHub(token);
             
-            #     const commitSHA = context.sha;
-            #     const repo = context.repo;
-            #     const state = 'success'; // or 'failure', 'error', 'pending'
-            #     const description = 'Build and deployment successful';
+#             #     const commitSHA = context.sha;
+#             #     const repo = context.repo;
+#             #     const state = 'success'; // or 'failure', 'error', 'pending'
+#             #     const description = 'Build and deployment successful';
             
-            #     await github.repos.createCommitStatus({
-            #       ...repo,
-            #       sha: commitSHA,
-            #       state,
-            #       description,
-            #       context: 'build-and-deploy'
-            #     });
+#             #     await github.repos.createCommitStatus({
+#             #       ...repo,
+#             #       sha: commitSHA,
+#             #       state,
+#             #       description,
+#             #       context: 'build-and-deploy'
+#             #     });
             
-            #     console.log('Status check set successfully.');
-            #   } catch (error) {
-            #     core.setFailed(error.message);
-            #   }
-            # }
+#             #     console.log('Status check set successfully.');
+#             #   } catch (error) {
+#             #     core.setFailed(error.message);
+#             #   }
+#             # }
             
-            # run();
-          EOF
+#             # run();
+#           EOF
     
