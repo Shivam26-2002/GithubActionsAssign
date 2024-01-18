@@ -1,4 +1,5 @@
-name: Always Fail Test
+name: Write PR comment on pull request 
+
 on:
   pull_request:
     types: [opened, reopened]

@@ -1,0 +1,32 @@
+name: Branch protection Workflow
+on: 
+  workflow_run:
+    workflows: ["Status-Check1"]
+    types:
+      - completed
+jobs:
+  onlyWhenCompleted:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running first job
+        run: echo "Running "
+
+  set-commit-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set commit status (success)
+        run: |
+          echo ${{github.repository}}
+          curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          -d '{"state": "success", "context": "custom-status-check", "description": "All checks passed!"}'
+          # -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+          # https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/status
+
+      - name: Read Status
+        run: |
+          echo "Read"
+          curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/status
+

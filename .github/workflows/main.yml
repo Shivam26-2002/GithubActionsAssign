@@ -1,0 +1,9 @@
+name: Workflow run 1
+on:
+  workflow_dispatch:
+jobs:
+  start1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Write
+      run: echo "Hello Workflow 1"
