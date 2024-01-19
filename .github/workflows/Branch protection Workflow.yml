@@ -16,9 +16,6 @@ jobs:
     steps:
       - name: Set commit status (success)
         run: |
-          echo ${{github.repository}}
-          echo ${{ GITHUB_TOKEN }}
-          echo ${{ github.sha }} 
           echo ${{ github.repository }}
           curl -X POST \
           -H "Accept: application/vnd.github.v3+json" \
