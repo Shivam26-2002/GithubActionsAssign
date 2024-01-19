@@ -1,9 +1,9 @@
 name: Branch protection Workflow
-on: 
-  workflow_run:
-    workflows: ["Status-Check1"]
-    types:
-      - completed
+on: workflow_dispatch
+  # workflow_run:
+  #   workflows: ["Status-Check1"]
+  #   types:
+  #     - completed
 jobs:
   onlyWhenCompleted:
     runs-on: ubuntu-latest
@@ -17,6 +17,9 @@ jobs:
       - name: Set commit status (success)
         run: |
           echo ${{github.repository}}
+          echo ${{ secrets.GITHUB_TOKEN }}
+          echo ${{ github.sha }} 
+          echo ${{ github.repository }}
           curl -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
