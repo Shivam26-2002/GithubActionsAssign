@@ -13,6 +13,7 @@ jobs:
     - name: Running dummy job
       run: |
         echo "Running first_job"
+        exit 1
   second_job:
     runs-on: ubuntu-latest
     needs: first_job
