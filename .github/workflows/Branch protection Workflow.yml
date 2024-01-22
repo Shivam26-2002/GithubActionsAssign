@@ -21,6 +21,7 @@ jobs:
         run: |
           echo ${{ github.repository }}
           echo ${{github.sha}}
+          echo $GH_SHA
           # gh api repos/${{github.repository}}/statuses/${{github.sha}} -f state=success -f context='my-check'
           
           curl -L \
