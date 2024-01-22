@@ -15,8 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set commit status (success)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           echo ${{ github.repository }}
+          echo ${{github.sha}}
           gh api repos/${{github.repository}}/statuses/${{github.sha}} -f state=success -f context='my-check'
           # curl -X POST \
           # -H "Accept: application/vnd.github.v3+json" \
