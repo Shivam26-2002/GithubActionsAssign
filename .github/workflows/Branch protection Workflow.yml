@@ -38,7 +38,11 @@ jobs:
           # -d '{"state": "success", "context": "custom-status-check", "description": "All checks passed!"}'
 
       - name: Get check name
-        run: echo "Check name is ${{ github.event.check_suite.name }}"
+        run: |
+          echo "Check name is ${{ github.event.check_suite.name }}"
+          echo "check suite is ${{github.event.check_suite}}"
+          echo "event is ${{github.event}}"
+        
       # - name: Read Status
       #   run: |
       #     echo "Read"
