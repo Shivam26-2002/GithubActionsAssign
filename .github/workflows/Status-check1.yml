@@ -1,9 +1,9 @@
 name: Status-Check1
-on: workflow_dispatch
-  # pull_request:
-  #   types:
-  #   - opened
-  #   - reopened
+on: 
+  pull_request:
+    types:
+    - opened
+    - reopened
   
 jobs:
   first_job:
