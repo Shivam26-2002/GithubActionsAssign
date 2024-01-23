@@ -19,7 +19,7 @@ jobs:
          with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const context1 = github.context.payload;
+            const context1 = github.context?.payload;
             const checks = context1?.checks;
             if (checks) {
               console.log("It has checks")
