@@ -14,6 +14,7 @@ jobs:
           exit 1
       - name: Imp second step
         id: trial2
+        if: always()
         # if: steps.trial.outcome == 'success' && steps.trial1.outcome == 'success'
         run: echo "Success"
       - name: Imp third step
