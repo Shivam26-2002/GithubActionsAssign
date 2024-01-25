@@ -6,9 +6,11 @@ jobs:
     steps:
       - name: Trial step
         id: trial
-        run: |
-          exit 1
+        run: echo "Trial job"
       - name: Imp step
+        id: trial1
         if: steps.trial.outcome == 'success'
         run: echo "Trial step succeded"
-  
+      - name: Imp second step
+        if: steps.trial.outcome == 'success' && steps.trial1.outcome == 'success'
+        run: echo "Success"
