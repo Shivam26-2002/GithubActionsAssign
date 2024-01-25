@@ -10,7 +10,8 @@ jobs:
       - name: Imp step
         id: trial1
         if: steps.trial.outcome == 'success'
-        run: echo "Trial step succeded"
+        run: |
+          exit 1
       - name: Imp second step
         if: steps.trial.outcome == 'success' && steps.trial1.outcome == 'success'
         run: echo "Success"
