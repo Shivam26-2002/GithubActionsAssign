@@ -8,6 +8,6 @@ jobs:
         id: trial
         run: echo " Hello Job"
       - name: Imp step
-        if: step.trial.outcome == 'success'
+        if: steps.trial.outcome == 'success'
         run: echo "Trial step succeded"
   
