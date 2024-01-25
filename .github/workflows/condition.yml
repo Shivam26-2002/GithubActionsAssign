@@ -1,0 +1,13 @@
+name: condition
+on:  workflow_dispatch
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trial step
+        id: trial
+        run: echo " Hello Job"
+      - name: Imp step
+        if: step.trial.outcome == 'success'
+        run: echo "Trial step succeded"
+  
