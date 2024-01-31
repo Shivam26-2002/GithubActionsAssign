@@ -8,3 +8,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Modifying branch name
+        run: |
+          input="feature/O20R-123_test.test"
+          output=$(echo "$input" | tr -s '[:alnum:]' '-')
+          output="${output:0:${#output}-1}.staging.jlg.com"
+          echo "$output"
