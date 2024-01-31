@@ -12,5 +12,5 @@ jobs:
         run: |
           input="feature/O20R-123_test.test"
           output=$(echo "$input" | tr -s '[:alnum:]' '-')
-          output="${output:0:${#output}-1}.staging.jlg.com"
+          # output="${output:0:${#output}-1}.staging.jlg.com"
           echo "$output"
