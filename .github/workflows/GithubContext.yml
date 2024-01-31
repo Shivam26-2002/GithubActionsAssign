@@ -7,7 +7,10 @@ jobs:
       - name: Write Github Context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: |
+          echo "${{github.event_name}}"
+          echo "${{github.event.inputs}}"
+          echo "$GITHUB_CONTEXT"
       - name: Modifying branch name
         run: |
           replace_alnum_with_hyphen() {
