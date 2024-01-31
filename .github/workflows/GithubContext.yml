@@ -10,7 +10,10 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Modifying branch name
         run: |
-          input="feature/O20R-123_test.test"
-          output=$(echo "$input" | tr -s '[:alnum:]' '-')
-          # output="${output:0:${#output}-1}.staging.jlg.com"
-          echo "$output"
+          replace_alnum_with_hyphen() {
+          echo "$1" | sed -E 's/[^[:alnum:]]/-/g'
+          }
+          input_string="feature/O20R-123_test.test"
+          converted_string=$(replace_alnum_with_hyphen "$input_string")
+          echo "Original string: $input_string"
+          echo "Converted string: $converted_string"
