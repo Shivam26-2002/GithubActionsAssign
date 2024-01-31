@@ -9,7 +9,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "${{github.event_name}}"
-          echo "${{github.event.inputs}}"
+          echo "${{github.event.repository.archive_url}}"
           echo "$GITHUB_CONTEXT"
       - name: Modifying branch name
         run: |
