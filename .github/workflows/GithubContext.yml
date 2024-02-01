@@ -27,7 +27,7 @@ jobs:
         run: |
            if [ "${{github.event.ref}}" == "refs/heads/" ];then
              echo "Not working"
-           elif [ "${{github.event.ref}}" == "refs/heads/main"];then
+           elif [ "${{github.event.ref}}" == "refs/heads/main" ];then
              echo " Working"
            else
             echo "Fook liya h"
