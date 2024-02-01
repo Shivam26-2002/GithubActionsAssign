@@ -11,6 +11,15 @@ jobs:
           echo "${{github.event_name}}"
           echo "${{github.event.repository.archive_url}}"
           echo "$GITHUB_CONTEXT"
+          
+      - name: Check condition
+        if: ${{github.event.ref}} == "refs/heads/"
+        run: echo "Not Working" 
+        
+      - name: Check condition
+        if: ${{github.event.ref}} == "refs/heads/main"
+        run: echo "Working" 
+        
       - name: Modifying branch name
         run: |
           replace_alnum_with_hyphen() {
