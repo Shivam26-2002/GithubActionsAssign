@@ -11,6 +11,9 @@ jobs:
           echo "${{github.event_name}}"
           echo "${{github.event.repository.archive_url}}"
           echo "$GITHUB_CONTEXT"
+
+      - name: Write So
+        run: echo  "${{github.event.ref}}"
           
       - name: Check condition
         if: ${{github.event.ref}} == "refs/heads/"
