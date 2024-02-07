@@ -7,6 +7,7 @@ jobs:
       - name: Remove whitespaces using xargs and [:space:]
         run: |
           WORD= 'Hello world'
+          echo -e "WORD='${WORD}'"
           ENV_URL= "$(echo -e "${WORD}" | tr -d '[:space:]')"
           LOWERCASE_WORD="${ENV_URL,,}"
           echo "LOWERCASE_WORD"
