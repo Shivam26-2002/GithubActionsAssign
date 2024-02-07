@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check case sensitive or not
-        if: ${{github.job}} == "context"
+        if: ${{github.job}} == "CONTEXT"
         run: echo "Case"
       - name: Check case sensitive or not in shell script
         run: |
