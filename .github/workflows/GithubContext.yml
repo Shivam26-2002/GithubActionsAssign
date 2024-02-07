@@ -4,6 +4,13 @@ jobs:
   context:
     runs-on: ubuntu-latest
     steps:
+      - name: Check case sensitive or not
+        run: |
+          if ["Shivam" == "shivam"];then
+            echo "Git case insensitive"
+          else
+            echo "Git case sensitive"
+          fi
       - name: Write Github Context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
