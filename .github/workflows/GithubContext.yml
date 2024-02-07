@@ -12,9 +12,10 @@ jobs:
           # echo $ENV_URL
           # echo "LOWERCASE_WORD"
           echo "   lol  " | xargs
-          FOO=' test test test '
+          FOO=' TEST TEST TEST '
           echo -e "FOO='${FOO}'"
           LOWERCASE_WORD="${FOO,,}"
+          echo "Upper case letter are here :"
           echo $LOWERCASE_WORD
           # > FOO=' test test test '
           echo -e "length(FOO)==${#FOO}"
