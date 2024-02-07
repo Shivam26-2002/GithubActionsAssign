@@ -6,10 +6,10 @@ jobs:
     steps:
       - name: Remove whitespaces using xargs
         run: |
-          string = " Shivam is a good boy    This is written after so many white-spaces"
-          echo "$string"
-          echo "Print second string"
-          echo "$string" | xargs
+          name = " Shivam is a good boy    This is written after so many white-spaces"
+          echo "$name"
+          echo "Print second name"
+          echo "$name" | xargs
           
       - name: Check case sensitive or not in shell script
         run: |
@@ -62,7 +62,7 @@ jobs:
           replace_alnum_with_hyphen() {
           echo "$1" | sed -E 's/[^[:alnum:]]/-/g'
           }
-          input_string="feature/O20R-123_test.test"
-          converted_string=$(replace_alnum_with_hyphen "$input_string")
-          echo "Original string: $input_string"
-          echo "Converted string: $converted_string"
+          input_name="feature/O20R-123_test.test"
+          converted_name=$(replace_alnum_with_hyphen "$input_name")
+          echo "Original name: $input_name"
+          echo "Converted name: $converted_name"
