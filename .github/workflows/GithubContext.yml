@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Check case sensitive or not in shell script
         run: |
-          if ["Shivam" -eq "shivam"];then
+          if [ "Shivam" -eq "shivam" ];then
             echo "Git case insensitive"
           else
             echo "Git case sensitive"
