@@ -7,14 +7,15 @@ jobs:
       - name: Remove whitespaces using xargs and [:space:]
         run: |
           WORD='Hello world'
-          # echo -e "WORD='${WORD}'"
-          ENV_URL= "$(echo -e "${WORD}" | tr -d '[:space:]')"
+          # ENV_URL= "$(echo -e "${WORD}" | tr -d '[:space:]')"
           # LOWERCASE_WORD="${ENV_URL,,}"
-          echo $ENV_URL
-          echo "LOWERCASE_WORD"
+          # echo $ENV_URL
+          # echo "LOWERCASE_WORD"
           echo "   lol  " | xargs
           FOO=' test test test '
           echo -e "FOO='${FOO}'"
+          LOWERCASE_WORD="${FOO,,}"
+          echo $LOWERCASE_WORD
           # > FOO=' test test test '
           echo -e "length(FOO)==${#FOO}"
           # > length(FOO)==16
