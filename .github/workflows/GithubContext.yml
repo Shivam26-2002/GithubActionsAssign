@@ -7,10 +7,10 @@ jobs:
       - name: Remove whitespaces using xargs
         run: |
           echo "   lol  " | xargs
-          # square = "Shivam is a good boy "
-          # echo $square
-          # echo "Print second name"
-          # echo $square | xargs
+          square = "Shivam is a good boy "
+          echo $square
+          echo "Print second name"
+          echo $square | xargs
           
       - name: Check case sensitive or not in shell script
         run: |
