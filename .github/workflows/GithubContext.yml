@@ -6,10 +6,10 @@ jobs:
     steps:
       - name: Remove whitespaces using xargs
         run: |
-          name = " Shivam is a good boy    This is written after so many white-spaces"
-          echo "$name"
+          name = " Shivam is a good boy "
+          echo $name
           echo "Print second name"
-          echo "$name" | xargs
+          echo $name | xargs
           
       - name: Check case sensitive or not in shell script
         run: |
