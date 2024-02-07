@@ -4,6 +4,14 @@ jobs:
   context:
     runs-on: ubuntu-latest
     steps:
+      - name: Check case sensitive or not in shell script
+        run: |
+          if ["Shivam" -eq "shivam"];then
+            echo "Git case insensitive"
+          else
+            echo "Git case sensitive"
+          fi
+          
       - name: Check case sensitive or not
         if: ${{github.event.ref}} == "refs/heads/main"
         run: echo "Case Sensitive"
@@ -11,14 +19,7 @@ jobs:
       - name: Check case sensitive or not 2
         if: ${{github.event.ref}} == "REFS/HEADS/MAIN"
         run: echo "Case In-Sensitive"
-        
-      - name: Check case sensitive or not in shell script
-        run: |
-          if ["Shivam" == "shivam"];then
-            echo "Git case insensitive"
-          else
-            echo "Git case sensitive"
-          fi
+          
       - name: Write Github Context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
