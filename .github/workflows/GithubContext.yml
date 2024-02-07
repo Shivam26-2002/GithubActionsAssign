@@ -4,13 +4,46 @@ jobs:
   context:
     runs-on: ubuntu-latest
     steps:
-      - name: Remove whitespaces using xargs
+      - name: Remove whitespaces using xargs and [:space:]
         run: |
           echo "   lol  " | xargs
-          square = "Shivam is a good boy "
-          echo $square
-          echo "Print second name"
-          echo $square | xargs
+          FOO=' test test test '
+          echo -e "FOO='${FOO}'"
+          # > FOO=' test test test '
+          echo -e "length(FOO)==${#FOO}"
+          # > length(FOO)==16
+
+          #  remove all whitespace (denoted by [:space:] in tr):
+          FOO_NO_WHITESPACE="$(echo -e "${FOO}" | tr -d '[:space:]')"
+          echo -e "FOO_NO_WHITESPACE='${FOO_NO_WHITESPACE}'"
+          # > FOO_NO_WHITESPACE='testtesttest'
+          echo -e "length(FOO_NO_WHITESPACE)==${#FOO_NO_WHITESPACE}"
+          # > length(FOO_NO_WHITESPACE)==12
+
+          # remove leading whitespace only:
+
+          FOO_NO_LEAD_SPACE="$(echo -e "${FOO}" | sed -e 's/^[[:space:]]*//')"
+          echo -e "FOO_NO_LEAD_SPACE='${FOO_NO_LEAD_SPACE}'"
+          # > FOO_NO_LEAD_SPACE='test test test '
+          echo -e "length(FOO_NO_LEAD_SPACE)==${#FOO_NO_LEAD_SPACE}"
+          # > length(FOO_NO_LEAD_SPACE)==15
+
+          # remove trailing whitespace only:
+
+          FOO_NO_TRAIL_SPACE="$(echo -e "${FOO}" | sed -e 's/[[:space:]]*$//')"
+          echo -e "FOO_NO_TRAIL_SPACE='${FOO_NO_TRAIL_SPACE}'"
+          # > FOO_NO_TRAIL_SPACE=' test test test'
+          echo -e "length(FOO_NO_TRAIL_SPACE)==${#FOO_NO_TRAIL_SPACE}"
+          # > length(FOO_NO_TRAIL_SPACE)==15
+
+          # remove both leading and trailing spaces--chain the seds:
+
+          FOO_NO_EXTERNAL_SPACE="$(echo -e "${FOO}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+          echo -e "FOO_NO_EXTERNAL_SPACE='${FOO_NO_EXTERNAL_SPACE}'"
+          # > FOO_NO_EXTERNAL_SPACE='test test test'
+          echo -e "length(FOO_NO_EXTERNAL_SPACE)==${#FOO_NO_EXTERNAL_SPACE}"
+          # > length(FOO_NO_EXTERNAL_SPACE)==14
+
           
       - name: Check case sensitive or not in shell script
         run: |
