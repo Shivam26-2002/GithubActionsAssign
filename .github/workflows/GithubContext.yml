@@ -4,9 +4,16 @@ jobs:
   context:
     runs-on: ubuntu-latest
     steps:
+      - name: Remove whitespaces using xargs
+        run: |
+          string = " Shivam is a good boy    This is written after so many white-spaces"
+          echo "$string"
+          echo "Print second string"
+          echo "$string" | xargs
+          
       - name: Check case sensitive or not in shell script
         run: |
-          if [ "Shivam" -eq "Shivam" ];then
+          if [ "Shivam" == "shivam" ];then
             echo "Git case insensitive"
           else
             echo "Git case sensitive"
