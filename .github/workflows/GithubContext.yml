@@ -5,8 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check case sensitive or not
-        if: ${{github.job}} == "CONTEXT"
-        run: echo "Case"
+        if: ${{github.event.ref}} == "refs/heads/main"
+        run: echo "Case Sensitive"
+        
+      - name: Check case sensitive or not 2
+        if: ${{github.event.ref}} == "REFS/HEADS/MAIN"
+        run: echo "Case In-Sensitive"
+        
       - name: Check case sensitive or not in shell script
         run: |
           if ["Shivam" == "shivam"];then
