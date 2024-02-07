@@ -9,7 +9,8 @@ jobs:
           WORD='Hello world'
           # echo -e "WORD='${WORD}'"
           ENV_URL= "$(echo -e "${WORD}" | tr -d '[:space:]')"
-          LOWERCASE_WORD="${ENV_URL,,}"
+          # LOWERCASE_WORD="${ENV_URL,,}"
+          echo $ENV_URL
           echo "LOWERCASE_WORD"
           echo "   lol  " | xargs
           FOO=' test test test '
