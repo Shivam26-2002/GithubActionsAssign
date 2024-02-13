@@ -1,0 +1,11 @@
+name: My Workflow
+on:
+  deployment_status:
+    types: [created, updated, deleted]
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: My Step
+        run: echo "Hello, world!"

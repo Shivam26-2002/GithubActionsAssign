@@ -1,1 +1,9 @@
-
+name: Test workflow
+on:
+  workflow_dispatch:
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print GITHUB_SHA
+      run: echo "Commit SHA $GITHUB_SHA"

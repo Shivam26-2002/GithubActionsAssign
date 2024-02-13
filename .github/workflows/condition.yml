@@ -1,0 +1,23 @@
+name: condition
+on:  workflow_dispatch
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trial step
+        id: trial
+        run: echo "Trial job"
+      - name: Imp step
+        id: trial1
+        if: steps.trial.outcome == 'success'
+        run: |
+          echo "Something"
+          echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
+      - name: Imp second step
+        id: trial2
+        if: always()
+        # if: steps.trial.outcome == 'success' && steps.trial1.outcome == 'success'
+        run: echo "Success"
+      - name: Imp third step
+        if: steps.trial.outcome == 'success' || steps.trial1.outcome == 'success' || steps.trial2.outcome == 'success'
+        run: echo "Final success"

@@ -1,30 +1,53 @@
 name: GitHub Actions Demo
-on : workflow_dispatch 
+on : 
+  push: 
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch :
 jobs:
   first_job:
     name: Job1
     runs-on: ubuntu-latest
     steps:
       - run: echo "Job 1"
-  second_job:
-    name: Job2
-    runs-on: ubuntu-latest
+
+
+  DeploytoDev:
+    name: Deploy to Dev
+    if: github.event_name == 'pull_request'
     needs: first_job
-    steps:
-      - run: echo "Job 2"
-  third_job:
-    name: Job3
     runs-on: ubuntu-latest
-    needs: second_job
-    if: success()
+    environment:
+      name: Testing
+      url: 'http://dev.myapp.com'
     steps:
-      - name: Print Job3 Output
-        run: echo "Job3"
-  fourth_job:
-    name: Job4
-    runs-on: ubuntu-latest
-    needs: third_job
-    if: failure()
-    steps: 
-      - name : Print Job4 output
-        run : echo "Job4"
+    - name: Deploy
+      run: echo Deploying
+    
+
+
+
+
+  # second_job:
+  #   name: Job2
+  #   runs-on: ubuntu-latest
+  #   needs: first_job
+  #   steps:
+  #     - run: echo "Job 2"
+  # third_job:
+  #   name: Job3
+  #   runs-on: ubuntu-latest
+  #   needs: second_job
+  #   if: success()
+  #   steps:
+  #     - name: Print Job3 Output
+  #       run: echo "Job3"
+  # fourth_job:
+  #   name: Job4
+  #   runs-on: ubuntu-latest
+  #   needs: third_job
+  #   if: failure()
+  #   steps: 
+  #     - name : Print Job4 output
+  #       run : echo "Job4"

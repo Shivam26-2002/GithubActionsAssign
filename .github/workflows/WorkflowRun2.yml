@@ -1,0 +1,12 @@
+name: Workflow run 2
+on:
+  workflow_run:
+    workflows: ["Workflow run 1"]
+    types:
+      - completed
+jobs:
+  start1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Write
+      run: echo "Hello Workflow 2"

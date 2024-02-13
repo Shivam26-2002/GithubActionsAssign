@@ -1,0 +1,23 @@
+name: Merge Pull request
+on:
+  push:
+    branches:
+      - main
+      - 'release-*'
+      - 'hotfix-*'
+
+jobs:
+  push-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print job successful
+        run: echo "Push branch is working"
+
+  on_merged:
+    if: github.event.pull_request.merged == true && (github.head_ref == 'main' || startsWith(github.head_ref, 'release-') || startsWith(github.head_ref, 'hotfix-'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a message
+        run: echo "Pull request from branch ${github.head_ref} was merged!"
+    
+      

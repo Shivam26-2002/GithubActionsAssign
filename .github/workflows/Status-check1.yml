@@ -1,0 +1,20 @@
+name: Status-Check1
+on: 
+  pull_request:
+    types:
+    - opened
+    - reopened
+  
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Running dummy job
+      run: |
+        echo "Running first_job"
+  second_job:
+    runs-on: ubuntu-latest
+    needs: first_job
+    steps:
+      - name: Checking whether first job passed or failed or skipped
+        run: echo "${{ needs.first_job.result }}"

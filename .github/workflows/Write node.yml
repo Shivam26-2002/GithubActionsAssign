@@ -1,0 +1,33 @@
+name: Write node
+on:
+  workflow_dispatch:
+jobs:
+  write-node:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Write node script
+        run: |
+          echo "Start node script"
+          npm install @actions/core
+          npm install @actions/github
+          node - << EOF
+            const core = require('@actions/core');
+            const { GitHub, context } = require('@actions/github');
+            const token = process.env.GITHUB_TOKEN || core.getInput('github-token');
+            const github = new GitHub(token);
+            const commitSHA = context.sha;
+            const repo = context.repo;
+            const state = 'success'; // or 'failure', 'error', 'pending'
+            const description = 'Build and deployment successful';
+            console.log(repo);
+            console.log('Status check set successfully.');
+            console.log('Status check set successfully.');
+          EOF

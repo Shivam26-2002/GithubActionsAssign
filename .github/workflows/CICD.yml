@@ -1,0 +1,76 @@
+name: CICD
+on:
+  workflow_dispatch:
+
+jobs:
+  Message1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First Job
+        run : echo "Building"
+
+  Build:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    # envs
+    steps:
+      - id: step1
+        run: echo "Build Job"
+
+  Message2:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps: 
+      - name: Third Job
+        run: echo "Uploading"
+
+  Upload:
+    runs-on: ubuntu-latest
+    environment:
+      name: Testing
+      url: 'http://dev.myapp.com'
+    outputs:
+      approved: ${{ steps.set-outputs.outputs.approved }}
+    needs: Build
+    if: success()
+    steps:
+     - name: Set outputs
+       id: set-outputs
+       run: |
+          echo "approved=true" >> "$GITHUB_OUTPUT"
+    #   - name: Fourth Job
+    #     run: |
+    #       exit 1
+
+  Message3:
+    runs-on: ubuntu-latest
+    needs: Upload
+    steps: 
+      - name: Fifth Job
+        run: echo "Processing"
+
+  Process:
+    runs-on: ubuntu-latest
+    needs: Upload
+    if: success()
+    steps:
+      - name: Sixth Job
+        run: echo "Process Job"
+
+  Result:
+    runs-on: ubuntu-latest
+    name: Result
+    needs: [Build,Upload,Process]
+    if: always()
+    steps:
+      - id: step1
+        run: |
+          if [[ ("${{needs.Build.result}}" == "success") && ( "${{needs.Upload.result}}" == "success" ) && ( "${{needs.Process.result}}" == "success" ) ]]; then
+            echo " All Jobs succeeded "
+          elif [[ ("${{needs.Build.result}}" == "failure") || ( "${{needs.Upload.result}}" == "failure" ) || ( "${{needs.Process.result}}" == "failure" ) ]]; then
+            echo " One of the jobs failed " 
+          elif  [[ ("${{needs.Build.result}}" == "skippped") || ( "${{needs.Upload.result}}" == "skippped" ) || ( "${{needs.Process.result}}" == "skippped" ) ]]; then
+            echo "All Jobs cancelled"
+          elif [[ ("${{needs.Upload.outputs.approved}}" != "true") ]]; then
+            echo "Upload Job cancelled"
+          fi

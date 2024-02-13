@@ -1,0 +1,35 @@
+name : Input Types Workflow
+on :
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: 'A string input'
+        type: string
+        required: true
+        default: 'Hello'
+      configcode:
+        description: 'A number input'
+        type: number
+        required: false
+      configtype:
+        description: 'Dropdown input'
+        required: true
+        type: choice
+        options:
+          - Staging
+          - Prod
+          - QA
+        default : 'Prod'
+jobs:
+  WriteInput:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Print Number Inputs
+        run: |
+          if [ -z "${{ github.event.inputs.configCode }}" ]; then
+            echo "${{ github.event.inputs.configuration }}  ${{ github.event.inputs.configtype }}"
+          else
+            echo "${{ github.event.inputs.configuration }}  ${{ github.event.inputs.configcode }}  ${{ github.event.inputs.configtype }}"
+          fi
+        
+        

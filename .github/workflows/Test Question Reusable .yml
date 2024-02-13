@@ -1,0 +1,14 @@
+name : Input Test Reusable workflow
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name for the workflow'
+        required : true
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run : echo "Hello World, ${{github.event.inputs.name}}"
