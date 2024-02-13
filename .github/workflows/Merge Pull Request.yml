@@ -5,6 +5,8 @@ on:
       - main
       - 'release-*'
       - 'hotfix-*'
+  pull_request:
+    types: [closed]
 
 jobs:
   push-test:
