@@ -1,0 +1,10 @@
+name: Merge Pull request
+on: 
+  pull_request:
+    types: [closed]
+jobs:
+  Simple:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the command if merge is done
+        run: echo "Merged"
