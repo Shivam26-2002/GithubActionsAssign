@@ -1,0 +1,15 @@
+name: slack-test
+on: workflow_dispatch
+jobs:
+  slack-job:
+    runs-on: ubuntu-latest
+    steps:
+       - name: Run first step of the job
+         run: echo "Running first job"
+         
+  depeneded-on-slack:
+    runs-on: ubuntu-latest
+    needs: slack-job
+    steps:
+      - name: Run first step of second job
+        run: echo "This job run as the first job succeeded"
