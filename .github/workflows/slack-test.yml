@@ -11,6 +11,7 @@ jobs:
          
   depeneded-on-slack:
     runs-on: ubuntu-latest
+    if: always()
     needs: slack-job
     steps:
       - name: Run first step of second job
