@@ -5,7 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: Run first step of the job
-         run: echo "Running first job"
+         run: |
+           echo "Running first job"
+           exit 1
          
   depeneded-on-slack:
     runs-on: ubuntu-latest
