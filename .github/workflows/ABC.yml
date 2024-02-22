@@ -1,0 +1,8 @@
+name: ABC
+on: workflow_dispatch
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Search
+        run: echo "Search"
