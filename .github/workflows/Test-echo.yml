@@ -13,7 +13,7 @@ jobs:
            echo "$BRANCH_NAME"
            echo $BRANCH_NAME
            # echo "commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
-           echo "commit_alias=onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
+           echo "commit_alias= onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
            echo "Commit alias is"
            echo "$commit_alias"
            echo $commit_alias
