@@ -1,0 +1,19 @@
+name: Test echo Workflow
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test echo
+        run: |
+           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+           echo "Branch Name:"
+           echo "$BRANCH_NAME"
+           echo $BRANCH_NAME
+           echo "commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
+           echo "Commit alias is"
+           echo "$commit_alias"
+           echo $commit_alias
+           echo "Hello, world!"
