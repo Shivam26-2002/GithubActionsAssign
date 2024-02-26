@@ -65,3 +65,6 @@ jobs:
           # Push to the remote repository
           git push
 
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+
