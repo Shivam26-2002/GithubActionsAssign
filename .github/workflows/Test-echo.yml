@@ -20,7 +20,7 @@ jobs:
           echo "Commit alias is: $commit_alias"
           echo "$commit_alias"
           echo "Opening file"
-          test_file=$(cat 'test.txt')
+          test_file=$(cat $config_file)
           echo "$test_file"
           sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$CONFIG_FILE"
 
