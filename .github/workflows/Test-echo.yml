@@ -30,10 +30,10 @@ jobs:
         run: |
           # Replace the base URL with the commit alias
           echo "Opening file"
-          commit_alias=$(cat test.txt)
+          commit_alias=$(cat ./test.txt)
           echo "$commit_alias"
           cat test.txt
-          commit_alias=$(cat test.txt)
+          # commit_alias=$(cat ./test.txt)
           sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$CONFIG_FILE"
 
       - name: Commit and push changes
