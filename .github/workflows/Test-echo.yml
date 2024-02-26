@@ -14,7 +14,8 @@ jobs:
             echo "Test txt/ file not found"
             exit 1
           fi
-          export CONFIG_FILE="$config_file"
+          # export CONFIG_FILE="$config_file"
+          CONFIG_FILE="$config_file" >> GITHUB_OUTPUT
       - name: Test echo
         id: commit-alias
         run: |
