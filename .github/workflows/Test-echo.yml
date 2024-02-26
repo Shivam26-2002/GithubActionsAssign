@@ -52,8 +52,16 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'ShivamSrivastava'
-          git config --global user.email 'shivamvkas18@gmail.com'
-          git add "$CONFIG_FILE"
-          git commit -m "Update base URL in cypress.config.ts"
+          # Set global Git configuration (if not already done)
+          git config --global user.name "ShivamSrivastava"
+          git config --global user.email "shivamvkas18@gmail.com"
+          
+          # Add the modified cypress.config.ts file
+          git add "$config_file"
+          
+          # Commit the changes
+          git commit -m "Update base URL in test.txt"
+          
+          # Push to the remote repository
           git push
+
