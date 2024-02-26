@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Locate test.txt
         run: |
-          config_file=$(find . -name "test.txt" -type f)
+          config_file=$(find . -name "ab.txt" -type f)
           echo "Cypress config file: $config_file"
           if [ -z "$config_file" ]; then
             echo "Test txt/ file not found"
