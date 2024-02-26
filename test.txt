@@ -1,2 +1,2 @@
 Test message
-baseUrl: 'https://onlineexpress-t.jlg.com'
+baseUrl: 'main.onlineexpress-t-beta.jerrdan.com'
