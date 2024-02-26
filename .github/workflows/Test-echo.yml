@@ -28,7 +28,9 @@ jobs:
       - name: Replace base URL
         run: |
           # Replace the base URL with the commit alias
-          # commit_alias=$(cat GITHUB_OUTPUT)
+          commit_alias=$(cat test.txt)
+          echo "$commit_alias"
+          echo "Opening file"
           cat test.txt
           commit_alias=$(cat test.txt)
           sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$CONFIG_FILE"
