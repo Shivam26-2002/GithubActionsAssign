@@ -15,19 +15,13 @@ jobs:
             exit 1
           fi
           # export CONFIG_FILE="$config_file"
-          CONFIG_FILE="$config_file" >> GITHUB_OUTPUT
-      - name: Test echo
-        id: commit-alias
-        run: |
-           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
-           commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
-           echo "Branch Name:"
-           echo "$BRANCH_NAME"
-           echo "Commit alias is"
-           echo "$commit_alias"
-           
-      - name: Replace base URL
-        run: |
+          # CONFIG_FILE="$config_file" >> GITHUB_OUTPUT
+          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+          commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
+          echo "Branch Name:"
+          echo "$BRANCH_NAME"
+          echo "Commit alias is"
+          echo "$commit_alias"
           # Replace the base URL with the commit alias
           echo "Opening file"
           commit_alias=$(cat ./test.txt)
