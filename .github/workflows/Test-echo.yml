@@ -1,5 +1,4 @@
 name: Test echo Workflow
-
 on: workflow_dispatch
 
 jobs:
@@ -21,3 +20,4 @@ jobs:
       - name: Echo alias
         run: |
           echo "${{ steps.commit-alias.outputs.commit_alias }}"
+          echo "Try"
