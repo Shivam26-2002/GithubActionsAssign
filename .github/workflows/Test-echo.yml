@@ -28,7 +28,7 @@ jobs:
           fi
           test_file=$(cat $config_file)
           echo "cat $test_file"
-          sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$CONFIG_FILE"
+          sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$test_file"
 
       # - name: Commit and push changes
       #   run: |
