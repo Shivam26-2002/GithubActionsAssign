@@ -5,6 +5,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Locate test.txt
+        run: |
+          config_file=$(find . -name "test.txt" -type f)
+          echo "Cypress config file: $config_file"
+          if [ -z "$config_file" ]; then
+            echo "Test txt/ file not found"
+            exit 1
+          fi
+          export CONFIG_FILE="$config_file"
       - name: Test echo
         id: commit-alias
         run: |
@@ -12,17 +21,19 @@ jobs:
            commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
            echo "Branch Name:"
            echo "$BRANCH_NAME"
-           echo $BRANCH_NAME
-           # echo "commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
-           # echo "commit_alias= onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
-           echo "commit=${commit_alias}" >> GITHUB_OUTPUT
            echo "Commit alias is"
            echo "$commit_alias"
-           echo $commit_alias
-           echo "$commit"
-           echo $commit
-           echo "Hello, world!"
-      - name: Echo alias
+           
+      - name: Replace base URL
         run: |
-          echo "${{ steps.commit-alias.outputs.commit }}"
-          echo "Try"
+          # Replace the base URL with the commit alias
+          commit_alias=$(cat GITHUB_OUTPUT)
+          sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$CONFIG_FILE"
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'Shivam Srivastava'
+          git config --global user.email 'shivamvkas18@gmail.com'
+          git add "$CONFIG_FILE"
+          git commit -m "Update base URL in cypress.config.ts"
+          git push
