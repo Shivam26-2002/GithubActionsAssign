@@ -57,7 +57,7 @@ jobs:
           git config --global user.email "shivamvkas18@gmail.com"
           
           # Add the modified cypress.config.ts file
-          git add "$config_file"
+          git add .
           
           # Commit the changes
           git commit -m "Update base URL in test.txt"
