@@ -7,35 +7,53 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Locate test.txt
+
+      - name: Find and replace text
         run: |
           config_file='test.txt'
           echo "Cypress config file: $config_file"
           if [ -z "$config_file" ]; then
-            echo "Test txt/ file not found"
-            exit 1
+              echo "Test txt file not found"
+              exit 1
           fi
+          
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
-          echo "Branch Name:$BRANCH_NAME"
-          echo "$BRANCH_NAME"
+          echo "Branch Name: $BRANCH_NAME"
           echo "Commit alias is: $commit_alias"
-          echo "$commit_alias"
-          echo "Opening file"
-          echo "${{ github.workspace }}"
-          if [ -z "$config_file" ]; then
-            echo "Test txt/ file not found"
-            exit 1
-          fi
-          test_file=$(cat $config_file)
-          echo "cat $test_file"
-          sed -i "s|baseUrl: '.*'|baseUrl: '$commit_alias'|g" "$test_file"
-          # sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$test_file"
+          
+          # Replace baseUrl in the config file
+          sed -i "s|baseUrl: '.*'|baseUrl: '$commit_alias'|g" "$config_file"
 
-      # - name: Commit and push changes
+      # - name: Locate test.txt
       #   run: |
-      #     git config --global user.name 'Shivam Srivastava'
-      #     git config --global user.email 'shivamvkas18@gmail.com'
-      #     git add "$CONFIG_FILE"
-      #     git commit -m "Update base URL in cypress.config.ts"
-      #     git push
+      #     config_file='test.txt'
+      #     echo "Cypress config file: $config_file"
+      #     if [ -z "$config_file" ]; then
+      #       echo "Test txt/ file not found"
+      #       exit 1
+      #     fi
+      #     BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+      #     commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
+      #     echo "Branch Name:$BRANCH_NAME"
+      #     echo "$BRANCH_NAME"
+      #     echo "Commit alias is: $commit_alias"
+      #     echo "$commit_alias"
+      #     echo "Opening file"
+      #     echo "${{ github.workspace }}"
+      #     if [ -z "$config_file" ]; then
+      #       echo "Test txt/ file not found"
+      #       exit 1
+      #     fi
+      #     test_file=$(cat $config_file)
+      #     echo "cat $test_file"
+      #     sed -i "s|baseUrl: '.*'|baseUrl: '$commit_alias'|g" "$test_file"
+      #     # sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$test_file"
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'Shivam Srivastava'
+          git config --global user.email 'shivamvkas18@gmail.com'
+          git add "$CONFIG_FILE"
+          git commit -m "Update base URL in cypress.config.ts"
+          git push
