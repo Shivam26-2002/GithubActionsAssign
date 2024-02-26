@@ -9,16 +9,20 @@ jobs:
         id: commit-alias
         run: |
            BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+           commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
            echo "Branch Name:"
            echo "$BRANCH_NAME"
            echo $BRANCH_NAME
            # echo "commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
-           echo "commit_alias= onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
+           # echo "commit_alias= onlineexpress-t-beta.jerrdan.com" >> GITHUB_OUTPUT
+           echo "commit=${commit_alias}" >> GITHUB_OUTPUT
            echo "Commit alias is"
            echo "$commit_alias"
            echo $commit_alias
+           echo "$commit"
+           echo $commit
            echo "Hello, world!"
       - name: Echo alias
         run: |
-          echo "${{ steps.commit-alias.outputs.commit_alias }}"
+          echo "${{ steps.commit-alias.outputs.commit }}"
           echo "Try"
