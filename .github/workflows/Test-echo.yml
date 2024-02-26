@@ -22,6 +22,7 @@ jobs:
           echo "Commit alias is: $commit_alias"
           echo "$commit_alias"
           echo "Opening file"
+          echo "${{ github.workspace }}"
           if [ -z "$config_file" ]; then
             echo "Test txt/ file not found"
             exit 1
