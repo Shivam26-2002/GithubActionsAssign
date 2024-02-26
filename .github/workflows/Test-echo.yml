@@ -52,7 +52,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'Shivam Srivastava'
+          git config --global user.name 'ShivamSrivastava'
           git config --global user.email 'shivamvkas18@gmail.com'
           git add "$CONFIG_FILE"
           git commit -m "Update base URL in cypress.config.ts"
