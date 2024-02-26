@@ -7,27 +7,22 @@ jobs:
     steps:
       - name: Locate test.txt
         run: |
-          # config_file=$(find . -name "ab.txt" -type f)
           config_file='test.txt'
           echo "Cypress config file: $config_file"
           if [ -z "$config_file" ]; then
             echo "Test txt/ file not found"
             exit 1
           fi
-          # export CONFIG_FILE="$config_file"
-          # CONFIG_FILE="$config_file" >> GITHUB_OUTPUT
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
-          echo "Branch Name:"
+          echo "Branch Name:$BRANCH_NAME"
           echo "$BRANCH_NAME"
-          echo "Commit alias is"
+          echo "Commit alias is: $commit_alias"
           echo "$commit_alias"
-          # Replace the base URL with the commit alias
           echo "Opening file"
-          commit_alias=$(cat test.txt)
-          echo "$commit_alias"
-          cat test.txt
-          # commit_alias=$(cat ./test.txt)
+          # commit_alias=$(cat test.txt)
+          # echo "$commit_alias"
+          # cat test.txt
           sed -i "s|baseUrl: 'https://onlineexpress-t.jlg.com'|baseUrl: '$commit_alias'|g" "$CONFIG_FILE"
 
       - name: Commit and push changes
