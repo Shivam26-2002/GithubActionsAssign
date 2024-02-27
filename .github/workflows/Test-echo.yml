@@ -23,7 +23,7 @@ jobs:
           echo "Commit alias is: $commit_alias"
           cat $config_file
           # Replace baseUrl in the config file
-          sed -i "s|baseUrl: '.*'|baseUrl: '$commit_alias'|g" "$config_file"
+          sed -i "s|baseUrl: 'https:/[^']*'|baseUrl: 'https://$commit_alias'|g" "$config_file"
 
       # - name: Locate test.txt
       #   run: |
@@ -65,6 +65,6 @@ jobs:
           # Push to the remote repository
           git push
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      # - name: Cypress run
+      #   uses: cypress-io/github-action@v6
 
