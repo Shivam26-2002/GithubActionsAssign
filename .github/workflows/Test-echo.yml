@@ -21,7 +21,7 @@ jobs:
           commit_alias=${BRANCH_NAME}.onlineexpress-t-beta.jerrdan.com
           echo "Branch Name: $BRANCH_NAME"
           echo "Commit alias is: $commit_alias"
-          
+          cat $config_file
           # Replace baseUrl in the config file
           sed -i "s|baseUrl: '.*'|baseUrl: '$commit_alias'|g" "$config_file"
 
