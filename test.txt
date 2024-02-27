@@ -1,4 +1,4 @@
 Test message
 Changing 
-baseUrl: 'main.onlineexpress-t-beta.jerrdan.com'
+baseUrl: '.onlineexpress-t-beta.jerrdan.com'
 Added a line
