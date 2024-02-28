@@ -1,0 +1,16 @@
+name: Artifact Upload
+on: workflow_dispatch
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create file
+        run: |
+          touch trial.txt
+          echo 'This is test file' > trial.txt
+          cat trial.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: trial.txt
