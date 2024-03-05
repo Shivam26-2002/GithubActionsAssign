@@ -16,6 +16,8 @@ jobs:
       run: echo "*Short SHA:* ${{ steps.setShortSha.outputs.short_sha }}"
     - name: Write date
       run: echo "*Date:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%Y-%m-%d')"
+    - name: Write Complete time
+      run: echo "*Time:* ${{ github.event.head_commit.timestamp }}"
     - name: Write time
       run: echo "*Time:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%H:%M')"
 
