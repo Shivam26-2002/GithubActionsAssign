@@ -9,10 +9,11 @@ jobs:
       run: echo "Hello Workflow 1"
     - name: Write actor and branch
       run: echo "*By:* ${{ github.actor }} *Branch:* ${{ github.event.ref }}"
+    - name: Get Short SHA
+      id: setShortSha
+      run: echo "short_sha=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_OUTPUT
     - name: Write SHA
-      run: echo "*Short SHA:* ${GITHUB_SHA}" | cut -c1-8
-      # echo "${GITHUB_SHA}" | cut -c1-8
-      # run: echo "*Short SHA:* ${{ github.sha | slice(0, 7) }} "${GITHUB_SHA} | cut -c1-8
+      run: echo "*Short SHA:* ${{ steps.setShortSha.outputs.short_sha }}"
     - name: Write date
       run: echo "*Date:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%Y-%m-%d')"
     - name: Write time
