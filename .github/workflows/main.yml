@@ -10,7 +10,8 @@ jobs:
     - name: Write actor and branch
       run: echo "*By:* ${{ github.actor }} *Branch:* ${{ github.event.ref }}"
     - name: Write SHA
-      run: echo "*Short SHA:* ${GITHUB_SHA} | cut -c1-8"
+      run: echo "*Short SHA:* ${GITHUB_SHA}" | cut -c1-8"
+      # echo "${GITHUB_SHA}" | cut -c1-8
       # run: echo "*Short SHA:* ${{ github.sha | slice(0, 7) }} "${GITHUB_SHA} | cut -c1-8
     - name: Write date
       run: echo "*Date:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%Y-%m-%d')"
