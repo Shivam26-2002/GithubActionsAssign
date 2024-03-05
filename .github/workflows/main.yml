@@ -8,5 +8,6 @@ jobs:
     - name: Write
       run: echo "Hello Workflow 1"
     - name: Write this in 
-      run: echo "*By:* ${{ github.actor }} *Branch:* ${{ github.event.ref }} *Short SHA:* ${{ github.sha | slice(0, 7) }} *Date:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%Y-%m-%d') *Time:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%H:%M')"
+      run: echo "*By:* ${{ github.actor }} *Branch:* ${{ github.event.ref }}
+      # *Short SHA:* ${{ github.sha | slice(0, 7) }} *Date:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%Y-%m-%d') *Time:* $(date -d "${{ github.event.head_commit.timestamp }}" '+%H:%M')"
 
