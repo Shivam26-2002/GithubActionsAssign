@@ -7,15 +7,16 @@ jobs:
      - name: Fail step
        run: exit 1
      - name: Dump job context
-       id: job-status-output
+       id: job_id
        if: always()
        env:
          JOB_STATUS: ${{ job.status }}
        run: |
-         echo "job-status=$JOB_STATUS" >> GITHUB_OUTPUT
+         echo "$JOB_STATUS"
+         echo "job_status=$JOB_STATUS" >> GITHUB_OUTPUT
      - name: Job output stataus
        if: always()
-       run: echo ${{ steps.job-status-output.outputs.job-status }}
+       run: echo ${{ steps.job_id.outputs.job_status }}
   # my_next_job:
   #   runs-on: ubuntu-latest
   #   needs: my_job
