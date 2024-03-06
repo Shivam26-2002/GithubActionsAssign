@@ -17,10 +17,10 @@ jobs:
          echo "$JOB_STATUS"
          echo "JOB_STATUS_WRITE=$JOB_STATUS" >> "$GITHUB_OUTPUT"
          echo "$JOB_STATUS_WRITE"
-     # - name: Write the job status
-     #   if: always()
-     #   run: |
-     #     echo ${{ steps.job_id.outputs.JOB_STATUS_WRITE }}
+     - name: Write the job status
+       if: always()
+       run: |
+         echo ${{ steps.job_id.outputs.JOB_STATUS_WRITE }}
   job-status-write:
     runs-on: ubuntu-latest
     needs: [my_job]
