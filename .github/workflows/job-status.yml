@@ -15,7 +15,7 @@ jobs:
          JOB_STATUS: ${{ job.status }}
        run: |
          echo "$JOB_STATUS"
-         echo "JOB_STATUS_WRITE=$JOB_STATUS" >> GITHUB_OUTPUT
+         echo "JOB_STATUS_WRITE=$JOB_STATUS" >> "$GITHUB_OUTPUT"
          echo "$JOB_STATUS_WRITE"
      - name: Write the job status
        if: always()
