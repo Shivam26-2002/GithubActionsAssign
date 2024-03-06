@@ -1,0 +1,15 @@
+name: job-status
+on: workflow_dispatch
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy step
+        run: echo "success"
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Echo status
+        run: echo ${{ github.job1.status }}
+        
