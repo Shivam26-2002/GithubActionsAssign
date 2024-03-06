@@ -29,4 +29,4 @@ jobs:
      - name: Write the job status
        if: always()
        run: |
-         echo ${{ steps.job_id.outputs.JOB_STATUS_WRITE }}
+         echo ${{ needs.my_job.outputs.JOB_STATUS_WRITE }}
