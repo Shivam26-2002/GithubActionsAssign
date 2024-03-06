@@ -17,6 +17,7 @@ jobs:
          echo "$JOB_STATUS"
          echo "JOB_STATUS_WRITE=$JOB_STATUS" >> GITHUB_OUTPUT
      - name: Write the job status
+       if: always()
        run: ${{ steps.job_id.outputs.JOB_STATUS_WRITE }}
   # job-status-write:
   #   runs-on: ubuntu-latest
