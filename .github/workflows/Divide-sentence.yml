@@ -1,0 +1,24 @@
+name: Divide sentence
+on: workflow_dispatch
+jobs:
+  URL:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assing url
+        id: create-alias
+        run: |
+          echo "ALIAS_URL_OUTPUT=Success! https://jdid-86.onlineexpress-t-beta.jerrdan.com now points to https://nx-7voj1m2f6-advanced-digital-solutions.vercel.app" >> "$GITHUB_OUTPUT""
+          
+      - name: Assign alias into cypress config file
+        id: commit-config-file
+        run: |
+           ASSIGN_FULL_ALIAS=${{ steps.create-alias.outputs.ALIAS_URL_OUTPUT }} >> $GITHUB_ENV
+           npm install @actions/core
+           node - <<EOF
+             const core = require('@actions/core');
+             const alias = process.env.ASSIGN_FULL_ALIAS;
+             console.log('Before Alias: ', alias);
+             const parts = alias.split(" ");
+             const extractedUrl = parts[1];
+             console.log("Extracted URL:", extractedUrl);
+           EOF
