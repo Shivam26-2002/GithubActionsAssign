@@ -28,6 +28,6 @@ jobs:
            echo "Assign alias is: $extractedUrl"
       - name: Write output
         run: |
-          echo "Assign alias is: ${{ steps.commit-config-files.outputs.ALIAS_ASSIGNED }}"
-          ASSIGN_ALIAS=${{ steps.commit-config-files.outputs.ALIAS_ASSIGNED }}
+          echo "Assign alias is: ${{ steps.commit-config-file.outputs.ALIAS_ASSIGNED }}"
+          ASSIGN_ALIAS=${{ steps.commit-config-file.outputs.ALIAS_ASSIGNED }}
           echo $ASSIGN_ALIAS
