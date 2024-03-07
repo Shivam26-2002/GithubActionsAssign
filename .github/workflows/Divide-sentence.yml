@@ -24,3 +24,4 @@ jobs:
              const extractedUrl = parts[1];
              console.log("Extracted URL:", extractedUrl);
            EOF
+           echo "Assign alias is: $extractedUrl"
