@@ -4,10 +4,10 @@ jobs:
   URL:
     runs-on: ubuntu-latest
     steps:
-      - name: Assing url
+      - name: Assign url
         id: create-alias
         run: |
-          echo "ALIAS_URL_OUTPUT='Success! https://jdid-86.onlineexpress-t-beta.jerrdan.com now points to https://nx-7voj1m2f6-advanced-digital-solutions.vercel.app'" >> "$GITHUB_OUTPUT""
+          echo "ALIAS_URL_OUTPUT='Success! https://jdid-86.onlineexpress-t-beta.jerrdan.com now points to https://nx-7voj1m2f6-advanced-digital-solutions.vercel.app'" >> "$GITHUB_OUTPUT"
           
       - name: Assign alias into cypress config file
         id: commit-config-file
