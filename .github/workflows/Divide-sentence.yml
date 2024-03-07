@@ -23,5 +23,9 @@ jobs:
              const parts = alias.split(" ");
              const extractedUrl = parts[1];
              console.log("Extracted URL:", extractedUrl);
+             core.setOutput('ALIAS_ASSIGNED', extractedUrl);
            EOF
            echo "Assign alias is: $extractedUrl"
+     - name: Write output
+       run: |
+         echo "Assign alias is: ${{ steps.commit-config-files.outputs.ALIAS_ASSIGNED }}"
