@@ -30,4 +30,4 @@ jobs:
       - name: Output of failed step
         if: always()
         run: |  
-          echo "${{steps.result-step.outptus.FAILED_STEP}}"
+          echo "${{steps.result-step.outputs.FAILED_STEP}}"
