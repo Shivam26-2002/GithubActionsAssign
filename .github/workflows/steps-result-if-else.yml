@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "First step outcome ${{ steps.first-step.outcome }}"
           echo "second step outcome ${{ steps.second-step.outcome }}"
-          if [[ ${{ steps.first-step.outcome }}" == 'failure' ]]; then
+          if [[ ${{ steps.first-step.outcome }} == 'failure' ]]; then
             echo "FAILED_STEP=first-step" >> "$GITHUB_OUTPUT"
           else
             echo "FAILED_STEP=second-step" >> "$GITHUB_OUTPUT"
