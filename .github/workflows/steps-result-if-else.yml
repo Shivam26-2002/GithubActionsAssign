@@ -61,7 +61,7 @@ jobs:
     steps:
       - name: Write
         run: |
-          SHORT_SHA='78eaf67d' >> $GITHUB_ENV
+          echo SHORT_SHA='78eaf67d' >> $GITHUB_ENV
           echo "Hello World UNit test"
           
       - name: Write ENV
