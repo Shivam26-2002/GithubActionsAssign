@@ -80,7 +80,7 @@ jobs:
   DateandTime:
     runs-on: ubuntu-latest
     env:
-      TRIGGERED_DATETIME: ${{ steps.set_datetime.outputs.triggered_datetime }}
+      TRIGGERED_DATETIME: ${{ steps.set_datetime.triggered_datetime }}
     steps: 
       - name: Write Date
         id: set_datetime
