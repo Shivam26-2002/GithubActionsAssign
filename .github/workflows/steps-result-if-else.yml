@@ -76,3 +76,11 @@ jobs:
         run: |
           echo "${{ env.SHORT_SHA }}"
           echo "Hello World e2e test"
+
+  DateandTime:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Write Date
+        run: |
+          current_date_time=$(date +"%d %b at %l:%M %p")
+          echo "Current date and time: $current_date_time"
