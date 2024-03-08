@@ -79,8 +79,16 @@ jobs:
 
   DateandTime:
     runs-on: ubuntu-latest
+    env:
+      TRIGGERED_DATETIME: ${{ steps.set_datetime.outputs.triggered_datetime }}
     steps: 
       - name: Write Date
+        id: set_datetime
         run: |
           current_date_time=$(date +"%d %b at %l:%M %p")
           echo "Current date and time: $current_date_time"
+          echo "Setting triggered_datetime..."
+          echo "triggered_datetime=$(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+      - name: Show Datetime
+        run: |
+          echo "Workflow triggered at $TRIGGERED_DATETIME"
