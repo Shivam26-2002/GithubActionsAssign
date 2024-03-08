@@ -10,9 +10,12 @@ jobs:
 
       - name: Second step
         id: second-step
-        run: echo "Hello World"
+        run: |
+          echo "Hello World"
+          exit 1
 
       - name: Result step
+        if: always()
         run: |
           echo "First step outcome ${{ steps.first-step.outcome }}"
           echo "second step outcome ${{ steps.second-step.outcome }}"
