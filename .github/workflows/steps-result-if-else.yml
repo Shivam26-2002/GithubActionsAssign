@@ -25,13 +25,18 @@ jobs:
         id: result-step
         if: always()
         run: |
+          declare -a failed_array=()
           echo "First step outcome ${{ steps.first-step.outcome }}"
           echo "second step outcome ${{ steps.second-step.outcome }}"
           if [[ '${{ steps.first-step.outcome }}' == 'failure' ]]; then
-            echo "FAILED_STEP=first-step" >> $GITHUB_OUTPUT 
-          elif [[ ${{ steps.second-step.outcome }} == 'failure' ]]; then
-            echo "FAILED_STEP=second-step" >> $GITHUB_OUTPUT 
+            # echo "FAILED_STEP=first-step" >> $GITHUB_OUTPUT 
+            failed_array+=("First step")
           fi
+          if [[ ${{ steps.second-step.outcome }} == 'failure' ]]; then
+            # echo "FAILED_STEP=second-step" >> $GITHUB_OUTPUT 
+            failed_array+=("Second step")
+          fi
+          echo "Updated array: ${failed_array[@]}"
 
       - name: Output of failed step
         if: always()
