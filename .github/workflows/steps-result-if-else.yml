@@ -12,11 +12,14 @@ jobs:
         id: second-step
         run: echo "Hello World"
 
-  result-job:
-    runs-on: ubuntu-latest
-    needs: [e2etest]
-    steps:
-      - name: Result job
-        if: always() 
+      - name: Result step
         run: |
-          echo "Hello World"
+          echo "First step outcome ${{ steps.first-step.outcome }}"
+          echo "second step outcome ${{ steps.second-step.outcome }}"
+          if [[ ${{ steps.first-step.outcome }}" == 'failure' ]]; then
+            echo "FAILED_STEP=first-step" >> "$GITHUB_OUTPUT"
+          else
+            echo "FAILED_STEP=second-step" >> "$GITHUB_OUTPUT"
+          fi
+          echo $FAILED_STEP
+          
