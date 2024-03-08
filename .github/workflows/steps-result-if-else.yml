@@ -17,6 +17,7 @@ jobs:
           exit 1
 
       - name: Third Step
+        id: third-step
         run: |
           echo "Hello World"
           exit 1
@@ -32,9 +33,13 @@ jobs:
             # echo "FAILED_STEP=first-step" >> $GITHUB_OUTPUT 
             failed_array+=("First step")
           fi
-          if [[ ${{ steps.second-step.outcome }} == 'failure' ]]; then
+          if [[ ${{ steps.second-step.outcome }} == 'failure' || ${{ steps.second-step.outcome }} == 'skipped' ]]; then
             # echo "FAILED_STEP=second-step" >> $GITHUB_OUTPUT 
             failed_array+=("Second step")
+          fi
+          if [[ ${{ steps.third-step.outcome }} == 'failure' || ${{ steps.third-step.outcome }} == 'skipped' ]]; then
+            # echo "FAILED_STEP=third-step" >> $GITHUB_OUTPUT 
+            failed_array+=("Third step")
           fi
           echo "Updated array: ${failed_array[@]}"
 
