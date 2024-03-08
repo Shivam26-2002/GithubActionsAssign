@@ -6,10 +6,17 @@ jobs:
     steps:
       - name: First step
         id: first-step
-        run: echo "Hello World"
+        run: |
+          echo "Hello World"
+          exit 1
 
       - name: Second step
         id: second-step
+        run: |
+          echo "Hello World"
+          exit 1
+
+      - name: Third Step
         run: |
           echo "Hello World"
           exit 1
@@ -20,12 +27,11 @@ jobs:
         run: |
           echo "First step outcome ${{ steps.first-step.outcome }}"
           echo "second step outcome ${{ steps.second-step.outcome }}"
-          if [[ '${{ steps.second-step.outcome }}' == 'failure' ]]; then
+          if [[ '${{ steps.first-step.outcome }}' == 'failure' ]]; then
             echo "FAILED_STEP=first-step" >> $GITHUB_OUTPUT 
-          # else
-          #   echo "FAILED_STEP=second-step" >> $GITHUB_OUTPUT 
+          elif [[ ${{ steps.second-step.outcome }} == 'failure' ]]
+            echo "FAILED_STEP=second-step" >> $GITHUB_OUTPUT 
           fi
-          echo '$FAILED_STEP'
 
       - name: Output of failed step
         if: always()
