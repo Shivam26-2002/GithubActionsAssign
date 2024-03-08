@@ -42,8 +42,9 @@ jobs:
             failed_array+=("Third step")
           fi
           echo "Updated array: ${failed_array[@]}"
+          echo "FAILED_STEPS=${failed_array[@]}" >> $GITHUB_OUTPUT
 
       - name: Output of failed step
         if: always()
         run: |  
-          echo "${{steps.result-step.outputs.FAILED_STEP}}"
+          echo "${{steps.result-step.outputs.FAILED_STEPS}}"
