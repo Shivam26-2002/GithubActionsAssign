@@ -20,5 +20,3 @@ jobs:
         if: always() 
         run: |
           echo "Hello World"
-          # if [[ ${{}} ]]; then
-          # fi
