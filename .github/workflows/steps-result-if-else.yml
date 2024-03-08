@@ -15,6 +15,7 @@ jobs:
           exit 1
 
       - name: Result step
+        id: result-step
         if: always()
         run: |
           echo "First step outcome ${{ steps.first-step.outcome }}"
@@ -25,4 +26,8 @@ jobs:
             echo "FAILED_STEP=second-step" >> "$GITHUB_OUTPUT"
           fi
           echo $FAILED_STEP
-          
+
+      - name: Output of failed step
+        if: always()
+        run: |  
+          echo "${{steps.result-step.outptus.FAILED_STEP}}"
