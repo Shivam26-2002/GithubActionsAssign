@@ -99,6 +99,13 @@ jobs:
           echo ${{ steps.date.outputs.TODAY_DATE }}
           echo ${{ github.event.head_commit.message }}
 
+      - name: Write message for final time
+        run: |
+          message=${{ github.event.head_commit.message }}
+          extracted_message=$(echo "$message" | sed 's/\(Signed-off\).*/\1/')
+          echo "Extracted message: $extracted_message"
+          echo "COMMIT_MESSAGE=$extracted_message" >> "$GITHUB_OUTPUT"
+
       - name: Extract commit message
         id: commit-message
         if: always()
