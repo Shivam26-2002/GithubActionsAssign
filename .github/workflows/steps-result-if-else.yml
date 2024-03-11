@@ -104,7 +104,7 @@ jobs:
         if: always()
         run: |
           message='${{ github.event.head_commit.message }}'
-          extracted_message=$(echo "$message" | sed 's/\(Signed-off\).*/\1/')
+          extracted_message=$(echo "$message" | sed 's/ Signed-off:.*//')
           echo "Extracted message: $extracted_message"
           echo "COMMIT_MESSAGE=$extracted_message" >> "$GITHUB_OUTPUT"
 
