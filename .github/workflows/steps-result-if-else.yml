@@ -105,6 +105,8 @@ jobs:
         run: |
           message='${{ github.event.head_commit.message }}'
           extracted_message=$(echo "$message" | sed 's/ Signed-off:.*//')
+          echo "Commit message under"
+          echo "${{ github.event.head_commit.message }}"
           echo "Extracted message: $extracted_message"
           echo "COMMIT_MESSAGE=$extracted_message" >> "$GITHUB_OUTPUT"
 
