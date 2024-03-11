@@ -108,7 +108,7 @@ jobs:
           npm install @actions/core
           node - <<EOF
             const core = require('@actions/core');
-            cost message = process.env.COMMIT_MESSAGE;
+            const message = process.env.COMMIT_MESSAGE;
             console.log('Before message: ', message);
             const result = message.split('Signed-off-by:')[0].trim();
             console.log('After message: ', result);
