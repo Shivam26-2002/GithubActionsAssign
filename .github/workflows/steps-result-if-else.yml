@@ -92,6 +92,7 @@ jobs:
       - name: Get current date
         id: date
         run: echo "TODAY_DATE=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
-      - name: Write output date
+      - name: Write output date and commit message
         run: |
           echo ${{ steps.date.outputs.TODAY_DATE }}
+          echo ${{ github.event.head_commit.message }}
