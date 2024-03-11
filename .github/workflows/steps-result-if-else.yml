@@ -9,7 +9,7 @@ jobs:
         id: first-step
         run: |
           echo "Hello World"
-          exit 1
+          echo "Change the commimt message"
 
       - name: Second step
         id: second-step
