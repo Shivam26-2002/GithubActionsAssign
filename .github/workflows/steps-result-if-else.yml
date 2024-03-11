@@ -97,3 +97,11 @@ jobs:
         run: |
           echo ${{ steps.date.outputs.TODAY_DATE }}
           echo ${{ github.event.head_commit.message }}
+
+      - name: Asia india timing
+        run: |
+          export TZ="Asia/Kolkata"
+          # Get the current time in IST
+          ist_time=$(date +"%Y-%m-%d %H:%M:%S %Z")
+          # Print the current time in IST
+          echo "Current time in IST: $ist_time"
