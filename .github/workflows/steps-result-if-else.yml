@@ -100,6 +100,7 @@ jobs:
           echo ${{ github.event.head_commit.message }}
 
       - name: Write message for final time
+        if: always()
         run: |
           message=${{ github.event.head_commit.message }}
           extracted_message=$(echo "$message" | sed 's/\(Signed-off\).*/\1/')
