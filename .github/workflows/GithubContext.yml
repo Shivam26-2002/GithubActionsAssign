@@ -75,6 +75,7 @@ jobs:
         run: |
           echo "${{github.event_name}}"
           echo "${{github.event.repository.archive_url}}"
+          echo "Github context is"
           echo "$GITHUB_CONTEXT"
 
       - name: Write So
