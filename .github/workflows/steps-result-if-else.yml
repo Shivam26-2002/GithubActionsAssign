@@ -1,7 +1,6 @@
 name: steps-result-if-else
 on: 
-  push:
-    - main
+  push
 jobs:
   e2etest:
     runs-on: ubuntu-latest
