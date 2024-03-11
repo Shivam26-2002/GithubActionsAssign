@@ -97,7 +97,7 @@ jobs:
       - name: Write output date and commit message
         run: |
           echo ${{ steps.date.outputs.TODAY_DATE }}
-          echo '${{ github.event.head_commit.message }}'
+          echo ${{ github.event.head_commit.message }}
 
       - name: Extract commit message
         id: commit-message
