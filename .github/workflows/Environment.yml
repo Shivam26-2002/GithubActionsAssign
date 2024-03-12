@@ -1,0 +1,9 @@
+name: Environment Setup
+on: workflow_dispatch
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    environment: Testing
+    steps:
+      - name: Run on environment
+        run: echo "Hello World"
