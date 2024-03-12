@@ -7,3 +7,9 @@ jobs:
     steps:
       - name: Run on environment
         run: echo "Hello World"
+        
+  setup-next:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run no matter what
+        run: echo "Run no matter what"
