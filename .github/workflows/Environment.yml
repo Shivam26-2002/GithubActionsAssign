@@ -10,6 +10,7 @@ jobs:
         
   setup-next:
     runs-on: ubuntu-latest
+    environment: Testing
     steps:
       - name: Run no matter what
         run: echo "Run no matter what"
