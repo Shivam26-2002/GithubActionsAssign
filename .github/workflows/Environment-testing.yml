@@ -39,7 +39,8 @@ jobs:
   slack-failure:
     runs-on: ubuntu-latest
     needs: [wait_for_approval,cicd]
-    if: ${{ ( success('cicd') && needs.wait_for_approval.outputs.reviewed == true ) || ( failure('cicd') && needs.wait_for_approval.outputs.reviewed == true ) }}    
+    if: ${{ ( success('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) }}    
+    # if: ${{ ( success('cicd')  &&  needs.wait_for_approval.outputs.reviewed = 'true') || ( failure('deploy-to-prod-two')  &&  needs.deploy-to-prod-two.outputs.reviewed != 'true') }}    
     steps:
       - name: Run slack failure
         run: |
