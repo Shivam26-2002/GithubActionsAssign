@@ -18,6 +18,7 @@ jobs:
           build_and_deploy_id_reviewed: ${{ needs.job-will-use-workflow.outputs.reviewed }}
         run: |
           echo $build_and_deploy_id_result
+          echo $build_and_deploy_id_reviewed
           if [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed == 'true' ]]; then
             echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
           elif [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed != 'true' ]]; then            
