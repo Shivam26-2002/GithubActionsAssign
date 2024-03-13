@@ -25,7 +25,7 @@ jobs:
 
   slack-result:
     runs-on: ubuntu-latest
-    if: ${{ cancelled() || ( failure('job-will-use-workflow')  &&  needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
+    if: ${{ cancelled() || ( failure('job-will-use-workflow') && needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
     needs: [slack-message, job-will-use-workflow]
     steps:
       - name: Result step
