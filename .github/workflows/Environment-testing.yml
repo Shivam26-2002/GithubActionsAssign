@@ -40,7 +40,7 @@ jobs:
   slack-failure:
     runs-on: ubuntu-latest
     needs: [cicd]
-    if: always()
+    if: ${{ success('cicd') || failure('cicd') }}    
     steps:
       - name: Run slack failure
         run: |
