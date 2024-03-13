@@ -23,6 +23,8 @@ jobs:
             echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
           elif [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed != 'true' ]]; then            
             echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT 
+          elif [[ $build_and_deploy_id_result == 'cancelled' ]]; then            
+           echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
           fi
 
   slack-result:
