@@ -15,6 +15,7 @@ jobs:
         id: set-slack-workflow-name
         env:
           build_and_deploy_id_result: ${{ needs.job-will-use-workflow.result }}
+          build_and_deploy_id_reviewed: ${{ needs.job-will-use-workflow.outputs.reviewed }}
         run: |
           echo $build_and_deploy_id_result
           if [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed == 'true' ]]; then
