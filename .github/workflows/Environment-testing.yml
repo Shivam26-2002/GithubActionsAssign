@@ -1,6 +1,7 @@
 name: Environment Testing
-on: workflow_call
-  outputs:
+on: 
+  workflow_call:
+    outputs:
       reviewed:
         description: "Output to check if the job was approved"
         value: ${{ jobs.wait_for_approval.outputs.reviewed }}
