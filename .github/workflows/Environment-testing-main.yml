@@ -1,8 +1,27 @@
 name: Environment-testing-main
 on: workflow_dispatch
 jobs:
+  set-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      DEPLOYMENT_ENVIRONMENT: ${{ steps.set-environment.outputs.DEPLOYMENT_ENVIRONMENT }}
+    steps:
+      - name: Set Environment
+        id: set-environment
+        run: |
+          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+          if [ $BRANCH_NAME == 'main' ]; then
+            echo "DEPLOYMENT_ENVIRONMENT=production" >> "$GITHUB_OUTPUT"
+            echo "$DEPLOYMENT_ENVIRONMENT"
+          else
+            echo "DEPLOYMENT_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
+            echo "$DEPLOYMENT_ENVIRONMENT"
+          fi
+  
   job-will-use-workflow:
     uses: ./.github/workflows/Environment-testing.yml
+    with:
+      environment: ${{ if(needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production', 'Testing', 'staging-approver') }}
 
   slack-message:
     needs: [job-will-use-workflow]
