@@ -22,8 +22,8 @@ jobs:
     uses: ./.github/workflows/Environment-testing.yml
     needs: [set-environment]
     with:
+      environment: ${{ if( ${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT }} == 'production', 'Testing', 'preview-nx-id') }}
       # environment: ${{ if(needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production', 'Testing', 'staging-approver') }}
-      environment: ${{ if( needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production') ('Testing') else ('preview-nx-id') }}
       # environment-approval: ${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' ? 'production-nx-id' : 'preview-nx-id' }}
 
 
