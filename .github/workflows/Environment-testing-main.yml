@@ -32,4 +32,5 @@ jobs:
       - name: Result step
         run: |
           echo Cancelled approval ${{ needs.slack-message.outputs.slack_workflow_name }}
+          echo ${{ needs.job-will-use-workflow.outputs.reviewed }}
     
