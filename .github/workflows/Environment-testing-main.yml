@@ -25,7 +25,7 @@ jobs:
 
   slack-result:
     runs-on: ubuntu-latest
-    if: always()
+    if: ${{ cancelled() || ( failure('build-and-deploy-id')  &&  needs.build-and-deploy-id.outputs.reviewed != 'true') }}    
     needs: [slack-message, job-will-use-workflow]
     steps:
       - name: Result step
