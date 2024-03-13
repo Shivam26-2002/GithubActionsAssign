@@ -6,6 +6,7 @@ jobs:
 
   slack-message:
     needs: [job-will-use-workflow]
+    if: always()
     runs-on: ubuntu-latest
     outputs: 
       slack_workflow_name: ${{ steps.set-slack-workflow-name.outputs.slack_workflow_name }} 
@@ -24,6 +25,7 @@ jobs:
 
   slack-result:
     runs-on: ubuntu-latest
+    if: always()
     needs: [slack-message, job-will-use-workflow]
     steps:
       - name: Result step
