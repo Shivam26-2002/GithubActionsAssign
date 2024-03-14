@@ -49,6 +49,43 @@ jobs:
           echo "${{env.prod_one_result}}}"
           echo "${{env.prod_two_result}}}"
 
+      - name: Set alias as env
+        run: |
+          echo "jlg_ole_alias=hellojlg" >> $GITHUB_ENV
+          echo "jdc_ole_alias=hellojdc" >> $GITHUB_ENV
+          echo "jlg_digitalid_alias=" >> $GITHUB_ENV
+          echo "jdc_digitalid_alias=" >> $GITHUB_ENV
+      - name: Set Alias to button
+        run: |
+          if [ -z ${{env.jlg_ole_alias}} ]; then
+            echo 'Before'
+            echo ${{env.jlg_ole_alias}} 
+            ${{env.jlg_ole_alias}}='Dummy'
+            echo 'After'
+            echo ${{env.jlg_ole_alias}} 
+          fi
+          if [ -z ${{env.jdc_ole_alias}} ]; then
+            echo 'Before'
+            echo ${{env.jdc_ole_alias}} 
+            ${{env.jdc_ole_alias}}='Dummy'
+            echo 'After'
+            echo ${{env.jdc_ole_alias}} 
+          fi
+          if [ -z ${{env.jlg_digitalid_alias}} ]; then
+            echo 'Before'
+            echo ${{env.jlg_digitalid_alias}} 
+            ${{env.jlg_digitalid_alias}}='Dummy'
+            echo 'After'
+            echo ${{env.jlg_digitalid_alias}} 
+          fi
+          if [ -z ${{env.jdc_digitalid_alias}} ]; then
+            echo 'Before'
+            echo ${{env.jdc_digitalid_alias}} 
+            ${{env.jdc_digitalid_alias}}='Dummy'
+            echo 'After'
+            echo ${{env.jdc_digitalid_alias}} 
+          fi
+
   
   slack-failure:
     runs-on: ubuntu-latest
