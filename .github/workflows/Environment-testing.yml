@@ -35,6 +35,7 @@ jobs:
         run: |
           echo "prod_one_result=Prodoneresult" >> $GITHUB_ENV
           echo "prod_two_result=Prodtworesult" >> $GITHUB_ENV
+          echo $prod_two_result
         
       - name: Set output of job
         id: set-output
