@@ -29,12 +29,12 @@ jobs:
       JOB-OUTPUT: ${{ steps.set-output.outputs.JOB-OUTPUT }}
     steps:
       - name: Dummy step
-        run: echo "Hello World"
-      - name: Dummy step
         env:
          prod_one_result: 'Prod one result'
          prod_two_result: 'Prod two result'
-        run: echo "Dummy step"
+        run: |
+          echo"prod_one_result=Prodoneresult" >> $GITHUB_ENV
+          echo"prod_two_result=Prodtworesult" >> $GITHUB_ENV
         
       - name: Set output of job
         id: set-output
@@ -44,8 +44,8 @@ jobs:
         run: |
           echo "$JOB_STATUS"
           echo "JOB-OUTPUT=$JOB_STATUS" >> "$GITHUB_OUTPUT"
-          echo "env.$prod_one_result"
-          echo env.$prod_one_result
+          echo "${{env.prod_one_result}}}"
+          echo "${{env.prod_two_result}}}"
 
   
   slack-failure:
