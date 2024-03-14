@@ -20,14 +20,7 @@ jobs:
       run: |
         echo 'Deployment approved'
         echo "reviewed=true" >> $GITHUB_OUTPUT
-    - name: Dummy step
-      run: echo "Dummy step"
-    - name: Dummy step
-      run: echo "Dummy step"
-    - name: Dummy step
-      run: echo "Dummy step"
-    - name: Dummy step
-      run: echo "Dummy step"
+    
         
   cicd:
     runs-on: ubuntu-latest
@@ -37,6 +30,12 @@ jobs:
     steps:
       - name: Dummy step
         run: echo "Hello World"
+      - name: Dummy step
+        env:
+         prod_one_result: 'Prod one result'
+         prod_two_result: 'Prod two result'
+        run: echo "Dummy step"
+        
       - name: Set output of job
         id: set-output
         if: always()
@@ -45,6 +44,8 @@ jobs:
         run: |
           echo "$JOB_STATUS"
           echo "JOB-OUTPUT=$JOB_STATUS" >> "$GITHUB_OUTPUT"
+          echo "env.$prod_one_result"
+          echo env.$prod_one_result
 
   
   slack-failure:
