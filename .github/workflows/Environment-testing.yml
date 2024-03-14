@@ -33,8 +33,8 @@ jobs:
         #  prod_one_result: 'Prod one result'
         #  prod_two_result: 'Prod two result'
         run: |
-          echo"prod_one_result=Prodoneresult" >> $GITHUB_ENV
-          echo"prod_two_result=Prodtworesult" >> $GITHUB_ENV
+          echo "prod_one_result=Prodoneresult" >> $GITHUB_ENV
+          echo "prod_two_result=Prodtworesult" >> $GITHUB_ENV
         
       - name: Set output of job
         id: set-output
