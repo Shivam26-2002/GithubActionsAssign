@@ -56,36 +56,36 @@ jobs:
           echo "jlg_digitalid_alias=" >> $GITHUB_ENV
           echo "jdc_digitalid_alias=" >> $GITHUB_ENV
       - name: Set Alias to button
+        id: alias-button
         run: |
-          if [ -z ${{env.jlg_ole_alias}} ]; then
-            echo 'Before'
-            echo ${{env.jlg_ole_alias}} 
-            ${{env.jlg_ole_alias}}='Dummy'
-            echo 'After'
-            echo ${{env.jlg_ole_alias}} 
+          if [[ ${{env.jlg_ole_alias}} == '' ]]; then
+            echo JLG_OLE_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
+          else
+            echo JLG_OLE_ALIAS=${{env.jlg_ole_alias}} >> "$GITHUB_OUTPUT"
           fi
-          if [ -z ${{env.jdc_ole_alias}} ]; then
-            echo 'Before'
-            echo ${{env.jdc_ole_alias}} 
-            ${{env.jdc_ole_alias}}='Dummy'
-            echo 'After'
-            echo ${{env.jdc_ole_alias}} 
+          if [[ ${{env.jdc_ole_alias}} == '' ]]; then
+            echo JDC_OLE_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
+          else
+            echo JDC_OLE_ALIAS=${{env.jdc_ole_alias}} >> "$GITHUB_OUTPUT"
           fi
-          if [ -z ${{env.jlg_digitalid_alias}} ]; then
-            echo 'Before'
-            echo ${{env.jlg_digitalid_alias}} 
-            ${{env.jlg_digitalid_alias}}='Dummy'
-            echo 'After'
-            echo ${{env.jlg_digitalid_alias}} 
+          if [[ ${{env.jlg_digitalid_alias}} == '' ]]; then
+            echo JLG_ID_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
+          else
+            echo JLG_ID_ALIAS=${{env.jlg_digitalid_alias}} >> "$GITHUB_OUTPUT"
           fi
-          if [ -z ${{env.jdc_digitalid_alias}} ]; then
-            echo 'Before'
-            echo ${{env.jdc_digitalid_alias}} 
-            ${{env.jdc_digitalid_alias}}='Dummy'
-            echo 'After'
-            echo ${{env.jdc_digitalid_alias}} 
+          if [[ ${{env.jdc_digitalid_alias}} == '' ]]; then
+            echo JDC_ID_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
+          else
+            echo JDC_ID_ALIAS=${{env.jdc_digitalid_alias}} >> "$GITHUB_OUTPUT"
           fi
-
+          
+      - name: Write outptut
+        run: |
+          echo ${{ steps.alias-button.outputs.JLG_OLE_ALIAS }}
+          echo ${{ steps.alias-button.outputs.JDC_OLE_ALIAS }}
+          echo ${{ steps.alias-button.outputs.JLG_ID_ALIAS }}
+          echo ${{ steps.alias-button.outputs.JDC_ID_ALIAS }}
+          
   
   slack-failure:
     runs-on: ubuntu-latest
