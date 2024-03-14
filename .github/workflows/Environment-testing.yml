@@ -58,22 +58,22 @@ jobs:
       - name: Set Alias to button
         id: alias-button
         run: |
-          if [[ ${{env.jlg_ole_alias}} == '' ]]; then
+          if [[ -z "${{env.jlg_ole_alias}}" ]]; then
             echo JLG_OLE_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
           else
             echo JLG_OLE_ALIAS=${{env.jlg_ole_alias}} >> "$GITHUB_OUTPUT"
           fi
-          if [[ ${{env.jdc_ole_alias}} == '' ]]; then
+          if [[ -z "${{env.jdc_ole_alias}}" ]]; then
             echo JDC_OLE_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
           else
             echo JDC_OLE_ALIAS=${{env.jdc_ole_alias}} >> "$GITHUB_OUTPUT"
           fi
-          if [[ ${{env.jlg_digitalid_alias}} == '' ]]; then
+          if [[ -z "${{env.jlg_digitalid_alias}}" ]]; then
             echo JLG_ID_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
           else
             echo JLG_ID_ALIAS=${{env.jlg_digitalid_alias}} >> "$GITHUB_OUTPUT"
           fi
-          if [[ ${{env.jdc_digitalid_alias}} == '' ]]; then
+          if [[ -z "${{env.jdc_digitalid_alias}}" ]]; then
             echo JDC_ID_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
           else
             echo JDC_ID_ALIAS=${{env.jdc_digitalid_alias}} >> "$GITHUB_OUTPUT"
