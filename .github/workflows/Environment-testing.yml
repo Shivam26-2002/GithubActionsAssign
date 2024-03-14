@@ -20,6 +20,14 @@ jobs:
       run: |
         echo 'Deployment approved'
         echo "reviewed=true" >> $GITHUB_OUTPUT
+    - name: Dummy step
+      run: echo "Dummy step"
+    - name: Dummy step
+      run: echo "Dummy step"
+    - name: Dummy step
+      run: echo "Dummy step"
+    - name: Dummy step
+      run: echo "Dummy step"
         
   cicd:
     runs-on: ubuntu-latest
