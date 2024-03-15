@@ -6,5 +6,5 @@ jobs:
     steps:
       - name: Date and time UTC
         run: |
-          utc_time_formatted=$(date -u +"%Y-%m-%d %H:%M:%S")
+          utc_time_formatted=$(date -u +"%d %b at %l:%M %p")
           echo "Current UTC time (formatted): $utc_time_formatted"
