@@ -53,8 +53,15 @@ jobs:
            echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
           fi
 
+  slack-cancel-depend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Message
+        run: echo "Job" 
+        
   slack-cancel:
     runs-on: ubuntu-latest
+    needs: [slack-cancel-depend]
     if: cancelled()
     steps:
       - name: Print Message
