@@ -1,0 +1,10 @@
+name: Date and Time
+on: workflow_dispatch
+jobs:
+  dateAndTime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Date and time UTC
+        run: |
+          utc_time_formatted=$(date -u +"%Y-%m-%d %H:%M:%S")
+          echo "Current UTC time (formatted): $utc_time_formatted"
