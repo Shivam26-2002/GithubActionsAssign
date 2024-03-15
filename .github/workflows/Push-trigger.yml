@@ -1,4 +1,4 @@
-name: Example Workflow
+name: Push trigger name
 on:
   push:
     branches:
