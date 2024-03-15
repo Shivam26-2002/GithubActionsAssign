@@ -1,4 +1,4 @@
-name: Date and Time
+name: Date and Time and Job status
 on: workflow_dispatch
 jobs:
   dateAndTime:
@@ -8,3 +8,11 @@ jobs:
         run: |
           utc_time_formatted=$(date -u +"%d %b at %l:%M %p")
           echo "Current UTC time (formatted): $utc_time_formatted"
+
+  Job-status-print:
+    runs-on: ubuntu-latest
+    needs: dateAndTime
+    steps:
+      - name: Job status
+        run: |
+          echo ${{ needs.dateAndTime.result }}
