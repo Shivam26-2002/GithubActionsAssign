@@ -55,7 +55,7 @@ jobs:
 
   slack-cancel:
     runs-on: ubuntu-latest
-    if: ${{ cancelled() }}    
+    if: cancelled()   
     steps:
       - name: Result step
         run: |
