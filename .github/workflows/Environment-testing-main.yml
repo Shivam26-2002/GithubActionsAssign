@@ -55,11 +55,10 @@ jobs:
 
   slack-cancel:
     runs-on: ubuntu-latest
-    if: cancelled()   
+    if: cancelled()
     steps:
-      - name: Result step
-        run: |
-          echo "Cancelled approval" 
+      - name: Print Message
+        run: echo "Job 2 executed because the workflow was cancelled." 
     
 
   slack-result:
