@@ -9,5 +9,4 @@ jobs:
     steps:
       - name: Print Branch Name
         run: |
-          echo "Triggered branch: ${{ github.ref }}"
           echo "Triggered branch: ${{github.ref_name}}"          
