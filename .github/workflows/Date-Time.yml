@@ -8,7 +8,6 @@ jobs:
         run: |
           utc_time_formatted=$(date -u +"%d %b at %l:%M %p")
           echo "Current UTC time (formatted): $utc_time_formatted"
-          exit 1
 
   Job-status-print:
     runs-on: ubuntu-latest
