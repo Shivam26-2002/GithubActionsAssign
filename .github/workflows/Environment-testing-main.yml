@@ -62,7 +62,7 @@ jobs:
   slack-cancel:
     runs-on: ubuntu-latest
     needs: [slack-cancel-depend]
-    if: cancelled()
+    if: ${{ cancelled() }}
     steps:
       - name: Print Message
         run: echo "Job 2 executed because the workflow was cancelled." 
