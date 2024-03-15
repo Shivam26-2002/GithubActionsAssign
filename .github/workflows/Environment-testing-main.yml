@@ -53,6 +53,15 @@ jobs:
            echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
           fi
 
+  slack-cancel:
+    runs-on: ubuntu-latest
+    if: ${{ cancelled() }}    
+    steps:
+      - name: Result step
+        run: |
+          echo "Cancelled approval" 
+    
+
   slack-result:
     runs-on: ubuntu-latest
     # if: ${{ cancelled() || ( failure('job-will-use-workflow') && needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
