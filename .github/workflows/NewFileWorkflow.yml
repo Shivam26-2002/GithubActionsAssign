@@ -9,7 +9,8 @@ jobs:
     - name: Create job1file.txt
       run: |
         echo "Branch Name: ${{ github.ref }} Run URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} " > job1file.txt
-        vim job1file.txt
+        gedit job1file.txt
+        # vim job1file.txt
         # nano job1file.txt
     - name: Upload job1file.txt
       uses: actions/upload-artifact@v2
