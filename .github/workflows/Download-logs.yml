@@ -7,6 +7,8 @@ jobs:
       - name: Trial step
         run: echo "Hello world"
       - name: Get GitHub context
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Owner: ${{ github.repository_owner }}"
           echo "Repository: ${{ github.repository }}"
