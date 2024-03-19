@@ -18,7 +18,7 @@ jobs:
           # gh run view ${{ github.run_id }} --log
       - name: Download logs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.Logs }}
         run: |
           echo $GITHUB_TOKEN
           echo "Secret token: "
