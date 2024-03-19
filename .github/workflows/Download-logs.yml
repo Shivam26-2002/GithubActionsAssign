@@ -15,7 +15,7 @@ jobs:
           echo "Repository: ${{ github.repository }}"
           echo "Run ID: ${{ github.run_id }}"
           echo "Token is: ${{ github.token }}"
-          gh run view ${{ github.run_id }} --log
+          # gh run view ${{ github.run_id }} --log
       - name: Download logs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
