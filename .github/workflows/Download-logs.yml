@@ -3,6 +3,7 @@ on: workflow_dispatch
 jobs:
   download:
     runs-on: ubuntu-latest
+    permissions: read
     steps:
       - name: Trial step
         run: echo "Hello world"
