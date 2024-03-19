@@ -18,17 +18,17 @@ jobs:
           # gh run view ${{ github.run_id }} --log
       - name: Download logs
         env:
-          GITHUB_TOKEN: ${{ secrets.LOGS }}
+          GITHUB_TOKEN: ${{ secrets.DOWNLOAD_LOGS }}
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # echo $GITHUB_TOKEN
           # echo "Secret token: "
-          # echo "${{ secrets.GITHUB_TOKEN }}"
+          # echo "${{ secrets.DOWNLOAD_LOGS }}"
           echo $GITHUB_TOKEN
           echo "Secret token: "
-          echo "${{ secrets.LOGS }}"
+          echo "${{ secrets.DOWNLOAD_LOGS }}"
           curl -L \
           -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.LOGS }}" \
+          -H "Authorization: Bearer ${{ secrets.DOWNLOAD_LOGS }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/logs
