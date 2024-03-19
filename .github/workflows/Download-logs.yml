@@ -6,13 +6,15 @@ jobs:
     steps:
       - name: Trial step
         run: echo "Hello world"
+          # GH_TOKEN: ${{ github.token }}
       - name: Get GitHub context
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Owner: ${{ github.repository_owner }}"
           echo "Repository: ${{ github.repository }}"
           echo "Run ID: ${{ github.run_id }}"
+          echo "Token is: ${{ github.token }}"
           gh run view ${{ github.run_id }} --log
       - name: Download logs
         env:
