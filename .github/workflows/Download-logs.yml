@@ -26,7 +26,7 @@ jobs:
           # echo "${{ secrets.GITHUB_TOKEN }}"
           echo $GITHUB_TOKEN
           echo "Secret token: "
-          echo ${{ secrets.LOGS }}"
+          echo "${{ secrets.LOGS }}"
           curl -L \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.LOGS }}" \
