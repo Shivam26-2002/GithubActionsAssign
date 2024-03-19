@@ -23,7 +23,7 @@ jobs:
           echo $GITHUB_TOKEN
           echo "Secret token: "
           echo "${{ secrets.GITHUB_TOKEN }}"
-          curl --request GET \
+          curl -L \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
