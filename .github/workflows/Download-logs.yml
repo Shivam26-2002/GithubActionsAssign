@@ -11,6 +11,7 @@ jobs:
           echo "Owner: ${{ github.repository_owner }}"
           echo "Repository: ${{ github.repository }}"
           echo "Run ID: ${{ github.run_id }}"
+          gh run view ${{ github.run_id }} --log
       - name: Download logs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
