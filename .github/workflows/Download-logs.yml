@@ -17,12 +17,12 @@ jobs:
           # gh run view ${{ github.run_id }} --log
       - name: Download logs
         run: |
-          DOWNLOAD_TOKEN=${{ secrets.DOWNLOAD_LOGS_NEW }}
+          DOWNLOAD_TOKEN=${{ secrets.LOGS_DOWNLOAD }}
           echo "Secret token: "
-          echo " Token is : $DOWNLOAD_LOGS_NEW"
-          echo "${{ secrets.DOWNLOAD_LOGS }}"
+          echo " Token is : $LOGS_DOWNLOAD"
+          echo "${{ secrets.LOGS_DOWNLOAD }}"
           curl -L \
           -H "Accept: application/vnd.github+json" \
-          -H "Authorization: token $DOWNLOAD_LOGS_NEW" \
+          -H "Authorization: token $LOGS_DOWNLOAD" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/logs
