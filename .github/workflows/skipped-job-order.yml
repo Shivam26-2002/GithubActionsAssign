@@ -1,0 +1,26 @@
+name: Skipped job
+on: workflow_dispatch
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail
+        run: exit 1
+  zebra:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skipp
+        run: echo "Skipped"
+  yebra:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skipp
+        run: echo "Skipped"
+  aebra:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skipp
+        run: echo "Skipped"
