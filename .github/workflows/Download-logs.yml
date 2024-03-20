@@ -17,10 +17,10 @@ jobs:
           # gh run view ${{ github.run_id }} --log
       - name: Download logs
         run: |
-          DOWNLOAD_TOKEN=${{ secrets.LOGS_DOWNLOAD }}
+          DOWNLOAD_TOKEN=${{ secrets.FINE_GRAINED_PAT }}
           echo "Secret token: "
-          echo " Token is : $LOGS_DOWNLOAD"
-          echo "${{ secrets.LOGS_DOWNLOAD }}"
+          echo " Token is : $DOWNLOAD_TOKEN"
+          echo "${{ secrets.FINE_GRAINED_PAT }}"
           curl -L \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: token $DOWNLOAD_TOKEN" \
