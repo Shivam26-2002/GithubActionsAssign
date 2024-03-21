@@ -30,7 +30,7 @@ jobs:
     uses: ./.github/workflows/Environment-testing.yml
     needs: [set-environment]
     with:
-      environment: "${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' && 'Testing' || 'Production' }}"
+      environment: "${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' && 'ole' || 'Production' }}"
       workflow_status: 'success'
       project: 'nx-ole'
       
@@ -38,7 +38,7 @@ jobs:
     uses: ./.github/workflows/Environment-testing.yml
     needs: [set-environment]
     with:
-      environment: "${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' && 'Testing' || 'Production' }}"
+      environment: "${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' && 'jlg' || 'Production' }}"
       workflow_status: 'success'
       project: 'nx-jlg'
      
