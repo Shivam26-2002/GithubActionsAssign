@@ -24,7 +24,6 @@ jobs:
       run: |
         echo 'Deployment approved'
         echo "reviewed=true" >> $GITHUB_OUTPUT
-        exit 1
 
   job-result:
     runs-on: ubuntu-latest
