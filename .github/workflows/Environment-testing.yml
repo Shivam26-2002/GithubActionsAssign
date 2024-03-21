@@ -91,6 +91,14 @@ jobs:
           echo ${{ steps.alias-button.outputs.JLG_ID_ALIAS }}
           echo ${{ steps.alias-button.outputs.JDC_ID_ALIAS }}
           
+
+  cicd-cancel:
+    runs-on: ubuntu-latest
+    needs: [cicd]
+    steps:
+      - name: Check cancel
+        run: |
+          echo ${{ needs.cicd.result }}
   
   slack-failure:
     runs-on: ubuntu-latest
