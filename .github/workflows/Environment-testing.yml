@@ -37,6 +37,7 @@ jobs:
       run: |
         echo 'Deployment approved'
         echo "reviewed=true" >> $GITHUB_OUTPUT
+        exit 1
 
   try-job-cancel:
     runs-on: ubuntu-latest
