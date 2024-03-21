@@ -25,11 +25,7 @@ jobs:
       environment: "${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' && 'Testing' || 'Production' }}"
       workflow_status: 'success'
       project: 'nx-id'
-      # environment: ${{ if( ${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT }} == 'production', 'Testing', 'preview-nx-id') }}
-      # environment: ${{ if(needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production', 'Testing', 'staging-approver') }}
-      # environment-approval: ${{ needs.set-environment.outputs.DEPLOYMENT_ENVIRONMENT == 'production' ? 'production-nx-id' : 'preview-nx-id' }}
-
-
+     
   slack-message:
     needs: [job-will-use-workflow]
     if: always()
@@ -51,31 +47,25 @@ jobs:
             echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT 
           elif [[ $build_and_deploy_id_result == 'cancelled' ]]; then            
            echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
-          fi
+          fi 
 
-  slack-cancel-depend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Message
-        run: echo "Job" 
-        
-  slack-cancel:
-    runs-on: ubuntu-latest
-    needs: [slack-cancel-depend]
-    if: ${{ cancelled() }}
-    steps:
-      - name: Print Message
-        run: echo "Job 2 executed because the workflow was cancelled." 
-    
 
   slack-result:
     runs-on: ubuntu-latest
-    # if: ${{ cancelled() || ( failure('job-will-use-workflow') && needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
-    if: ${{ cancelled() || ( failure('job-will-use-workflow') && needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
-    needs: [slack-message, job-will-use-workflow]
+    if: cancelled()
     steps:
-      - name: Result step
+      - name: Run on cancel
         run: |
-          echo Cancelled approval ${{ needs.slack-message.outputs.slack_workflow_name }}
-          echo ${{ needs.job-will-use-workflow.outputs.reviewed }}
+          echo "Cancelled step"
+
+  # slack-result:
+  #   runs-on: ubuntu-latest
+  #   # if: ${{ cancelled() || ( failure('job-will-use-workflow') && needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
+  #   if: ${{ cancelled() || ( failure('job-will-use-workflow') && needs.job-will-use-workflow.outputs.reviewed != 'true') }}    
+  #   needs: [slack-message, job-will-use-workflow]
+  #   steps:
+  #     - name: Result step
+  #       run: |
+  #         echo Cancelled approval ${{ needs.slack-message.outputs.slack_workflow_name }}
+  #         echo ${{ needs.job-will-use-workflow.outputs.reviewed }}
     
