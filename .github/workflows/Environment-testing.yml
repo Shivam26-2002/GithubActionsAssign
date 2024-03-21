@@ -28,6 +28,7 @@ jobs:
         
   cicd:
     runs-on: ubuntu-latest
+    needs: wait_for_approval
     environment: ${{ inputs.environment }}
     if: inputs.workflow_status == 'success' && inputs.project == 'nx-ole'
     outputs: 
@@ -94,7 +95,7 @@ jobs:
 
   cicd-cancel:
     runs-on: ubuntu-latest
-    needs: [cicd]
+    needs: [wait_for_approval,cicd]
     steps:
       - name: Check cancel
         run: |
