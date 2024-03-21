@@ -47,6 +47,16 @@ jobs:
         run: |
           echo ${{ needs.cicd.result }}
           echo ${{ needs.cicd.outputs.reviewed }}
+
+  slack-failure:
+    if: ${{ ( success('cicd') && needs.cicd.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.cicd.outputs.reviewed == 'true' ) }}    
+    needs: cicd
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Run Slack job
+        run: |
+          echo "Success or failure"
+    
   
   # slack-failure:
   #   runs-on: ubuntu-latest
