@@ -50,6 +50,14 @@ jobs:
   #         fi 
 
 
+  slack-result-reject-environment:
+    runs-on: ubuntu-latest
+    needs: job-will-use-workflow
+    if: ${{ ( failure('job-will-use-workflow')  &&  needs.job-will-use-workflow.outputs.reviewed != 'true') }}       steps:
+      - name: Run on cancel
+        run: |
+          echo "Rejected Environment"
+          
   slack-result:
     runs-on: ubuntu-latest
     needs: job-will-use-workflow
