@@ -55,7 +55,7 @@ jobs:
     steps: 
       - name: Run Slack job
         run: |
-          echo "Success or failure"
+          echo ${{ needs.cicd.result }}
     
   
   # slack-failure:
