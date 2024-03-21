@@ -26,32 +26,33 @@ jobs:
       workflow_status: 'success'
       project: 'nx-id'
      
-  slack-message:
-    needs: [job-will-use-workflow]
-    if: always()
-    runs-on: ubuntu-latest
-    outputs: 
-      slack_workflow_name: ${{ steps.set-slack-workflow-name.outputs.slack_workflow_name }} 
-    steps:
-      - name: Set workflow name for slack message
-        id: set-slack-workflow-name
-        env:
-          build_and_deploy_id_result: ${{ needs.job-will-use-workflow.result }}
-          build_and_deploy_id_reviewed: ${{ needs.job-will-use-workflow.outputs.reviewed }}
-        run: |
-          echo $build_and_deploy_id_result
-          echo $build_and_deploy_id_reviewed
-          if [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed == 'true' ]]; then
-            echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
-          elif [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed != 'true' ]]; then            
-            echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT 
-          elif [[ $build_and_deploy_id_result == 'cancelled' ]]; then            
-           echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
-          fi 
+  # slack-message:
+  #   needs: [job-will-use-workflow]
+  #   if: always()
+  #   runs-on: ubuntu-latest
+  #   outputs: 
+  #     slack_workflow_name: ${{ steps.set-slack-workflow-name.outputs.slack_workflow_name }} 
+  #   steps:
+  #     - name: Set workflow name for slack message
+  #       id: set-slack-workflow-name
+  #       env:
+  #         build_and_deploy_id_result: ${{ needs.job-will-use-workflow.result }}
+  #         build_and_deploy_id_reviewed: ${{ needs.job-will-use-workflow.outputs.reviewed }}
+  #       run: |
+  #         echo $build_and_deploy_id_result
+  #         echo $build_and_deploy_id_reviewed
+  #         if [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed == 'true' ]]; then
+  #           echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
+  #         elif [[ $build_and_deploy_id_result == 'failure' ]] && [[ $build_and_deploy_id_reviewed != 'true' ]]; then            
+  #           echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT 
+  #         elif [[ $build_and_deploy_id_result == 'cancelled' ]]; then            
+  #          echo "slack_workflow_name=Build and Deploy ID" >> $GITHUB_OUTPUT
+  #         fi 
 
 
   slack-result:
     runs-on: ubuntu-latest
+    needs: job-will-use-workflow
     if: cancelled()
     steps:
       - name: Run on cancel
