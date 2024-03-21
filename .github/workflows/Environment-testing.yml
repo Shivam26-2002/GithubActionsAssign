@@ -13,107 +13,48 @@ on:
         description: "Output to check if the job was approved"
         value: ${{ jobs.wait_for_approval.outputs.reviewed }}
 jobs:
-  wait_for_approval:    
+  # wait_for_approval:    
+  #   runs-on: ubuntu-latest
+  #   environment: ${{ inputs.environment }}   # approval environment
+  #   outputs: 
+  #     reviewed: ${{ steps.set-output-deployment.outputs.reviewed }}    
+  #   steps:
+  #   - name: Deployment approved
+  #     id: set-output-deployment
+  #     run: |
+  #       echo 'Deployment approved'
+  #       echo "reviewed=true" >> $GITHUB_OUTPUT
+    
+        
+  cicd:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}   # approval environment
+    environment: ${{ inputs.environment }}
     outputs: 
-      reviewed: ${{ steps.set-output-deployment.outputs.reviewed }}    
+      reviewed: ${{ steps.set-output-deployment.outputs.reviewed }}
     steps:
     - name: Deployment approved
       id: set-output-deployment
       run: |
         echo 'Deployment approved'
         echo "reviewed=true" >> $GITHUB_OUTPUT
-    
-        
-  cicd:
-    runs-on: ubuntu-latest
-    needs: wait_for_approval
-    environment: ${{ inputs.environment }}
-    if: inputs.workflow_status == 'success' && inputs.project == 'nx-ole'
-    outputs: 
-      JOB-OUTPUT: ${{ steps.set-output.outputs.JOB-OUTPUT }}
-    steps:
-      - name: Dummy step
-        # env:
-        #  prod_one_result: 'Prod one result'
-        #  prod_two_result: 'Prod two result'
-        run: |
-          echo "prod_one_result=Prodoneresult" >> $GITHUB_ENV
-          echo "prod_two_result=Prodtworesult" >> $GITHUB_ENV
-          echo "$prod_two_result"
-          echo "${{env.prod_one_result}}"
-        
-      - name: Set output of job
-        id: set-output
-        if: always()
-        env:
-         JOB_STATUS: ${{ job.status }}
-        run: |
-          echo "$JOB_STATUS"
-          echo "JOB-OUTPUT=$JOB_STATUS" >> "$GITHUB_OUTPUT"
-          echo "${{env.prod_one_result}}}"
-          echo "${{env.prod_two_result}}}"
-
-      - name: Set alias as env
-        run: |
-          echo "jlg_ole_alias=hellojlg" >> $GITHUB_ENV
-          echo "jdc_ole_alias=hellojdc" >> $GITHUB_ENV
-          echo "jlg_digitalid_alias=" >> $GITHUB_ENV
-          echo "jdc_digitalid_alias=" >> $GITHUB_ENV
-      - name: Set Alias to button
-        id: alias-button
-        run: |
-          if [[ -z "${{env.jlg_ole_alias}}" ]]; then
-            echo JLG_OLE_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
-          else
-            echo JLG_OLE_ALIAS=${{env.jlg_ole_alias}} >> "$GITHUB_OUTPUT"
-          fi
-          if [[ -z "${{env.jdc_ole_alias}}" ]]; then
-            echo JDC_OLE_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
-          else
-            echo JDC_OLE_ALIAS=${{env.jdc_ole_alias}} >> "$GITHUB_OUTPUT"
-          fi
-          if [[ -z "${{env.jlg_digitalid_alias}}" ]]; then
-            echo JLG_ID_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
-          else
-            echo JLG_ID_ALIAS=${{env.jlg_digitalid_alias}} >> "$GITHUB_OUTPUT"
-          fi
-          if [[ -z "${{env.jdc_digitalid_alias}}" ]]; then
-            echo JDC_ID_ALIAS='Dummy' >> "$GITHUB_OUTPUT"
-          else
-            echo JDC_ID_ALIAS=${{env.jdc_digitalid_alias}} >> "$GITHUB_OUTPUT"
-          fi
-          
-      - name: Write outptut
-        run: |
-          echo ${{ steps.alias-button.outputs.JLG_OLE_ALIAS }}
-          echo ${{ steps.alias-button.outputs.JDC_OLE_ALIAS }}
-          echo ${{ steps.alias-button.outputs.JLG_ID_ALIAS }}
-          echo ${{ steps.alias-button.outputs.JDC_ID_ALIAS }}
-          
-
-  try-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dummy job
-        run: echo "Hello World"
 
   try-job-cancel:
     runs-on: ubuntu-latest
-    needs: [wait_for_approval,try-job]
+    if: always()
+    needs: [cicd]
     steps:
       - name: Check cancel
         run: |
-          echo ${{ needs.try-job.result }}
+          echo ${{ needs.cicd.result }}
+          echo ${{ needs.cicd.outputs.reviewed }}
   
-  slack-failure:
-    runs-on: ubuntu-latest
-    needs: [wait_for_approval,cicd]
-    if: ${{ ( success('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) }}    
-    # if: ${{ ( success('cicd')  &&  needs.wait_for_approval.outputs.reviewed = 'true') || ( failure('deploy-to-prod-two')  &&  needs.deploy-to-prod-two.outputs.reviewed != 'true') }}    
-    steps:
-      - name: Run slack failure
-        run: |
-          echo "${{ needs.cicd.outputs.JOB-OUTPUT }}"
+  # slack-failure:
+  #   runs-on: ubuntu-latest
+  #   needs: [wait_for_approval,cicd]
+  #   if: ${{ ( success('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) }}    
+  #   # if: ${{ ( success('cicd')  &&  needs.wait_for_approval.outputs.reviewed = 'true') || ( failure('deploy-to-prod-two')  &&  needs.deploy-to-prod-two.outputs.reviewed != 'true') }}    
+  #   steps:
+  #     - name: Run slack failure
+  #       run: |
+  #         echo "${{ needs.cicd.outputs.JOB-OUTPUT }}"
         
