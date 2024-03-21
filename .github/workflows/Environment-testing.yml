@@ -12,20 +12,7 @@ on:
       reviewed:
         description: "Output to check if the job was approved"
         value: ${{ jobs.wait_for_approval.outputs.reviewed }}
-jobs:
-  # wait_for_approval:    
-  #   runs-on: ubuntu-latest
-  #   environment: ${{ inputs.environment }}   # approval environment
-  #   outputs: 
-  #     reviewed: ${{ steps.set-output-deployment.outputs.reviewed }}    
-  #   steps:
-  #   - name: Deployment approved
-  #     id: set-output-deployment
-  #     run: |
-  #       echo 'Deployment approved'
-  #       echo "reviewed=true" >> $GITHUB_OUTPUT
-    
-        
+jobs:       
   cicd:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
@@ -39,7 +26,7 @@ jobs:
         echo "reviewed=true" >> $GITHUB_OUTPUT
         exit 1
 
-  try-job-cancel:
+  job-result:
     runs-on: ubuntu-latest
     if: always()
     needs: [cicd]
