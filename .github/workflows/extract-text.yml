@@ -10,3 +10,23 @@ jobs:
           ' 
           echo "$multiline_string1" > logs.txt
           cat logs.txt
+          echo "Start extracting "
+          while IFS= read -r line; do
+              IFS=' ' read -r -a fields <<< "$line"              
+              duration="${fields[2]}"
+              passed="${fields[3]}"
+              failed="${fields[4]}"
+              pending="${fields[5]}"
+              skipped="${fields[6]}"
+              duration="${duration//-/0}"
+              passed="${passed//-/0}"
+              failed="${failed//-/0}"
+              pending="${pending//-/0}"
+              skipped="${skipped//-/0}"
+              echo "Duration: $duration"
+              echo "Passed: $passed"
+              echo "Failed: $failed"
+              echo "Pending: $pending"
+              echo "Skipped: $skipped"
+          done < logs.txt
+
