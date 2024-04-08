@@ -8,5 +8,5 @@ jobs:
         run: |
           multiline_string1='✔  cart.cy.tsx                              124ms        1        1        -        -        - │
           ' 
-          multiline_string1 > logs.txt
+          echo "$multiline_string1" > logs.txt
           cat logs.txt
