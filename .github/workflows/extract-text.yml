@@ -7,5 +7,5 @@ jobs:
       - name: Test multi line string
         run: |
           multiline_string1='✔  cart.cy.tsx                              124ms        1        1        -        -        - │
-          '
-          echo "$multiline_string1"
+          ' > logs.txt
+          cat logs.txt
