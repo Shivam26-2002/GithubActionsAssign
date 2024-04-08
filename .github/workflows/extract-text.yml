@@ -6,11 +6,6 @@ jobs:
     steps:
       - name: Test multi line string
         run: |
-          multiline_string1='This is a multi-line
-          string using single quotes
-          in Bash script'
-          multiline_string2="This is another multi-line
-          string using double quotes
-          in Bash script"
+          multiline_string1='✔  cart.cy.tsx                              124ms        1        1        -        -        - │
+          '
           echo "$multiline_string1"
-          echo "$multiline_string2"
