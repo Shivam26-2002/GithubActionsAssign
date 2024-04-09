@@ -6,92 +6,17 @@ jobs:
     steps:
       - name: Test multi line string
         run: |
-          node - <<EOF
-            const multi_line_string = `> nx run ole:component-test  [existing outputs match the cache, left as is]
+          mulit_line_string='(Run Finished)
+               Spec                                              Tests  Passing  Failing  Pending  Skipped  
+          ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+          │ ✖  base-breadcrumbs-pages.cy.ts             00:09        2        1        1        -        - │
+          ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+          │ ✔  basic-test.cy.ts                          44ms        1        1        -        -        - │
+          ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+          │ ✔  cookie-banner.cy.ts                      00:05        2        2        -        -        - │
+          └────────────────────────────────────────────────────────────────────────────────────────────────┘
+            ✖  1 of 3 failed (33%)                      00:15        5        4        1        -        - '
+          echo "Printing log"
+          echo "$mulit_line_string"
 
-              It looks like this is your first time using Cypress: 13.7.1
-              
-              [STARTED] Task without title.
-              [SUCCESS] Task without title.
-              
-              Opening Cypress...
-              
-              DevTools listening on ws://127.0.0.1:34187/devtools/browser/563049dd-20ba-4e34-8337-5ddb59576f5e
-              <i> [webpack-dev-server] Project is running at:
-              <i> [webpack-dev-server] Loopback: http://127.0.0.1:8080/
-              <i> [webpack-dev-server] Content not from webpack is served from '/home/runner/work/Access-Nx/Access-Nx/apps/ole/public' directory
-              
-              tput: No value for $TERM and no -T specified
-              ====================================================================================================
-              
-                (Run Starting)
-               Running:  cart.cy.tsx                                                                     (1 of 1)
-              <i> [webpack-dev-middleware] wait until bundle finished: /__cypress/src/index.html
-              Entrypoint main [big] 535 KiB = runtime.js 34.4 KiB main.js 501 KiB
-              chunk (runtime: runtime) cypress-support-file.css, cypress-support-file.js (cypress-support-file) 784 bytes (javascript) 35.3 KiB (css/mini-extract) [rendered]
-              chunk (runtime: runtime) main.js (main) (id hint: vendors) 173 KiB [initial] [rendered] reused as split chunk (cache group: defaultVendors)
-              chunk (runtime: runtime) runtime.js (runtime) 9.7 KiB [entry] [rendered]
-              chunk (runtime: runtime) spec-0.js (spec-0) 101 KiB [rendered]
-              chunk (runtime: runtime) vendors-node_modules_cypress_react18_dist_cypress-react_esm-bundler_js-node_modules_fortaweso-75c378.css, vendors-node_modules_cypress_react18_dist_cypress-react_esm-bundler_js-node_modules_fortaweso-75c378.js (id hint: vendors) 22 KiB (javascript) 11.6 KiB (css/mini-extract) [rendered] split chunk (cache group: defaultVendors)
-              chunk (runtime: runtime) vendors-node_modules_fortawesome_react-fontawesome_index_es_js-node_modules_classnames_index_-2d69d6.js (id hint: vendors) 2.08 MiB [rendered] split chunk (cache group: defaultVendors)
-              chunk (runtime: runtime) vendors-node_modules_react-dom_index_js.js (id hint: vendors) 1.08 MiB [rendered] split chunk (cache group: defaultVendors)
-              
-              ERROR in ../../node_modules/next/dist/compiled/micromatch/index.js 22:3436-3451
-              Module not found: Error: Can't resolve 'path' in '/home/runner/work/Access-Nx/Access-Nx/node_modules/next/dist/compiled/micromatch'
-              
-              BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
-              This is no longer the case. Verify if you need this module and configure a polyfill for it.
-              
-              If you want to include a polyfill, you need to:
-              	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
-              	- install 'path-browserify'
-              If you don't want to include a polyfill, you can use an empty module like this:
-              	resolve.fallback: { "path": false }
-              
-              webpack compiled with 1 error (f314239b58b4d409)
-              Type-checking in progress...
-              
-              
-                <ShoppingCart />
-                  ✓ renders (96ms)
-              
-              
-                1 passing (120ms)
-              
-              
-                (Results)
-              
-                ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-                │ Tests:        1                                                                                │
-                │ Passing:      1                                                                                │
-                │ Failing:      0                                                                                │
-                │ Pending:      0                                                                                │
-                │ Skipped:      0                                                                                │
-                │ Screenshots:  0                                                                                │
-                │ Video:        false                                                                            │
-                │ Duration:     0 seconds                                                                        │
-                │ Spec Ran:     cart.cy.tsx                                                                      │
-                └────────────────────────────────────────────────────────────────────────────────────────────────┘
-              
-              
-              tput: No value for $TERM and no -T specified
-              ====================================================================================================
-              
-                (Run Finished)
-              
-              
-                     Spec                                              Tests  Passing  Failing  Pending  Skipped  
-                ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-                │ ✔  cart.cy.tsx                              124ms        1        1        -        -        - │
-                └────────────────────────────────────────────────────────────────────────────────────────────────┘
-                  ✔  All specs passed!                        124ms        1        1        -        -        -  
-              
-              
-               
-              
-               >  NX   Successfully ran target component-test for project ole
-              
-                 Nx read the output from the cache instead of running the command for 1 out of 1 tasks.`
-            console.log(multi_line_string);
-          EOF
           
