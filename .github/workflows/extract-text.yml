@@ -90,7 +90,7 @@ jobs:
           echo "Printing main Result"
           main_result=$(<main_result.txt)
           echo "Main result is $main_result"
-          if [[ $main_result == "Failing🔴"]]; then
+          if [[ $main_result == "Failing🔴" ]]; then
             exit 1
           fi
 
