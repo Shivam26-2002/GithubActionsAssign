@@ -89,9 +89,9 @@ jobs:
           main_result=$(<main_result.txt)
           echo "Main result is $main_result"
           # echo "${{steps.mainOutput.outputs.MainResult}}"
-          # if [[ ${{steps.mainOutput.outputs.MainResult}} == "Failing🔴"]]; then
-          #   exit 1
-          # fi
+          if [[ $main_result == "Failing🔴"]]; then
+            exit 1
+          fi
 
       - name: Print output
         run: |
