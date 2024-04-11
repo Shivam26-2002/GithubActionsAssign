@@ -71,7 +71,7 @@ jobs:
             let final_duration;
             if (duration.includes(':')) {
                const [minutes, seconds] = duration.split(':').map(Number);
-               final_duration = minutes * 60 + seconds} + 's';
+               final_duration = minutes * 60 + seconds + 's';
             } else if (duration.includes('ms')) {
                const milliseconds = parseInt(duration);
                 final_duration = milliseconds / 1000 + 's';
