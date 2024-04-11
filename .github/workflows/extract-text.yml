@@ -30,19 +30,19 @@ jobs:
                 matches_finall = lastLine.match(pattern2);
                 pattern_removal = pattern2;
                 console.log("Pattern2");
-                console.log("Pattern to be used is:", pattern_removal)
+                console.log("Pattern to be used is:", pattern_removal);
             }
-            else if(pattern3.test(lastLine){
+            else if(pattern3.test(lastLine)){
                 matches_finall = lastLine.match(pattern3);
                 pattern_removal = pattern2;
                 console.log("Pattern3");
-                console.log("Pattern to be used is:", pattern_removal)
+                console.log("Pattern to be used is:", pattern_removal);
             }
             else{
                 matches_finall = lastLine.match(pattern4);
                 pattern_removal = pattern4;
                 console.log("Pattern4");
-                console.log("Pattern to be used is:", pattern_removal)
+                console.log("Pattern to be used is:", pattern_removal);
             }
             const extractedPart = lastLine.match(pattern_removal)[0];
             console.log(extractedPart);
