@@ -83,6 +83,7 @@ jobs:
               main_result = "Failing🔴";
             }
             core.setOutput('MainResult', main_result);
+            console.log("Main result",main_result);
             fs.writeFileSync('main_result.txt', main_result);
           EOF
           echo "Printing main Result"
