@@ -12,6 +12,7 @@ jobs:
             const pattern1 = /\d+ms\s+\d+\s+\d+\s+-+\s+-+\s+-+/;
             const pattern2 = /(\d{2}:\d{2})\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)\s+(-+)/;
             const pattern3 = /(\d+:\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)/;
+            const pattern4 = /(\d+ms)\s+(\d+)\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)/;
             let pattern_removal;
             let matches_finall;
             // lastLine = "✖  1 of 2 failed (50%)                      00:10        3        2        1        -        -"
@@ -31,10 +32,16 @@ jobs:
                 console.log("Pattern2");
                 console.log("Pattern to be used is:", pattern_removal)
             }
-            else{
+            else if(pattern3.test(lastLine){
                 matches_finall = lastLine.match(pattern3);
                 pattern_removal = pattern2;
                 console.log("Pattern3");
+                console.log("Pattern to be used is:", pattern_removal)
+            }
+            else{
+                matches_finall = lastLine.match(pattern4);
+                pattern_removal = pattern4;
+                console.log("Pattern4");
                 console.log("Pattern to be used is:", pattern_removal)
             }
             const extractedPart = lastLine.match(pattern_removal)[0];
