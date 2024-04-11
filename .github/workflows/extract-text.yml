@@ -24,7 +24,7 @@ jobs:
             // lastLine = "✖  2 of 2 failed (50%)                         124ms        -        2        1        -        -"
             // pattern4
             // lastLine = "✖  2 of 2 failed (50%)                           462ms        3        -        2        -        1"
-            // lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
+             lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
             // pattern3
             // lastLine = "✔  All specs passed!                        124ms        1        1        -        -        -"
             // pattern4
@@ -32,25 +32,25 @@ jobs:
             // const extractedPart5 = lastLine.match(pattern5)[0];
             // console.log(extractedPart5);
             console.log(" Start IF condition ");
-            if (pattern1.test(lastLine)) {
-                matches_finall = lastLine.match(pattern1);
-                pattern_removal = pattern1;
-                console.log("Pattern1");
-                console.log("Pattern to be used is:", pattern_removal)
-            }
-            else if(pattern2.test(lastLine)){
-                matches_finall = lastLine.match(pattern2);
-                pattern_removal = pattern2;
-                console.log("Pattern2");
-                console.log("Pattern to be used is:", pattern_removal);
-            }
-            else if(pattern3.test(lastLine)){
+            //if (pattern1.test(lastLine)) {
+              //  matches_finall = lastLine.match(pattern1);
+               // pattern_removal = pattern1;
+                //console.log("Pattern1");
+                //console.log("Pattern to be used is:", pattern_removal)
+            //}
+            //else if(pattern2.test(lastLine)){
+                //matches_finall = lastLine.match(pattern2);
+                //pattern_removal = pattern2;
+                //console.log("Pattern2");
+                //console.log("Pattern to be used is:", pattern_removal);
+            //}
+            if(pattern3.test(lastLine)){
                 matches_finall = lastLine.match(pattern3);
                 pattern_removal = pattern3;
                 console.log("Pattern3");
                 console.log("Pattern to be used is:", pattern_removal);
             }
-            else{
+            else if(pattern4.test(lastLine)){
                 matches_finall = lastLine.match(pattern4);
                 pattern_removal = pattern4;
                 console.log("Pattern4");
