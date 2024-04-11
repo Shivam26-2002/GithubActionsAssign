@@ -75,12 +75,13 @@ jobs:
             }
             console.log("Final duration is", final_duration);
             console.log("Passed", passed);
+            console.log("Failed", failed);
             let main_result;
-            if (failed == 0){
-              main_result = "Passing✅";
+            if (failed > 0){
+              main_result = "Failing🔴";
             }
             else{
-              main_result = "Failing🔴";
+              main_result = "Passing✅";
             }
             core.setOutput('MainResult', main_result);
             console.log("Main result",main_result);
