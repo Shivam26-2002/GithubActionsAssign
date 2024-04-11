@@ -15,19 +15,19 @@ jobs:
             const pattern1 = /\d+ms\s+\d+\s+\d+\s+-+\s+-+\s+-+/;
             const pattern2 = /(\d{2}:\d{2})\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)\s+(-+)/;
             //const pattern3 = /(\d+:\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)/;
-            const pattern3 = /(\d+:\d+)\s+((?:\d+|-+)\s+){5,}/;
+            const pattern3 = /(\d+:\d+)\s+((?:\d+|-+)\s+){3,}(?:\d+|-+)/;
             const pattern4 = /(\d+ms)\s+((?:\d+|-+)\s+){3,}(?:\d+|-+)/;
             //const pattern4 = /(\d+ms)\s+((?:\d+|-+)\s+){5,}/;
             let pattern_removal;
             let matches_finall;
-             lastLine = "✖  1 of 2 failed (50%)                      00:10        -        2        1        -        -"
+            // lastLine = "✖  1 of 2 failed (50%)                      00:10        -        2        1        -        -"
             // pattern3
             // lastLine = "✖  2 of 2 failed (50%)                         124ms        -        2        1        -        -"
             // pattern4
             // lastLine = "✖  2 of 2 failed (50%)                           462ms        3        -        2        -        1"
-            //lastLine = "✔  All specs passed!                        00:09        -        3        1        -        -"
+            lastLine = "✔  All specs passed!                        00:09        1        2        0        3        4"
             // pattern3
-             lastLine = "✔  All specs passed!                        124ms        1        2        3        4        5"
+            // lastLine = "✔  All specs passed!                        124ms        1        2        3        4        5"
             // pattern4
             console.log(lastLine);
             // const extractedPart5 = lastLine.match(pattern5)[0];
