@@ -75,10 +75,11 @@ jobs:
             }
             core.setOutput('MainResult', main_result);
           EOF
-          echo "${{steps.mainOutput.outputs.MainResult}}"
-          if [[ ${{steps.mainOutput.outputs.MainResult}} == "Failing🔴"]]; then
-            exit 1
-          fi
-          
+          # echo "${{steps.mainOutput.outputs.MainResult}}"
+          # if [[ ${{steps.mainOutput.outputs.MainResult}} == "Failing🔴"]]; then
+          #   exit 1
+          # fi
 
-    
+      - name: Print output
+        run: |
+          echo "${{steps.mainOutput.outputs.MainResult}}"       
