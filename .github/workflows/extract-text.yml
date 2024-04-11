@@ -14,7 +14,8 @@ jobs:
             const core = require('@actions/core');
             const pattern1 = /\d+ms\s+\d+\s+\d+\s+-+\s+-+\s+-+/;
             const pattern2 = /(\d{2}:\d{2})\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)\s+(-+)/;
-            const pattern3 = /(\d+:\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)/;
+            //const pattern3 = /(\d+:\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)/;
+            const pattern3 = /(\d+:\d+)\s+((?:\d+|-+)\s+){3,}/;
             const pattern4 = /(\d+ms)\s+((?:\d+|-+)\s+){3,}/;
             let pattern_removal;
             let matches_finall;
