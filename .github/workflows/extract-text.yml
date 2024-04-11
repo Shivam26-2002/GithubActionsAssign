@@ -74,9 +74,11 @@ jobs:
               main_result = "Failing🔴";
             }
             core.setOutput('MainResult', main_result);
+            fs.writeFileSync('main_result.txt', main_result);
           EOF
           echo "Printing main Result"
-          echo $main_result
+          main_result=$(<main_result.txt)
+          echo "Main result is $main_result"
           # echo "${{steps.mainOutput.outputs.MainResult}}"
           # if [[ ${{steps.mainOutput.outputs.MainResult}} == "Failing🔴"]]; then
           #   exit 1
