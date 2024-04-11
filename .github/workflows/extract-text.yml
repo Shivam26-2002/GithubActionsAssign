@@ -19,8 +19,8 @@ jobs:
             let pattern_removal;
             let matches_finall;
             // lastLine = "✖  1 of 2 failed (50%)                      00:10        3        2        1        -        -"
-            lastLine = "✖  1 of 2 failed (50%)                         124ms        3        2        1        -        -"
-            // lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
+            // lastLine = "✖  1 of 2 failed (50%)                         124ms        3        2        1        -        -"
+             lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
             // lastLine = "✔  All specs passed!                        124ms        1        1        -        -        -"
             console.log(" Start IF condition ");
             if (pattern1.test(lastLine)) {
