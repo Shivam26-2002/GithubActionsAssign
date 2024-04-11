@@ -15,8 +15,8 @@ jobs:
             let pattern_removal;
             let matches_finall;
             // lastLine = "✖  1 of 2 failed (50%)                      00:10        3        2        1        -        -"
-            // lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
-            lastLine = "✔  All specs passed!                        124ms        1        1        -        -        -"
+            lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
+            // lastLine = "✔  All specs passed!                        124ms        1        1        -        -        -"
             console.log(" Start IF condition ");
             if (pattern1.test(lastLine)) {
                 matches_finall = lastLine.match(pattern1);
@@ -36,6 +36,8 @@ jobs:
                 console.log("Pattern3");
                 console.log("Pattern to be used is:", pattern_removal)
             }
+            const extractedPart = lastLine.match(pattern_removal)[0];
+            console.log(extractedPart);
           EOF
 
     
