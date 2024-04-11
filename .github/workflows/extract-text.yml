@@ -76,6 +76,8 @@ jobs:
             console.log("Final duration is", final_duration);
             console.log("Passed", passed);
             console.log("Failed", failed);
+            console.log("Pending", pending);
+            console.log("skipped", skipped);
             let main_result;
             if (failed > 0){
               main_result = "Failing🔴";
