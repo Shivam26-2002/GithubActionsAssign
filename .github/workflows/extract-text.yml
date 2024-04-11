@@ -88,7 +88,6 @@ jobs:
           echo "Printing main Result"
           main_result=$(<main_result.txt)
           echo "Main result is $main_result"
-          # echo "${{steps.mainOutput.outputs.MainResult}}"
           if [[ $main_result == "Failing🔴"]]; then
             exit 1
           fi
