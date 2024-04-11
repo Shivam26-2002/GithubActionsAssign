@@ -42,7 +42,7 @@ jobs:
             }
             else if(pattern3.test(lastLine)){
                 matches_finall = lastLine.match(pattern3);
-                pattern_removal = pattern2;
+                pattern_removal = pattern3;
                 console.log("Pattern3");
                 console.log("Pattern to be used is:", pattern_removal);
             }
