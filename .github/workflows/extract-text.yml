@@ -6,17 +6,30 @@ jobs:
     steps:
       - name: Test multi line string
         run: |
-          mulit_line_string='(Run Finished)
-               Spec                                              Tests  Passing  Failing  Pending  Skipped  
-          ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-          │ ✖  base-breadcrumbs-pages.cy.ts             00:09        2        1        1        -        - │
-          ├────────────────────────────────────────────────────────────────────────────────────────────────┤
-          │ ✔  basic-test.cy.ts                          44ms        1        1        -        -        - │
-          ├────────────────────────────────────────────────────────────────────────────────────────────────┤
-          │ ✔  cookie-banner.cy.ts                      00:05        2        2        -        -        - │
-          └────────────────────────────────────────────────────────────────────────────────────────────────┘
-            ✖  1 of 3 failed (33%)                      00:15        5        4        1        -        - '
-          echo "Printing log"
-          echo "$mulit_line_string"
+          const pattern1 = /\d+ms\s+\d+\s+\d+\s+-+\s+-+\s+-+/;
+          const pattern2 = /(\d{2}:\d{2})\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)\s+(-+)/;
+          const pattern3 = /(\d+:\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(-+)\s+(-+)/;
+          let pattern_removal;
+          let matches_finall;
+          lastLine = "✖  1 of 2 failed (50%)                      00:10        3        2        1        -        -"
+          console.log(" Start IF condition ");
+          if (pattern1.test(lastLine)) {
+              matches_finall = lastLine.match(pattern1);
+              pattern_removal = pattern1;
+              console.log("Pattern1");
+              console.log("Pattern to be used is:", pattern_removal)
+          }
+          else if(pattern2.test(lastLine)){
+              matches_finall = lastLine.match(pattern2);
+              pattern_removal = pattern2;
+              console.log("Pattern2");
+              console.log("Pattern to be used is:", pattern_removal)
+          }
+          else{
+              matches_finall = lastLine.match(pattern3);
+              pattern_removal = pattern2;
+              console.log("Pattern3");
+              console.log("Pattern to be used is:", pattern_removal)
+          }
 
-          
+    
