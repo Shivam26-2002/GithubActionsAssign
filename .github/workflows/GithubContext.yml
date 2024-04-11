@@ -68,7 +68,12 @@ jobs:
       - name: Check case sensitive or not 2
         if: ${{github.event.ref}} == "REFS/HEADS/MAIN"
         run: echo "Case In-Sensitive"
-          
+
+      - name: Write Github root folder
+        run: |
+          echo "Github workspace is "
+          echo "${{ github.workspace }}"
+      
       - name: Write Github Context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
