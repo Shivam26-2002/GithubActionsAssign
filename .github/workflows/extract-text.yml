@@ -61,10 +61,10 @@ jobs:
             const replacedPart = extractedPart.replace(/-/g, '0');
             const parts = replacedPart.split(/\s+/);
             const duration = parts[0];
-            const passed = parts[1];
-            const failed = parts[2];
-            const pending = parts[3];
-            const skipped = parts[4];
+            const passed = parts[2];
+            const failed = parts[3];
+            const pending = parts[4];
+            const skipped = parts[5];
             let final_duration;
             if (duration.includes(':')) {
                const [minutes, seconds] = duration.split(':').map(Number);
