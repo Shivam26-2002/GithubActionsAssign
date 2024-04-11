@@ -19,8 +19,6 @@ jobs:
             // const pattern4 = /(\d+ms)\s+(\d+)\s+(\d+|\-)\s+(\d+|\-)\s+(\d+|\-)\s+(\d+|\-)\s+(\d+|\-)/;
             // const pattern = /(\d{2}:\d{2})\s+(-|\d+)\s+(-|\d+)\s+(-|\d+)\s+(-|\d+)\s+(-|\d+)/;
             const pattern5 = /(\d+ms)\s+((?:\d+|-+)\s+){3,}/;
-            const extractedPart5 = lastLine.match(pattern5)[0];
-            console.log(extractedPart5);
             let pattern_removal;
             let matches_finall;
             // lastLine = "✖  1 of 2 failed (50%)                      00:10        3        2        1        -        -"
@@ -33,6 +31,8 @@ jobs:
             // lastLine = "✔  All specs passed!                        124ms        1        1        -        -        -"
             // pattern4
             console.log(lastLine);
+            const extractedPart5 = lastLine.match(pattern5)[0];
+            console.log(extractedPart5);
             console.log(" Start IF condition ");
             if (pattern1.test(lastLine)) {
                 matches_finall = lastLine.match(pattern1);
