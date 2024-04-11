@@ -5,8 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test multi line string
+        id: mainOutput
         run: |
           npm install fs
+          npm install @actions/core
           node - <<EOF
             const fs = require('fs');
             const pattern1 = /\d+ms\s+\d+\s+\d+\s+-+\s+-+\s+-+/;
@@ -70,9 +72,12 @@ jobs:
             else{
               main_result = "Failing🔴";
             }
-            if(main_result == "Failing🔴"){
-              exit 1
-            }
+            core.setOutput('MainResult', main_result);
           EOF
+          echo "${{steps.mainOutput.outputs.MainResult}}"
+          if [[ ${{steps.mainOutput.outputs.MainResult}} == "Failing🔴"]]; then
+            exit 1
+          fi
+          
 
     
