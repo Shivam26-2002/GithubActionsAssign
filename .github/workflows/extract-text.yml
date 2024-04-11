@@ -68,7 +68,7 @@ jobs:
             const failed = parts[3];
             const pending = parts[4];
             const skipped = parts[5];
-            let final_duration = "";
+            let final_duration;
             if (duration.includes(':')) {
                const [minutes, seconds] = duration.split(':').map(Number);
                final_duration = `${minutes * 60 + seconds}s`;
