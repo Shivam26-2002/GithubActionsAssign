@@ -46,6 +46,33 @@ jobs:
             }
             const extractedPart = lastLine.match(pattern_removal)[0];
             console.log(extractedPart);
+            const replacedPart = extractedPart.replace(/-/g, '0');
+            const parts = replacedPart.split(/\s+/);
+            const duration = parts[0];
+            const passed = parts[2];
+            const failed = parts[3];
+            const pending = parts[4];
+            const skipped = parts[5];
+            let final_duration;
+            if (duration.includes(':')) {
+               const [minutes, seconds] = duration.split(':').map(Number);
+               final_duration = minutes * 60 + seconds;
+            } else if (duration.includes('ms')) {
+               const milliseconds = parseInt(duration);
+                final_duration = milliseconds / 1000;
+            }
+            console.log("Final duration is", final_duration);
+            console.log("Passed", passed);
+            let main_result;
+            if (failed == 0){
+              main_result = "Passing✅";
+            }
+            else{
+              main_result = "Failing🔴";
+            }
+            if(main_result == "Failing🔴"){
+              exit 1
+            }
           EOF
 
     
