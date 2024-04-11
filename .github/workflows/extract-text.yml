@@ -74,7 +74,7 @@ jobs:
                final_duration = minutes * 60 + seconds} + 's';
             } else if (duration.includes('ms')) {
                const milliseconds = parseInt(duration);
-                final_duration = milliseconds / 1000 + 's';;
+                final_duration = milliseconds / 1000 + 's';
             }
             console.log("Final duration is", final_duration);
             console.log("Passed", passed);
