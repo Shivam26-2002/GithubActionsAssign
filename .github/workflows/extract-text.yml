@@ -68,13 +68,13 @@ jobs:
             const failed = parts[3];
             const pending = parts[4];
             const skipped = parts[5];
-            let final_duration;
+            let final_duration = "";
             if (duration.includes(':')) {
                const [minutes, seconds] = duration.split(':').map(Number);
-               final_duration = minutes * 60 + seconds;
+               final_duration = `${minutes * 60 + seconds}s`;
             } else if (duration.includes('ms')) {
                const milliseconds = parseInt(duration);
-                final_duration = milliseconds / 1000;
+                final_duration = `${milliseconds / 1000}s`;
             }
             console.log("Final duration is", final_duration);
             console.log("Passed", passed);
