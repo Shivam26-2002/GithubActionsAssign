@@ -28,6 +28,7 @@ jobs:
             // pattern3
             // lastLine = "✔  All specs passed!                        124ms        1        1        -        -        -"
             // pattern4
+            console.log(lastLine);
             console.log(" Start IF condition ");
             if (pattern1.test(lastLine)) {
                 matches_finall = lastLine.match(pattern1);
