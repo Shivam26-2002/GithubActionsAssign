@@ -21,7 +21,7 @@ jobs:
             //lastLine = "✖  1 of 2 failed (50%)                      00:10        3        2        1        -        -"
             // pattern1
             lastLine = "✖  2 of 2 failed (50%)                         124ms        3        2        1        -        -"
-            // pattern2
+            // pattern4
             // lastLine = "✖  2 of 2 failed (100%)                     462ms        3        -        2        -        1"
             // lastLine = "✔  All specs passed!                        00:09        3        3        -        -        -"
             // pattern3
