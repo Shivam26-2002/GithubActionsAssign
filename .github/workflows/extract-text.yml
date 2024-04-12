@@ -1,6 +1,6 @@
 name: Extract Text
 on: push
-jobs:
+jobs:  
   extract:
     runs-on: ubuntu-latest
     steps:
