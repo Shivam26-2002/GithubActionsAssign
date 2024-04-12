@@ -7,7 +7,7 @@ jobs:
       - name: Generate Hash
         id: generate-hash
         run: |
-          HASH=$(echo -n "$(date)" | sha256sum | cut -d' ' -f1)
+          HASH=$(echo -n "$(date)" | sha256sum | cut -c1-8)
           echo "$HASH"
           echo "::set-output name=hash::$HASH"
     
