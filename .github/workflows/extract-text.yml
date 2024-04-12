@@ -10,6 +10,12 @@ jobs:
           HASH=$(echo -n "$(date)" | sha256sum | cut -c1-8)
           echo "$HASH"
           echo "::set-output name=hash::$HASH"
+      - name: Generate Hash
+        id: generate-hash1
+        run: |
+          HASH=$(echo -n "$(date)" | sha256sum | cut -c1-8)
+          echo "$HASH"
+          echo "::set-output name=hash::$HASH"
     
       - name: Test multi line string
         id: mainOutput
