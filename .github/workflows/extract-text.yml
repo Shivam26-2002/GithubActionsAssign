@@ -4,6 +4,13 @@ jobs:
   extract:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate Hash
+        id: generate-hash
+        run: |
+          HASH=$(echo -n "$(date)" | sha256sum | cut -d' ' -f1)
+          echo "$HASH"
+          echo "::set-output name=hash::$HASH"
+    
       - name: Test multi line string
         id: mainOutput
         run: |
