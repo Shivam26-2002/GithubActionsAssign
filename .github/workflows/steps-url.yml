@@ -14,5 +14,11 @@ jobs:
         if: failure()
         run: |
           echo "Failed step URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#${{ github.job }}/${{ github.step }}"
+
+  getResult:  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run something
+        run: echo "Run something"
           
         
