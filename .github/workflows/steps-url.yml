@@ -1,0 +1,18 @@
+name: Get Step URL
+on: workflow_dispatch
+jobs:
+  getURL:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo "Hello"
+      - name: Step 2
+        run: echo "World"
+      - name: Step 3
+        run: exit 1
+      - name: Get URL
+        if: failure()
+        run: |
+          echo "Failed step URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#${{ github.job }}/${{ github.step }}"
+          
+        
