@@ -41,5 +41,12 @@ jobs:
     steps:
       - name: Run something
         run: echo "Run something"
+
+  dummyJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dummy
+        run: echo "Hello world"
+    
           
         
