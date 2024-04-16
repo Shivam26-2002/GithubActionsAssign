@@ -14,12 +14,14 @@ jobs:
 
       - name: IF else optimise
         run: |
-          if [[ ${{ steps.unit-test.outcome }} == 'failure' ]]; then
-            echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [[ ${{ steps.unit-test.outcome }} == 'success' ]]; then
-            echo "## All Unit tests passed" >> $GITHUB_STEP_SUMMARY
-          fi
+          # if [[ ${{ steps.unit-test.outcome }} == 'failure' ]]; then
+          #   echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          # fi
+          # if [[ ${{ steps.unit-test.outcome }} == 'success' ]]; then
+          #   echo "## All Unit tests passed" >> $GITHUB_STEP_SUMMARY
+          # fi
+          search_term=nx-ole
+          [[ ${{ steps.unit-test.outcome }} == 'failure' ]] && echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || echo "## All Unit tests passed"
           if [[ ${{ steps.e2e-test.outcome }} == 'failure' ]]; then
             echo "End to End test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
           fi
