@@ -5,11 +5,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
+        id: unit-test
         run: echo "Hello"
+        
       - name: Step 2
-        run: echo "World"
-      - name: Step 3
-        run: exit 1
+        id: e2e-test
+        run: echo "Hello"
+
+      - name: IF else optimise
+        run: |
+          if [[ ${{ steps.unit-test.outcome }} == 'failure' ]]; then
+            echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ ${{ steps.unit-test.outcome }} == 'success' ]]; then
+            echo "## All Unit tests passed" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ ${{ steps.e2e-test.outcome }} == 'failure' ]]; then
+            echo "End to End test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ ${{ steps.e2e-test.outcome }} == 'success' ]]; then
+            echo "## All End to End tests passed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+        
+      # - name: Step 2
+      #   run: echo "World"
+      # - name: Step 3
+      #   run: echo "Hello"
       - name: Run always
         id: get-job-id
         if: always()
