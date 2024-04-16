@@ -18,7 +18,7 @@ jobs:
         run: |
           jobs=$(gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id}}/attempts/${{ github.run_attempt }}/jobs)
           echo $jobs
-          job_id=$(echo "$jobs" | grep -o '"id":[0-9]*,"name":"getURL"' | awk -F: '{print $2}')
+          job_id=$(echo "$jobs" | grep -o '"id":[0-9]*,"name":"getURL"' | awk -F'"' '{print $4}')
           # job_id=$(echo $jobs | jq -r '.jobs[] | select(.runner_name=="${{ runner.name }}") | .id')
           # job_id=$(echo "$jobs" | grep -oP '"id":\K\d+' | head -1)
           echo "job_id is: $job_id"
