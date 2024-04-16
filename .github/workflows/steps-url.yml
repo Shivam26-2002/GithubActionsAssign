@@ -17,12 +17,7 @@ jobs:
         run: |
           search_term=nx-ole
           [[ ${{ steps.unit-test.outcome }} == 'failure' ]] && echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || echo "## All Unit tests passed" >> $GITHUB_STEP_SUMMARY
-          if [[ ${{ steps.e2e-test.outcome }} == 'failure' ]]; then
-            echo "End to End test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [[ ${{ steps.e2e-test.outcome }} == 'success' ]]; then
-            echo "## All End to End tests passed" >> $GITHUB_STEP_SUMMARY
-          fi
+          [[ ${{ steps.e2e-test.outcome }} == 'failure' ]] && echo "End to End Test failed for $app : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || [[ ${{ steps.e2e-test.outcome }} == 'skipped' ]] && echo "## End to End Test skipped for $app" >> $GITHUB_STEP_SUMMARY || echo "## All End to End tests passed" >> $GITHUB_STEP_SUMMARY
 
         
       # - name: Step 2
@@ -55,17 +50,8 @@ jobs:
           # echo "Failed step URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#${{ github.job }}/${{ github.step }}"
           # echo "Failed step occurred in job: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#${{ github.job }}/${{ github.run_number }}"
           echo "Failed step occurred in job: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ steps.get-job-id.outputs.job_id }}" >> $GITHUB_STEP_SUMMARY
-  getResult:  
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run something
-        run: echo "Run something"
-
-  dummyJob:
-    runs-on: ubuntu-latest
-    steps:
-      - name: dummy
-        run: echo "Hello world"
-    
-          
-        
+  # getResult:  
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Run something
+  #       run: echo "Run something"
