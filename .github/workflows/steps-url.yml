@@ -16,6 +16,8 @@ jobs:
           # echo "Failed step URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#${{ github.job }}/${{ github.step }}"
           # echo "Failed step occurred in job: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#${{ github.job }}/${{ github.run_number }}"
           echo "Failed step occurred in job: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.run_number }}"
+          echo "What's this"
+          echo "https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}"
 
   getResult:  
     runs-on: ubuntu-latest
