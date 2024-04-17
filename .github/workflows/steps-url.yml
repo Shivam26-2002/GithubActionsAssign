@@ -17,8 +17,9 @@ jobs:
         if: always()
         run: |
           search_term=nx-ole
-          [[ ${{ steps.unit-test.outcome }} == 'failure' ]] && echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || echo "## All Unit tests passed" >> $GITHUB_STEP_SUMMARY
+          # [[ ${{ steps.unit-test.outcome }} == 'failure' ]] && echo "Unit Test failed for $search_term : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || echo "## All Unit tests passed" >> $GITHUB_STEP_SUMMARY
           # [[ ${{ steps.e2e-test.outcome }} == 'failure' ]] && echo "End to End Test failed for $app : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || [[ ${{ steps.e2e-test.outcome }} == 'skipped' ]] && echo "## End to End Test skipped" >> $GITHUB_STEP_SUMMARY || echo "## All End to End tests passed" >> $GITHUB_STEP_SUMMARY
+          [[ ${{ steps.unit-test.outcome }} == 'failure' ]] && echo "Unit Test failed for ${{ inputs.vercel_project_name }} ❌ : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || ([[ ${{ steps.unit-test.outcome }} == 'skipped' ]] && echo "## Unit Test skipped for ${{ inputs.vercel_project_name }} ↩️ " >> $GITHUB_STEP_SUMMARY && exit 0) || echo "## All Unit tests passed ✅" >> $GITHUB_STEP_SUMMARY
           [[ ${{ steps.e2e-test.outcome }} == 'failure' ]] && \
           echo "End to End Test failed for $app : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY || \
           [[ ${{ steps.e2e-test.outcome }} == 'skipped' ]] && \
