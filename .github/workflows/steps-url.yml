@@ -35,8 +35,8 @@ jobs:
       - name: Run always
         id: get-job-id
         if: always()
-        # env:
-        #   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           jobs=$(gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id}}/attempts/${{ github.run_attempt }}/jobs)
           echo $jobs
