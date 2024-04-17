@@ -8,9 +8,8 @@ jobs:
       - name: Output
         id: dummy-output
         run: |
-          echo "NAME=Shivam" >> "$GITHUB_OUTPUT" >> $GITHUB_ENV
-          export NAME
-          echo "$NAME"
+          echo "NAME=Shivam" >> "$GITHUB_OUTPUT"
+          echo -e "\n$NAME"
 
       - name: Print output
         run: echo ${{ steps.dummy-output.outputs.NAME }}
