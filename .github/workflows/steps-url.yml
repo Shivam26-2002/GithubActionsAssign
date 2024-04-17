@@ -8,7 +8,8 @@ jobs:
       - name: Output
         id: dummy-output
         run: |
-          echo "NAME=Shivam" >> "$GITHUB_OUTPUT"
+          export NAME="Shivam"
+          echo "NAME=$NAME" >> "$GITHUB_OUTPUT"
           echo -e "\n$NAME" >> "$GITHUB_OUTPUT"
 
       - name: Print output
