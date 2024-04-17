@@ -9,7 +9,7 @@ jobs:
         id: dummy-output
         run: |
           echo "NAME=Shivam" >> "$GITHUB_OUTPUT"
-          echo -e "\n$NAME"
+          echo -e "\n$NAME" >> "$GITHUB_OUTPUT"
 
       - name: Print output
         run: echo ${{ steps.dummy-output.outputs.NAME }}
