@@ -4,6 +4,8 @@ jobs:
   getURL:
     runs-on: ubuntu-latest
     steps:
+      - name: Fail step
+        run: exit 1
       - name: Step 1
         id: unit-test
         run: exit 1
