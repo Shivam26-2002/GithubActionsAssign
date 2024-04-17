@@ -1,5 +1,6 @@
 name: Get Step URL
-on: workflow_dispatch
+on: push
+# on: workflow_dispatch
 jobs:
   getURL:
     runs-on: ubuntu-latest
