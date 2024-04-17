@@ -4,16 +4,14 @@ jobs:
   getURL:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail step
-        run: exit 1
       - name: Step 1
         id: unit-test
-        run: exit 1
+        run: echo "Hello"
         
       - name: Step 2
         id: e2e-test
-        # run: echo "Hello"
-        run: exit 1
+        run: echo "Hello"
+        # run: exit 1
 
       - name: IF else optimise
         if: always()
