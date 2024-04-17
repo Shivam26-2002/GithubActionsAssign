@@ -6,7 +6,9 @@ jobs:
     steps:
       - name: Step 1
         id: unit-test
-        run: echo "Hello"
+        run: |
+          echo "Pull request link"
+          echo ${{ github.event.pull_request.comments_url }}
         
       - name: Step 2
         id: e2e-test
