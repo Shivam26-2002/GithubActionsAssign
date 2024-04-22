@@ -14,6 +14,4 @@ jobs:
           ALIAS_BRANCH_JDC_ID0=$(echo "$alias" | awk '{print $3}')
           echo "ALIAS_BRANCH_JDC_ID0 is: "
           echo "$ALIAS_BRANCH_JDC_ID0"
-          echo "ALIAS_BRANCH_JDC_ID1=$ALIAS_BRANCH_JDC_ID0"
-          echo "ALIAS_BRANCH_JDC_ID1 IS : "
-          echo "$ALIAS_BRANCH_JDC_ID1"
+          # echo "ALIAS_BRANCH_JDC_ID1=$ALIAS_BRANCH_JDC_ID0"
