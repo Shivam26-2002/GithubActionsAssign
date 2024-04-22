@@ -10,5 +10,5 @@ jobs:
           alias="> Assigning alias JDID-126.onlineexpress-t-beta.jerrdan.com to deployment nx-l3ewc8hq1-advanced-digital-solutions.vercel.app
             Fetching domain JDID-126.onlineexpress-t-beta.jerrdan.com under advanced-digital-solutions"
           echo "ALias is this: $alias"
-          alias_short=$(echo "$alias" | awk '{print $4}')
+          alias_short=$(echo "$alias" | awk '/Assigning alias/ {print $4}')
           echo "Alias short is this: $alias_short"
