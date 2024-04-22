@@ -1,0 +1,17 @@
+name: Regex debug
+on: workflow_dispatch
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug alias
+        run: |
+          alias="> Success! https://40f56fef.onlineexpress-t-beta.jerrdan.com now points to https://nx-phtd7bsnc-advanced-digital-solutions.vercel.app [622ms]"
+          echo "Alias is: "
+          echo $alias
+          ALIAS_BRANCH_JDC_ID0=$(echo "$alias" | awk '{print $3}')
+          echo "ALIAS_BRANCH_JDC_ID0 is: "
+          echo "$ALIAS_BRANCH_JDC_ID0"
+          echo "ALIAS_BRANCH_JDC_ID1=$ALIAS_BRANCH_JDC_ID0"
+          echo "ALIAS_BRANCH_JDC_ID1 IS : "
+          echo "$ALIAS_BRANCH_JDC_ID1"
