@@ -11,7 +11,7 @@ jobs:
             Fetching domain JDID-126.onlineexpress-t-beta.jerrdan.com under advanced-digital-solutions"
           echo "Alias is: "
           echo $alias
-          ALIAS_BRANCH_JDC_ID0=$(echo "$alias" | awk '{print $3}')
+          ALIAS_BRANCH_JDC_ID0=$(echo "$alias" | awk '{print $4}')
           echo "ALIAS_BRANCH_JDC_ID0 is: "
           echo "$ALIAS_BRANCH_JDC_ID0"
           # echo "ALIAS_BRANCH_JDC_ID1=$ALIAS_BRANCH_JDC_ID0"
