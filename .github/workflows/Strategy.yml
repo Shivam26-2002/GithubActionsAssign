@@ -1,0 +1,12 @@
+name: Learn Strategy
+on: workflow_dispatch
+jobs:
+ learn:
+   runs-on: ubuntu-latest
+   strategy:
+      matrix:
+        version: [10, 12, 14]
+   steps:
+     - name: Write numbers
+       run: |
+         echo "Hello ${{ matrix.version }}"
