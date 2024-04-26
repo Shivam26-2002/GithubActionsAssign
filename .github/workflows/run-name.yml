@@ -1,0 +1,23 @@
+name: Endeca Deploy ETL
+run-name: Endeca Deploy ETL - ${{ inputs.environment }}
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'dev'
+          - 'test'
+          - 'prod'
+          - 'UBUNTU-LATEST'
+        default : 'dev'
+
+jobs:
+  build-and-deploy:
+    # runs-on: [self-hosted, X64, Linux, endeca, rhel8, "${{ inputs.environment }}" ]
+    runs-on: [ "${{ inputs.environment | lower() }}"]
+    steps:
+      - name: Dummy workflow
+        run: echo "Dummy workflow"
