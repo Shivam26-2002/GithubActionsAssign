@@ -14,10 +14,10 @@ on:
         default : 'dev'
 
 run-name: >-
-  Endeca Deploy ETL trial - ${{ inputs.environment =~ '(.*)' && replace(inputs.environment, '(.*)', '\U$1') }}
-
+  Endeca Deploy ETL trial - ${{ (inputs.environment =~ '(.*)' && replace(inputs.environment, '(.*)', '\U$1')) }}
 
   
+  # Endeca Deploy ETL trial - ${{ inputs.environment ==~ '(.*)' && replace(inputs.environment, '(.*)', '\U$1') }}
   # Endeca Deploy ETL trial - "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}"        
 
 jobs:
