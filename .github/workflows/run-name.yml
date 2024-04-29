@@ -13,11 +13,7 @@ on:
           - 'ubuntu-latest'
         default : 'dev'
 
-run-name: >-
-  Endeca Deploy ETL trial - $(
-    echo "${{ inputs.environment }}" |
-    tr '[:upper:]' '[:lower:]'
-  )
+run-name: "Endeca Deploy ETL trial - ${{ inputs.environment | lower }}"
         
 jobs:
   build-and-deploy:
