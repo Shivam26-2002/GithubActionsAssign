@@ -27,7 +27,7 @@ jobs:
         id: run-name
         run: |
           echo "${{ inputs.environment }}"
-          echo "${{ inputs.environment.toUpperCase() }}"
+          # echo "${{ inputs.environment.toUpperCase() }}"
           output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
           echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
