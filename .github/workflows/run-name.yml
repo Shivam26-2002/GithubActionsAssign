@@ -22,6 +22,6 @@ jobs:
         run: |
           echo "Dummy workflow"
           echo "${{ inputs.environment }}"
-          $(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')          
+          echo "ole/app/$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')"    
 
         
