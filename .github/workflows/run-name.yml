@@ -19,11 +19,12 @@ jobs:
     runs-on: [ "${{ inputs.environment }}"]
     steps:
       - name: Dummy workflow
+        id: run-name
         run: |
           output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-          echo $output
+          echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
 
-run-name: Endeca Deploy ETL trial - ${{ inputs.environment }}
+run-name: Endeca Deploy ETL trial - ${{ steps.run-name.outputs.runName }}
 
         
