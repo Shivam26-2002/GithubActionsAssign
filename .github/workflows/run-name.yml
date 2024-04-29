@@ -18,7 +18,7 @@ run-name: "Endeca Deploy ETL trial - ${{ inputs.environment }}"
         
 jobs:
   build-and-deploy:
-    runs-on: [ "${{ (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') || (inputs.environment == 'DEV' && 'dev') || 'prod' }}" ]
+    runs-on: [ "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}" ]
     outputs: 
       JOB-OUTPUT: ${{ steps.run-name.outputs.runName }}
     steps:
