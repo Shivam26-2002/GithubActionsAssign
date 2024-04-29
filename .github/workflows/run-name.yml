@@ -22,7 +22,6 @@ jobs:
         run: |
           echo "Dummy workflow"
           echo "${{ inputs.environment }}"
-          output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')          
-          echo $output
+          $(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')          
 
         
