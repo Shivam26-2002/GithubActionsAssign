@@ -1,5 +1,4 @@
 name: Endeca Deploy ETL
-run-name: Endeca Deploy ETL - ${{ inputs.environment | upper() }}
 on: 
   workflow_dispatch:
     inputs:
@@ -13,6 +12,9 @@ on:
           - 'prod'
           - 'ubuntu-latest'
         default : 'dev'
+
+run-name: Endeca Deploy ETL - ${{ inputs.environment }}
+# | upper() 
 
 jobs:
   build-and-deploy:
