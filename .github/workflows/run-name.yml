@@ -13,8 +13,7 @@ on:
           - 'ubuntu-latest'
         default : 'dev'
 
-run-name: Endeca Deploy ETL - ${{ inputs.environment }}
-# | upper() 
+run-name: Endeca Deploy ETL - ${{ inputs.environment | upper() }}
 
 jobs:
   build-and-deploy:
