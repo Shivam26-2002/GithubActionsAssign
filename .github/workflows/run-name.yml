@@ -21,6 +21,8 @@ jobs:
       - name: Dummy workflow
         run: |
           echo "Dummy workflow"
+          echo "${{ inputs.environment }}"
+         
           
 
         
