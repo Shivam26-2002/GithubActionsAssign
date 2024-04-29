@@ -15,10 +15,6 @@ on:
 
 run-name: Endeca Deploy ETL trial - ${{ inputs.environment }}
 
-  
-  # Endeca Deploy ETL trial - ${{ inputs.environment ==~ '(.*)' && replace(inputs.environment, '(.*)', '\U$1') }}
-  # Endeca Deploy ETL trial - "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}"        
-
 jobs:
   build-and-deploy:
     runs-on: [ "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}" ]
@@ -32,10 +28,5 @@ jobs:
           echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
           # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-          # if [[ ${{ github.event.repository.name }} == "ci-systems" ]]; then
-          #   My Regression tests: ${{ inputs.my_version }} + ci-systems: ${{ github.head_ref || github.ref_name }}
-          # else
-          #   My Regression tests: ${{ inputs.my_version }}
-
 
         
