@@ -14,8 +14,8 @@ on:
         default : 'dev'
 
 run-name: >-
-   output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-   Endeca Deploy ETL trial - $output
+   Endeca Deploy ETL trial - $(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
+   # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
   # if [[ ${{ github.event.repository.name }} == "ci-systems" ]]; then
   #   My Regression tests: ${{ inputs.my_version }} + ci-systems: ${{ github.head_ref || github.ref_name }}
   # else
