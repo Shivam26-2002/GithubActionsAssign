@@ -10,7 +10,7 @@ on:
           - 'dev'
           - 'test'
           - 'prod'
-          - 'ubuntu-latest'
+          - 'UBUNTU-LATEST'
         default : 'dev'
 
 run-name: >-
@@ -18,7 +18,7 @@ run-name: >-
         
 jobs:
   build-and-deploy:
-    runs-on: [ "${{ inputs.environment }}" ]
+    runs-on: [ "${{ (inputs.runner == 'UBUNTU-LATEST' && 'ubuntu-latest') }}" ]
     outputs: 
       JOB-OUTPUT: ${{ steps.run-name.outputs.runName }}
     steps:
