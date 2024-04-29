@@ -12,11 +12,12 @@ on:
           - 'prod'
           - 'ubuntu-latest'
         default : 'dev'
+
+run-name: Endeca Deploy ETL trial - $(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
         
 jobs:
   build-and-deploy:
-    # runs-on: [self-hosted, X64, Linux, endeca, rhel8, "${{ inputs.environment }}" ]
-    runs-on: [ "${{ inputs.environment }}"]
+    runs-on: [ "${{ inputs.environment }}" ]
     outputs: 
       JOB-OUTPUT: ${{ steps.run-name.outputs.runName }}
     steps:
@@ -27,6 +28,5 @@ jobs:
           echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
 
-run-name: Endeca Deploy ETL trial - ${{ needs.build-and-deploy.outputs.JOB-OUTPUT }}
 
         
