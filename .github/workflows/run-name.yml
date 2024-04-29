@@ -14,7 +14,7 @@ on:
         default : 'dev'
 
 run-name: >-
-  Endeca Deploy ETL trial - ${{ inputs.environment.toUpperCase() }}   
+  Endeca Deploy ETL trial - ${{ inputs.environment =~ '(.*)' && replace(inputs.environment, '(.*)', '\U$1') }}
 
 
   
