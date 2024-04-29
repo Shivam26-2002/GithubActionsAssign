@@ -20,13 +20,11 @@ jobs:
     runs-on: [ "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}" ]
     steps:
       - name: Dummy workflow
-        id: run-name
         run: |
-          echo "${{ inputs.environment }}"
-          # echo "${{ inputs.environment.toUpperCase() }}"
-          output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-          echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
+          # echo "${{ inputs.environment }}"
+          # echo "${{ inputs.environment.toUpperCase() }}"
+          # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
           # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
 
         
