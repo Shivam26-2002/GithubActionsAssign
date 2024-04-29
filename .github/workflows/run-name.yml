@@ -10,11 +10,15 @@ on:
           - 'DEV'
           - 'TEST'
           - 'PROD'
-          - 'UBUNTU-LATEST'
+          - 'ubuntu-latest'
         default : 'dev'
 
 run-name: >-
-  Endeca Deploy ETL trial - "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}"        
+  Endeca Deploy ETL trial - "${{ echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]' }}"        
+
+
+  
+  # Endeca Deploy ETL trial - "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}"        
 
 jobs:
   build-and-deploy:
