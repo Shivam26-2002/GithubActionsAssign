@@ -21,9 +21,6 @@ jobs:
       - name: Dummy workflow
         run: |
           echo "Dummy workflow"
-          # echo "${{ inputs.environment }}"
-          # echo "${{ inputs.environment.toUpperCase() }}"
-          # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-          # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
+          
 
         
