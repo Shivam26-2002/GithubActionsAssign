@@ -7,9 +7,9 @@ on:
         type: choice
         description: Select the environment
         options:
-          - 'dev'
-          - 'test'
-          - 'prod'
+          - 'DEV'
+          - 'TEST'
+          - 'PROD'
           - 'UBUNTU-LATEST'
         default : 'dev'
 
@@ -18,7 +18,7 @@ run-name: "Endeca Deploy ETL trial - ${{ inputs.environment }}"
         
 jobs:
   build-and-deploy:
-    runs-on: [ "${{ (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') }}" ]
+    runs-on: [ "${{ (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') || (inputs.environment == 'DEV' && 'dev') || 'prod' }}" ]
     outputs: 
       JOB-OUTPUT: ${{ steps.run-name.outputs.runName }}
     steps:
