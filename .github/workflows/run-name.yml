@@ -13,8 +13,7 @@ on:
           - 'ubuntu-latest'
         default : 'dev'
 
-run-name: >-
-  Endeca Deploy ETL trial - ${{ join('', map(split(inputs.environment, ''), x => x.toUpperCase())) }}
+run-name: Endeca Deploy ETL trial - ${{ inputs.environment.toUpperCase() }}
 
   
   # Endeca Deploy ETL trial - ${{ inputs.environment ==~ '(.*)' && replace(inputs.environment, '(.*)', '\U$1') }}
