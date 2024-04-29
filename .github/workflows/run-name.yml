@@ -18,11 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     # runs-on: [ "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}" ]
     steps:
-      - name: Dum
-        run: echo "Hello world"
-      # - name: Dummy workflow
-      #   run: |
-      #     echo "Dummy workflow"
+      - name: Dummy workflow
+        run: |
+          echo "Dummy workflow"
           # echo "${{ inputs.environment }}"
           # echo "${{ inputs.environment.toUpperCase() }}"
           # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
