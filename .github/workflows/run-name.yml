@@ -14,7 +14,7 @@ on:
         default : 'dev'
 
 run-name: >-
-  Endeca Deploy ETL trial - "${{ echo (inputs.environment  | tr '[:lower:]' '[:upper:]') }}"        
+  Endeca Deploy ETL trial - ${{ inputs.environment | tr '[:lower:]' '[:upper:]' }}   
 
 
   
