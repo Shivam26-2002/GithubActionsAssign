@@ -13,9 +13,9 @@ on:
           - 'UBUNTU-LATEST'
         default : 'dev'
 
-run-name: "Endeca Deploy ETL trial - ${{ inputs.environment }}"
-  # ${{ inputs.environment == 'ubuntu-latest' && "Endeca Deploy ETL trial - UBUNTU-LATEST" }}
-        
+run-name: >-
+  Endeca Deploy ETL trial - "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}"        
+
 jobs:
   build-and-deploy:
     runs-on: [ "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}" ]
