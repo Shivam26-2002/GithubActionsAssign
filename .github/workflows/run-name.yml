@@ -17,6 +17,8 @@ jobs:
   build-and-deploy:
     # runs-on: [self-hosted, X64, Linux, endeca, rhel8, "${{ inputs.environment }}" ]
     runs-on: [ "${{ inputs.environment }}"]
+    outputs: 
+      JOB-OUTPUT: ${{ steps.run-name.outputs.runName }}
     steps:
       - name: Dummy workflow
         id: run-name
@@ -25,6 +27,6 @@ jobs:
           echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
 
-run-name: Endeca Deploy ETL trial - ${{ steps.run-name.outputs.runName }}
+run-name: Endeca Deploy ETL trial - ${{ needs.build-and-deploy.outputs.JOB-OUTPUT }}
 
         
