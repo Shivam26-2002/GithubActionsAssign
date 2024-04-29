@@ -13,7 +13,8 @@ on:
           - 'ubuntu-latest'
         default : 'dev'
 
-run-name: "Endeca Deploy ETL trial - ${{ inputs.environment | lower }}"
+run-name: >-
+  "Endeca Deploy ETL trial - ${{ inputs.environment | lower }}"
         
 jobs:
   build-and-deploy:
