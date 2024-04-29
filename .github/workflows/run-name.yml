@@ -18,12 +18,6 @@ run-name: >-
     echo "${{ inputs.environment }}" |
     tr '[:upper:]' '[:lower:]'
   )
-   # Endeca Deploy ETL trial - $(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-   # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
-  # if [[ ${{ github.event.repository.name }} == "ci-systems" ]]; then
-  #   My Regression tests: ${{ inputs.my_version }} + ci-systems: ${{ github.head_ref || github.ref_name }}
-  # else
-  #   My Regression tests: ${{ inputs.my_version }}
         
 jobs:
   build-and-deploy:
@@ -37,6 +31,11 @@ jobs:
           output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
           echo "runName=$output" >> "$GITHUB_OUTPUT"
           echo "Dummy workflow"
+          # output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
+          # if [[ ${{ github.event.repository.name }} == "ci-systems" ]]; then
+          #   My Regression tests: ${{ inputs.my_version }} + ci-systems: ${{ github.head_ref || github.ref_name }}
+          # else
+          #   My Regression tests: ${{ inputs.my_version }}
 
 
         
