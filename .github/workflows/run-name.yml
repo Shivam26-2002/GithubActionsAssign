@@ -12,13 +12,18 @@ on:
           - 'prod'
           - 'ubuntu-latest'
         default : 'dev'
-
-run-name: Endeca Deploy ETL - ${{ inputs.environment | upper() }}
-
+        
 jobs:
   build-and-deploy:
     # runs-on: [self-hosted, X64, Linux, endeca, rhel8, "${{ inputs.environment }}" ]
     runs-on: [ "${{ inputs.environment }}"]
     steps:
       - name: Dummy workflow
-        run: echo "Dummy workflow"
+        run: |
+          output=$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')
+          echo $output
+          echo "Dummy workflow"
+
+run-name: Endeca Deploy ETL trial - ${{ inputs.environment }}
+
+        
