@@ -12,6 +12,8 @@ jobs:
         if: always()
         id: triggered-by
         run: |
+          RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/users/${{ github.triggering_actor }})
+          echo $RESPONSE
           TRIGGERED_BY=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/users/${{ github.triggering_actor }} | grep -o '"name": *"[^"]*"' | sed 's/"name": "\(.*\)"/\1/')
           [ -z "$TRIGGERED_BY" ] && TRIGGERED_BY=${{ github.triggering_actor }}
           echo $TRIGGERED_BY
