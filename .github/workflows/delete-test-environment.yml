@@ -2,7 +2,7 @@ name: Delete Test Environment
 on: workflow_dispatch
 jobs:
   test:
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
     environment: TESTING
     steps:
       - name: Run 
