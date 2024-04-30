@@ -1,0 +1,9 @@
+name: Delete Test Environment
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubunutu-latest
+    environment: Testing
+    steps:
+      - name: Run 
+        run: echo "Hello world"
