@@ -3,7 +3,7 @@ on: workflow_dispatch
 jobs:
   first_job:
     name: Job1
-    runs-on: ubuntu-latest
+    runs-on: UBUNTU-LATEST
     steps:
       - run: echo "Job 1"
   second_job:
