@@ -4,6 +4,10 @@ jobs:
   context:
     runs-on: ubuntu-latest
     steps:
+      - name: Know the workflow triggerer
+        run: |
+          echo ${{ github.triggering_actor }}
+          
       - name: Remove whitespaces using xargs and [:space:]
         run: |
           WORD='Hello world'
