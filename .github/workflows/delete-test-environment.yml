@@ -3,7 +3,7 @@ on: workflow_dispatch
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: TESTINGS
+    environment: testing
     steps:
       - name: Run 
         run: echo "Hello world"
