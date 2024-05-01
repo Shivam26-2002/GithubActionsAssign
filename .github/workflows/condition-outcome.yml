@@ -4,30 +4,33 @@ jobs:
   first:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy Sitemap
-        id: deploy-sitemap
-        run: | 
-          sh "/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]') /publish-sitemaps.sh"
+      # - name: Deploy Sitemap
+      #   id: deploy-sitemap
+      #   run: | 
+      #     sh "/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]') /publish-sitemaps.sh"
         # shell: bash 
 
-      - name: Debug step print outcome of deploy sitemap step
-        if: always()
-        run: echo "${{ steps.deploy-sitemap.outcome }}"
+      # - name: Debug step print outcome of deploy sitemap step
+      #   if: always()
+      #   run: echo "${{ steps.deploy-sitemap.outcome }}"
 
-      - name: Debug condition
-        if: ${{ steps.deploy-sitemap.outcome }} == 'failure'
-        run: echo "Worked"
+      # - name: Debug condition
+      #   if: ${{ steps.deploy-sitemap.outcome }} == 'failure'
+      #   run: echo "Worked"
         
-      - name: Debug step print outcome of deploy sitemap step
-        if: steps.deploy-sitemap.outcome == 'failure'
-        run: echo "Worked"
+      # - name: Debug step print outcome of deploy sitemap step
+      #   if: steps.deploy-sitemap.outcome == 'failure'
+      #   run: echo "Worked"
         
       - name: Trial step
         id: trial
-        run: echo "Trial job"
+        run: |
+          echo "Trial job"
+          exit 1
+        
       - name: Imp step
         id: trial1
-        if: steps.trial.outcome == 'success'
+        if: steps.trial.outcome == 'failure'
         run: |
           echo "Something"
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
@@ -35,7 +38,10 @@ jobs:
         id: trial2
         if: always()
         # if: steps.trial.outcome == 'success' && steps.trial1.outcome == 'success'
-        run: echo "Success"
+        run: |
+          echo ${{ steps.trial.outcome }}
+          # echo "Success"
+          
       - name: Imp third step
         if: steps.trial.outcome == 'success' || steps.trial1.outcome == 'success' || steps.trial2.outcome == 'success'
         run: echo "Final success"
