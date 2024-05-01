@@ -8,7 +8,7 @@ jobs:
         id: deploy-sitemap
         run: | 
           sh "/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]') /publish-sitemaps.sh"
-        shell: bash 
+        # shell: bash 
 
       - name: Debug step print outcome of deploy sitemap step
         if: always()
