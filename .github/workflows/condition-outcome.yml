@@ -4,23 +4,23 @@ jobs:
   first:
     runs-on: ubuntu-latest
     steps:
-      # - name: Deploy Sitemap
-      #   id: deploy-sitemap
-      #   run: | 
-      #     sh "/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]') /publish-sitemaps.sh"
-        # shell: bash 
+      - name: Deploy Sitemap
+        id: deploy-sitemap
+        run: | 
+          sh "/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]') /publish-sitemaps.sh"
+        shell: bash 
 
-      # - name: Debug step print outcome of deploy sitemap step
-      #   if: always()
-      #   run: echo "${{ steps.deploy-sitemap.outcome }}"
+      - name: Debug step print outcome of deploy sitemap step
+        if: always()
+        run: echo "${{ steps.deploy-sitemap.outcome }}"
 
-      # - name: Debug condition
-      #   if: ${{ steps.deploy-sitemap.outcome }} == 'failure'
-      #   run: echo "Worked"
+      - name: Debug condition
+        if: ${{ failure() && steps.deploy-sitemap.outcome == 'failure' }}
+        run: echo "Worked"
         
-      # - name: Debug step print outcome of deploy sitemap step
-      #   if: steps.deploy-sitemap.outcome == 'failure'
-      #   run: echo "Worked"
+      - name: Debug again step print outcome of deploy sitemap step
+        if: ${{ steps.trial.outcome == 'failure' }}
+        run: echo "Worked"
         
       - name: Trial step
         id: trial
