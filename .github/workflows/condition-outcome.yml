@@ -30,10 +30,11 @@ jobs:
         
       - name: Imp step
         id: trial1
-        if: steps.trial.outcome == 'failure'
+        if: ${{ failure() && steps.trial.outcome == 'failure' }}
         run: |
           echo "Something"
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
+          
       - name: Imp second step
         id: trial2
         if: always()
