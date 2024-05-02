@@ -2,7 +2,7 @@ name: Multiple Trigger
 on: 
   workflow_call:
     inputs:
-      environment-approval:
+      environment:
         required: true
         type: string
   workflow_dispatch:
