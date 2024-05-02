@@ -1,0 +1,10 @@
+name: Multiple Trigger
+on: 
+  workflow_dispatch:
+  push:  
+jobs:
+  test-trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run dummy step
+        run: echo "Multiple trigger"
