@@ -25,7 +25,7 @@ jobs:
 
       - name: Print input
         run: |
-          echo ${{ inputs.call_environment }}
+          echo ${{ inputs.environment }}
 
       - name: Print event name
         run: |
