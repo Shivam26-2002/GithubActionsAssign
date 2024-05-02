@@ -2,7 +2,7 @@ name: Call multiple trigger workflow
 on:
   workflow_dispatch:
     inputs:
-        call_environment:
+        environment:
           required: true
           type: choice
           description: Select the environment
@@ -13,4 +13,4 @@ jobs:
   call-multiple-trigger-workflow:
     uses: ./.github/workflows/multiple_trigger.yml
     with:
-      call_environment: ${{ inputs.call_environment }}
+      environment: ${{ inputs.call_environment }}
