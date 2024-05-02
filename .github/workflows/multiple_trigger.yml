@@ -2,10 +2,19 @@ name: Multiple Trigger
 on: 
   workflow_call:
   workflow_dispatch:
-  push:  
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'Testing'
+          - 'DEV'
+        default : 'Testing'
 jobs:
   test-trigger:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.trigger.name == 'workflow_call' && 'ole' || inputs.environment }}
     steps:
       - name: Run dummy step
         run: echo "Multiple trigger" 
