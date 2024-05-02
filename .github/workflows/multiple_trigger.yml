@@ -22,3 +22,13 @@ jobs:
       - name: Print event name
         run: |
           echo ${{ github.event_name }}
+
+      - name: Check Trigger Event
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "This workflow was triggered by a workflow_dispatch event."
+          elif [ "${{ github.event_name }}" == "workflow_call" ]; then
+            echo "This workflow was triggered by a workflow_call event."
+          else
+            echo "Unknown trigger event."
+          fi
