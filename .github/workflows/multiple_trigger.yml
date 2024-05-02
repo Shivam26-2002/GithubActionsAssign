@@ -18,7 +18,7 @@ on:
 jobs:
   test-trigger:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.call_environment == '' && 'ole' || inputs.environment }}
+    environment: ${{ inputs.call_environment != '' && 'ole' || inputs.environment }}
     steps:
       - name: Run dummy step
         run: echo "Multiple trigger"
