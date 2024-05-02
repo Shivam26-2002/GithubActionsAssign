@@ -12,3 +12,5 @@ on:
 jobs:
   call-multiple-trigger-workflow:
     uses: ./.github/workflows/multiple_trigger.yml
+    with:
+      call_environment: ${{ inputs.call_environment }}
