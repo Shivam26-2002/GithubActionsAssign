@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run dummy step
-        run: echo "Multiple trigger"
+        run: echo "Multiple trigger" 
