@@ -1,5 +1,14 @@
 name: Call multiple trigger workflow
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+        call_environment:
+          required: true
+          type: choice
+          description: Select the environment
+          options:
+            - 'ole'
+          default : 'ole'
 jobs:
   call-multiple-trigger-workflow:
     uses: ./.github/workflows/multiple_trigger.yml
