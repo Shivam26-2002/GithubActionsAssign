@@ -13,4 +13,4 @@ jobs:
   call-multiple-trigger-workflow:
     uses: ./.github/workflows/multiple_trigger.yml
     with:
-      environment-approval: ${{ inputs.call_environment }}
+      environment: ${{ inputs.environment }}
