@@ -2,7 +2,7 @@ name: Multiple Trigger
 on: 
   workflow_call:
     inputs:
-      environment:
+      environment-approval:
         required: true
         type: string
   workflow_dispatch:
@@ -18,14 +18,14 @@ on:
 jobs:
   test-trigger:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment == 'ole' && 'ole' || inputs.environment }}
+    environment: ${{ inputs.environment-approval == 'ole' && 'ole' || inputs.environment }}
     steps:
       - name: Run dummy step
         run: echo "Multiple trigger"
 
       - name: Print input
         run: |
-          echo ${{ inputs.environment }}
+          echo ${{ inputs.environment-approval }}
 
       - name: Print event name
         run: |
