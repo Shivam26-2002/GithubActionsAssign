@@ -1,4 +1,5 @@
 name: Multiple Trigger
+run-name: Deploy Sitemaps - ${{ inputs.environment }}
 on: 
   workflow_call:
     inputs:
