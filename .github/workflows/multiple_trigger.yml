@@ -20,4 +20,5 @@ jobs:
         run: echo "Multiple trigger"
 
       - name: Print event name
-        run: echo ${{ github.github.event_name }}
+        run: |
+          echo ${{ github.event_name }}
