@@ -17,4 +17,7 @@ jobs:
     environment: ${{ github.event.trigger.name == 'workflow_call' && 'ole' || inputs.environment }}
     steps:
       - name: Run dummy step
-        run: echo "Multiple trigger" 
+        run: echo "Multiple trigger"
+
+      - name: Print event name
+        run: echo ${{ github.event.trigger.name }}
