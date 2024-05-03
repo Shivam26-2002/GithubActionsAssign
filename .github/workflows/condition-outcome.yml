@@ -7,6 +7,7 @@ jobs:
       - name: Ternary condtional set output
         id: set-environment
         run: |
+          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo "DEPLOYMENT_ENVIRONMENT=$(test $branch == 'main' && echo 'production' || echo 'preview')" >> "$GITHUB_OUTPUT"
         
       - name: Print output
