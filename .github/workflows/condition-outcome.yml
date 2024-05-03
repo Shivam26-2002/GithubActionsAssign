@@ -9,7 +9,7 @@ jobs:
         run: |
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo $BRANCH_NAME
-          echo "DEPLOYMENT_ENVIRONMENT=$( $BRANCH_NAME == 'main' && echo 'production' || echo 'preview')" >> "$GITHUB_OUTPUT"
+          echo "DEPLOYMENT_ENVIRONMENT=$( test $BRANCH_NAME == 'main' && echo 'production' || echo 'preview')" >> "$GITHUB_OUTPUT"
         
       - name: Print output
         run: echo ${{ steps.set-environment.outputs.DEPLOYMENT_ENVIRONMENT }}
