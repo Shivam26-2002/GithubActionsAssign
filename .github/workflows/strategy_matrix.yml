@@ -1,0 +1,12 @@
+name: Strategy Matrix
+on: workflow_dispatch
+jobs:
+  Test-Strategy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [1, 2, 3]
+    steps:
+      - name: Print the OS
+        run: |
+          echo "Matrix is : ${{ matrix.os }}"
