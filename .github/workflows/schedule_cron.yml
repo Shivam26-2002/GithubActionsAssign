@@ -1,7 +1,7 @@
 name: Schedule trigger
-on:
-  schedule:
-    - cron: '* * * * *'
+on: workflow_dispatch
+  # schedule:
+  #   - cron: '* * * * *'
     # - cron: '53 11 * * *' # 5:30 PM every day
 jobs:
   schedule:
