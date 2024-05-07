@@ -1,0 +1,8 @@
+name: Schedule trigger
+on: workflow_dispatch
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy job
+        run: echo "Dummy step"
