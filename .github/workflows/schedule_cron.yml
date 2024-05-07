@@ -6,6 +6,10 @@ on:
 jobs:
   schedule:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [Testing, ole]
+    environment: ${{ matrix.os }}
     steps:
       - name: Dummy job
         run: echo "Dummy step"
