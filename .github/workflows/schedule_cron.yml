@@ -1,7 +1,7 @@
 name: Schedule trigger
 on:
   schedule:
-    - cron: '49 11 * * *' # 5:30 PM every day
+    - cron: '53 11 * * *' # 5:30 PM every day
 jobs:
   schedule:
     runs-on: ubuntu-latest
