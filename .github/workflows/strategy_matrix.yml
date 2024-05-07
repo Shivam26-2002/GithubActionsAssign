@@ -1,5 +1,5 @@
 name: Strategy Matrix
-run-name: Strategy matrix - ${{ matrix.os }}
+run-name: Strategy matrix 
 on: workflow_dispatch
 jobs:
   Test-Strategy:
