@@ -1,0 +1,14 @@
+name: One job mulitple runner
+on: workflow_dispatch
+jobs:
+  Runners:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DEV or TEST runner
+        run: echo "DEV or TEST runner UBUNTU"
+        
+      # - name: PROD runner
+      #   runs-on: windows-latest
+      #   steps:
+      #     - name: PROD runner will run
+      #       run: echo "PROD runner"
