@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/workflows/mulitple_runners.yml
         with: 
           environment: 'Testing'
-      - name: Call PROD 1
+      - name: Call PROD 2
         if: steps.prod1.outcome == 'success'
         uses: ./.github/workflows/mulitple_runners.yml
         with: 
