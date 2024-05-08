@@ -1,14 +1,15 @@
 name: Call Mulitple runner
 on: 
   workflow_dispatch:
-    # inputs:
-    #   environment:
-    #     required: true
-    #     type: choice
-    #     description: Select the environment
-    #     options:
-    #       - 'ole'
-    #     default : 'ole'
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'Testing'
+          - 'ole'
+        default : 'ole'
         
 jobs:
   call_multiple_runner_job:
@@ -17,16 +18,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         
-      - name: Call PROD 1
-        id: prod1
+      - name: Call DEV
+        if: inputs.environment == 'Testing'
         uses: ./
         with: 
           environment: 'Testing'
           
-      - name: Call PROD 2
-        if: steps.prod1.outcome == 'success'
-        uses: ./.github/workflows/mulitple_runners.yml
+      - name: Call TEST
+        if: inputs.environment == 'ole'
+        uses: ./
         with: 
           environment: 'ole'
+          
+      # - name: Call PROD 1
+      #   id: prod1
+      #   uses: ./
+      #   with: 
+      #     environment: 'Testing'
+          
+      # - name: Call PROD 2
+      #   if: steps.prod1.outcome == 'success'
+      #   uses: ./.github/workflows/mulitple_runners.yml
+      #   with: 
+      #     environment: 'ole'
       
   
