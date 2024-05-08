@@ -1,18 +1,28 @@
 name: Call Mulitple runner
 on: 
   workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: choice
-        description: Select the environment
-        options:
-          - 'ole'
-        default : 'ole'
+    # inputs:
+    #   environment:
+    #     required: true
+    #     type: choice
+    #     description: Select the environment
+    #     options:
+    #       - 'ole'
+    #     default : 'ole'
         
 jobs:
   call_multiple_runner_job:
     runs-on: ubuntu-latest
     steps:
+      - name: Call PROD 1
+        id: prod1
+        uses: ./.github/workflows/mulitple_runners.yml
+        with: 
+          environment: 'Testing'
+      - name: Call PROD 1
+        if: steps.prod1.outcome == 'success'
+        uses: ./.github/workflows/mulitple_runners.yml
+        with: 
+          environment: 'ole'
       
   
