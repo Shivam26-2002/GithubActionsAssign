@@ -19,7 +19,7 @@ jobs:
         
       - name: Call PROD 1
         id: prod1
-        uses: ./.github/workflows/mulitple_runners.yml
+        uses: ./
         with: 
           environment: 'Testing'
           
