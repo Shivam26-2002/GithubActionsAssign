@@ -5,16 +5,16 @@ on:
       environment:
         required: true
         type: string
-  workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: choice
-        description: Select the environment
-        options:
-          - 'Testing'
-          - 'ole'
-        default : 'Testing'
+  # workflow_dispatch:
+  #   inputs:
+  #     environment:
+  #       required: true
+  #       type: choice
+  #       description: Select the environment
+  #       options:
+  #         - 'Testing'
+  #         - 'ole'
+  #       default : 'Testing'
 jobs:
   Runners:
     runs-on: ubuntu-latest
