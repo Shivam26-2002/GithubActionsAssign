@@ -16,12 +16,12 @@ jobs:
     steps:
       - name: Call PROD 1
         id: prod1
-        uses: ./.github/workflows/mulitple_runners.yml
+        uses: ./.github/workflows/mulitple_runners.yml@main
         with: 
           environment: 'Testing'
       - name: Call PROD 2
         if: steps.prod1.outcome == 'success'
-        uses: ./.github/workflows/mulitple_runners.yml
+        uses: ./.github/workflows/mulitple_runners.yml@main
         with: 
           environment: 'ole'
       
