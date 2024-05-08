@@ -1,4 +1,5 @@
 name: Schedule trigger
+run-name:  ${{ format('{0} {1}', 'Deploy Ghost Part Category Mapping to Endeca', matrix.runner) }}
 on: workflow_dispatch
   # schedule:
   #   - cron: '* * * * *'
