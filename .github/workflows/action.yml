@@ -18,7 +18,6 @@ on:
 jobs:
   Runners:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     steps:
       - name: DEV or TEST runner
         run: |
