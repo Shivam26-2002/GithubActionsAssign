@@ -1,14 +1,17 @@
-name: One job mulitple runner
-on: 
+name: Bounce Endeca Services
+on:
   workflow_call:
     inputs:
       environment:
         required: true
         type: string
 jobs:
-  Runners:
+  endeca-bounce-all-services:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
-      - name: DEV or TEST runner
+      - name: Bounce Endeca Services
+        id: bounce-endeca-services
         run: |
-          echo "Hello World"
+          echo "Done"
+ 
