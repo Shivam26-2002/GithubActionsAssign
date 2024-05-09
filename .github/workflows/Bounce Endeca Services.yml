@@ -1,0 +1,46 @@
+name: Bounce Endeca Services
+run-name:  Bounce Endeca Services - ${{ inputs.environment }}
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'Testing'
+          - 'ole'
+        default : 'Testing'
+
+jobs:
+  # endeca-bounce-all-services-DEV:
+  #   if: inputs.environment == 'Testing'
+  #   uses: ./.github/workflows/endeca-bounce-all-services-reusable.yml
+  #   with: 
+  #     environment: ${{ inputs.environment }}
+      
+  endeca-bounce-all-services-TEST:
+    if: inputs.environment == 'ole'
+    uses: ./.github/workflows/endeca-bounce-all-services-reusable.yml
+    with: 
+      environment: ${{ inputs.environment }}
+      
+  endeca-bounce-all-services-PROD-1:
+    if: inputs.environment == 'Testing'
+    uses: ./.github/workflows/endeca-bounce-all-services-reusable.yml
+    with: 
+      environment: ${{ inputs.environment }}
+      
+  endeca-bounce-all-services-PROD-2:
+    if: inputs.environment == 'Testing'
+    needs: endeca-bounce-all-services-PROD-1
+    uses: ./.github/workflows/endeca-bounce-all-services-reusable.yml
+    with: 
+      environment: ${{ inputs.environment }}
+      
+  endeca-bounce-all-services-PROD-3:
+    if: inputs.environment == 'Testing'
+    needs: endeca-bounce-all-services-PROD-2
+    uses: ./.github/workflows/endeca-bounce-all-services-reusable.yml
+    with: 
+      environment: ${{ inputs.environment }}
