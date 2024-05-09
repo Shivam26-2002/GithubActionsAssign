@@ -21,4 +21,5 @@ jobs:
     steps:
       - name: DEV or TEST runner
         run: |
-          echo "${{ inputs.environment }}"
+          echo "Hello World"
+          # echo "${{ inputs.environment }}"
