@@ -20,7 +20,7 @@ jobs:
         
       - name: Call DEV
         if: inputs.environment == 'Testing'
-        uses: action.yml
+        uses: ./action.yml
         # uses: ./.github/workflows/action.yml
         with: 
           environment: 'Testing'
