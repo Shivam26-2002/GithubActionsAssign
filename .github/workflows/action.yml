@@ -5,16 +5,6 @@ on:
       environment:
         required: true
         type: string
-  # workflow_dispatch:
-  #   inputs:
-  #     environment:
-  #       required: true
-  #       type: choice
-  #       description: Select the environment
-  #       options:
-  #         - 'Testing'
-  #         - 'ole'
-  #       default : 'Testing'
 jobs:
   Runners:
     runs-on: ubuntu-latest
@@ -22,4 +12,3 @@ jobs:
       - name: DEV or TEST runner
         run: |
           echo "Hello World"
-          # echo "${{ inputs.environment }}"
