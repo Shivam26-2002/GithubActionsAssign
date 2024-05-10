@@ -2,14 +2,14 @@ name: Schedule trigger
 run-name: Schedule
 on:
   schedule:
-    - cron: '20 15 * * *'   # DEV
+    - cron: '35 15 * * *'   # DEV
     - cron: '0 22 * * *'   # TEST
     - cron: '0 23 * * *'   # PROD
 
 jobs:
   dev_job:
     name: DEV Environment
-    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 21')
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '35 15')
     runs-on: ubuntu-latest
     steps:
       - name: First Step for DEV
