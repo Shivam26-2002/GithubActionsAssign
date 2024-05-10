@@ -1,17 +1,36 @@
 name: Schedule trigger
-run-name: Schedule - ${{ matrix.os }}
-# ${{ format('{0} {1}', 'Deploy Ghost Part Category Mapping to Endeca', matrix.runner) }}
-on: workflow_dispatch
+run-name: Schedule
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'DEV'
+          - 'TEST'
+          - 'PROD'
+        default : 'DEV'
   # schedule:
   #   - cron: '* * * * *'
     # - cron: '53 11 * * *' # 5:30 PM every day
 jobs:
-  schedule:
+  Test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [Testing, ole]
-    environment: ${{ matrix.os }}
     steps:
-      - name: Dummy job
-        run: echo "Dummy step"
+      - name: Test output
+        run: |
+          VAR=/apps/scripts/dev/ole-schematics
+          echo $VAR
+          VAR1=/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]')/ole-schematics
+          echo $VAR1
+  # schedule:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       os: [Testing, ole]
+  #   environment: ${{ matrix.os }}
+  #   steps:
+  #     - name: Dummy job
+  #       run: echo "Dummy step"
