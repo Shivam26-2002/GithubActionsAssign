@@ -3,8 +3,8 @@ run-name: Schedule
 on:
   schedule:
     - cron: '35 15 * * *'   # DEV
-    - cron: '0 22 * * *'   # TEST
-    - cron: '0 23 * * *'   # PROD
+    - cron: '45 15 * * *'   # TEST
+    - cron: '55 15 * * *'   # PROD
 
 jobs:
   dev_job:
@@ -17,7 +17,7 @@ jobs:
 
   test_job:
     name: TEST Environment
-    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 22')
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '45 15')
     runs-on: ubuntu-latest
     steps:
       - name: Second Step for TEST
@@ -25,7 +25,7 @@ jobs:
 
   prod_job:
     name: PROD Environment
-    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 23')
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '55 15')
     runs-on: ubuntu-latest
     steps:
       - name: Third Step for PROD
