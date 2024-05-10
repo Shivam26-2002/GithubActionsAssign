@@ -20,9 +20,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test output
+        if: inputs.environment == 'TEST' || 'DEV'
         run: |
           VAR=/apps/scripts/${{ inputs.environment }}/ole-schematics
           echo $VAR
+          VAR1=/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]')/ole-schematics
+          echo $VAR1
+          
+      - name: Test output PROD
+        if: inputs.environment == 'PROD'
+        run: |
           VAR1=/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]')/ole-schematics
           echo $VAR1
   # schedule:
