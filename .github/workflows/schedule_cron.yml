@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test output
-        if: inputs.environment == 'TEST' || 'DEV'
+        if: inputs.environment == 'TEST' || inputs.environment == 'DEV'
         run: |
           VAR=/apps/scripts/${{ inputs.environment }}/ole-schematics
           echo $VAR
