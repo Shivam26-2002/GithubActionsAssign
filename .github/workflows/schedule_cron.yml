@@ -1,43 +1,32 @@
 name: Schedule trigger
 run-name: Schedule
-on: 
-  workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: choice
-        description: Select the environment
-        options:
-          - 'DEV'
-          - 'TEST'
-          - 'PROD'
-        default : 'DEV'
-  # schedule:
-  #   - cron: '* * * * *'
-    # - cron: '53 11 * * *' # 5:30 PM every day
+on:
+  schedule:
+    - cron: '20 15 * * *'   # DEV
+    - cron: '0 22 * * *'   # TEST
+    - cron: '0 23 * * *'   # PROD
+
 jobs:
-  Test:
+  dev_job:
+    name: DEV Environment
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 21')
     runs-on: ubuntu-latest
     steps:
-      - name: Test output
-        if: inputs.environment == 'TEST' || inputs.environment == 'DEV'
-        run: |
-          VAR=/apps/scripts/${{ inputs.environment }}/ole-schematics
-          echo $VAR
-          VAR1=/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]')/ole-schematics
-          echo $VAR1
-          
-      - name: Test output PROD
-        if: inputs.environment == 'PROD'
-        run: |
-          VAR1=/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]')/ole-schematics
-          echo $VAR1
-  # schedule:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       os: [Testing, ole]
-  #   environment: ${{ matrix.os }}
-  #   steps:
-  #     - name: Dummy job
-  #       run: echo "Dummy step"
+      - name: First Step for DEV
+        run: echo "This is the first step for DEV"
+
+  test_job:
+    name: TEST Environment
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 22')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Second Step for TEST
+        run: echo "This is the second step for TEST"
+
+  prod_job:
+    name: PROD Environment
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 23')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Third Step for PROD
+        run: echo "This is the third step for PROD"
