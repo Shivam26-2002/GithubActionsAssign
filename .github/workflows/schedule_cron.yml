@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Test output
         run: |
-          VAR=/apps/scripts/dev/ole-schematics
+          VAR=/apps/scripts/${{ inputs.environment }}/ole-schematics
           echo $VAR
           VAR1=/apps/scripts/$(echo "${{ inputs.environment }}" | tr '[:upper:]' '[:lower:]')/ole-schematics
           echo $VAR1
