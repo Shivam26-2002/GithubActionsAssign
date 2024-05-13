@@ -1,10 +1,10 @@
 name: Schedule trigger
 run-name: Schedule
-on:
-  schedule:
-    - cron: '35 15 * * *'   # DEV
-    - cron: '45 15 * * *'   # TEST
-    - cron: '55 15 * * *'   # PROD
+on: workflow_dispatch
+  # schedule:
+  #   - cron: '35 15 * * *'   # DEV
+  #   - cron: '45 15 * * *'   # TEST
+  #   - cron: '55 15 * * *'   # PROD
 
 jobs:
   dev_job:
