@@ -1,10 +1,11 @@
 name: Schedule trigger
 run-name: Schedule
-on: workflow_dispatch
-  # schedule:
-  #   - cron: '35 15 * * *'   # DEV
-  #   - cron: '45 15 * * *'   # TEST
-  #   - cron: '55 15 * * *'   # PROD
+on: 
+  schedule:
+    - cron: '35 15 * * *'   # DEV
+    - cron: '35 11 * * *'   # TEST
+    - cron: '40 11 * * *'   # TEST
+    - cron: '55 15 * * *'   # PROD
 
 jobs:
   dev_job:
@@ -17,7 +18,7 @@ jobs:
 
   test_job:
     name: TEST Environment
-    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '45 15')
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '35 11') || startsWith(github.event.schedule, '40 11')
     runs-on: ubuntu-latest
     steps:
       - name: Second Step for TEST
