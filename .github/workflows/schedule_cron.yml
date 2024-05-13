@@ -3,9 +3,9 @@ run-name: Schedule
 on: 
   schedule:
     - cron: '35 15 * * *'   # DEV
-    - cron: '35 11 * * *'   # TEST
-    - cron: '40 11 * * *'   # TEST
-    - cron: '55 15 * * *'   # PROD
+    - cron: '10 14 * * *'   # TEST
+    - cron: '20 14 * * *'   # TEST
+    - cron: '25 14 * * *'   # PROD
 
 jobs:
   dev_job:
@@ -18,7 +18,7 @@ jobs:
 
   test_job:
     name: TEST Environment
-    if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '35 12') || startsWith(github.event.schedule, '45 12'))
+    if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '10 14') || startsWith(github.event.schedule, '20 14'))
     runs-on: ubuntu-latest
     steps:
       - name: Second Step for TEST
@@ -26,7 +26,7 @@ jobs:
 
   prod_job:
     name: PROD Environment
-    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '53 12')
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '25 14')
     runs-on: ubuntu-latest
     steps:
       - name: Third Step for PROD
