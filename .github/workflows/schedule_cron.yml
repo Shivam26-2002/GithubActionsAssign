@@ -18,7 +18,7 @@ jobs:
 
   test_job:
     name: TEST Environment
-    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '35 11') || startsWith(github.event.schedule, '40 11')
+    if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '35 11') || startsWith(github.event.schedule, '40 11'))
     runs-on: ubuntu-latest
     steps:
       - name: Second Step for TEST
