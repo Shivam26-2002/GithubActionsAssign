@@ -10,7 +10,6 @@ jobs:
         run: |
           export NAME="Shivam"
           echo "NAME=$NAME" >> "$GITHUB_OUTPUT"
-          echo -e "\n$NAME" >> "$GITHUB_OUTPUT"
 
       - name: Print output
         run: echo ${{ steps.dummy-output.outputs.NAME }}
