@@ -1,4 +1,5 @@
 name: Run-Name
+run-name: DEV 
 on:
   workflow_dispatch:
   push:
