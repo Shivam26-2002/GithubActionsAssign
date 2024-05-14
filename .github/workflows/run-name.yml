@@ -2,7 +2,27 @@ name: Run-Name
 run-name: >-
   ${{ github.event_name == 'workflow_dispatch'
     && format('DEV')
-    || format('TEST') }}
+    || github.event_name == 'push'
+      && format('TEST')
+    || (github.event_name == 'schedule' && startsWith(github.event.schedule, '0 3')
+      && format('PROD')) }}
+
+# run-name: >-
+#   ${{ github.event_name == 'workflow_dispatch'
+#     && format('DEV')
+#     || (github.event_name == 'schedule' && (
+#         startsWith(github.event.schedule, '30 6-23/3')
+#         || startsWith(github.event.schedule, '30 0-4/3'))
+#       && format('TEST'))
+#     || (github.event_name == 'schedule' && startsWith(github.event.schedule, '0 3')
+#       && format('PROD')) }}
+
+# run-name: >-
+#   ${{ github.event_name == 'workflow_dispatch'
+#     && format('DEV')
+#     || format('TEST') }}
+
+
 on:
   workflow_dispatch:
   push:
