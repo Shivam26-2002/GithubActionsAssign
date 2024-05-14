@@ -31,9 +31,9 @@ on:
   workflow_dispatch:
   push:
   schedule:
-    - cron: '45 8 * * *'   # TEST
-    - cron: '55 8 * * *'   # TEST
-    - cron: '10 9 * * *'   # PROD
+    - cron: '15 10 * * *'   # TEST
+    - cron: '05 10 * * *'   # TEST
+    - cron: '30 10 * * *'   # PROD
   
 jobs:
   Run-Name:
