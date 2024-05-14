@@ -1,27 +1,14 @@
-name: Endeca Deploy ETL
-run-name: Endeca Deploy ETL trial - ${{ inputs.environment }}
-on: 
+name: Run-Name
+on:
   workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: choice
-        description: Select the environment
-        options:
-          - 'DEV'
-          - 'TEST'
-          - 'PROD'
-          - 'ubuntu-latest'
-        default : 'ubuntu-latest'
+  push:
+  
 jobs:
-  build-and-deploy:
+  Run-Name:
     runs-on: ubuntu-latest
-    # runs-on: [ "${{ (inputs.environment == 'DEV' && 'dev') || (inputs.environment == 'UBUNTU-LATEST' && 'ubuntu-latest') ||  'prod' }}" ]
     steps:
-      - name: Dummy workflow
-        run: |
-          echo "Dummy workflow"
-          echo "${{ inputs.environment }}"
-          echo "ole/app/$(echo "${{ inputs.environment }}" | tr '[:lower:]' '[:upper:]')"    
-
+      - name: DEV step
+        run: echo "DEV"
         
+      - name: TEST step
+        run: echo "TEST"
