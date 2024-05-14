@@ -4,7 +4,7 @@ run-name: >-
     && format('DEV')
     || github.event_name == 'push'
       && format('TEST')
-    || (github.event_name == 'schedule' && startsWith(github.event.schedule, '0 3')
+    || (github.event_name == 'schedule' && startsWith(github.event.schedule, '30 8')
       && format('PROD')) }}
 
 # run-name: >-
@@ -26,6 +26,8 @@ run-name: >-
 on:
   workflow_dispatch:
   push:
+  schedule:
+    - cron: '30 8 * * *'   # PROD
   
 jobs:
   Run-Name:
