@@ -13,6 +13,7 @@ jobs:
           echo $BRANCH_NAME
           if [[ $BRANCH_NAME == release-* || $BRANCH_NAME == hotfix-* ]]; then
             echo "Release branch or hotfix branch"
+            echo $BRANCH_NAME
           fi
           echo "DEPLOYMENT_ENVIRONMENT=$( test $BRANCH_NAME == 'main' && echo 'production' || echo 'preview')" >> "$GITHUB_OUTPUT"
         
