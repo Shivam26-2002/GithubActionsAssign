@@ -1,5 +1,12 @@
 name: Dynamic Runner
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      dynamic_branch:
+        description: Select branch
+        required: true
+        type: dynamic_branch
+        default: main
 jobs:
   Dynamic-Runner:
     runs-on: ubuntu-latest
