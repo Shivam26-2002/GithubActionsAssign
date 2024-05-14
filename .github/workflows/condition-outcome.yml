@@ -11,7 +11,7 @@ jobs:
         run: |
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo $BRANCH_NAME
-          if [[ $BRANCH_NAME == 'release-*' || $BRANCH_NAME == 'hotfix-*' ]]; then
+          if [[ $BRANCH_NAME == release-* || $BRANCH_NAME == hotfix-* ]]; then
             echo "Release branch or hotfix branch"
           fi
           echo "DEPLOYMENT_ENVIRONMENT=$( test $BRANCH_NAME == 'main' && echo 'production' || echo 'preview')" >> "$GITHUB_OUTPUT"
