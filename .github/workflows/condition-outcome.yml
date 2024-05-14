@@ -12,6 +12,9 @@ jobs:
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           echo $BRANCH_NAME
           if [[ $BRANCH_NAME == release-* || $BRANCH_NAME == hotfix-* ]]; then
+            if [[ $BRANCH_NAME == 'hotfix-2' ]]; then
+              echo "Hotfix branch"
+            fi
             echo "Release branch or hotfix branch"
             echo $BRANCH_NAME
           fi
