@@ -1,0 +1,8 @@
+name: Dynamic Runner
+on: workflow_dispatch
+jobs:
+  Dynamic-Runner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test 
+        run: echo "Run"
