@@ -1,5 +1,8 @@
 name: Run-Name
-run-name: DEV 
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch'
+    && format('DEV')
+    || format('TEST') }}
 on:
   workflow_dispatch:
   push:
