@@ -2,9 +2,9 @@ name: Conditional Environment
 on: 
   workflow_dispatch:
   schedule:
-    - cron: '10 8 * * *'   # TEST
-    - cron: '20 8 * * *'   # TEST
-    - cron: '25 8 * * *'   # PROD
+    - cron: '30 8 * * *'   # TEST
+    - cron: '40 8 * * *'   # TEST
+    - cron: '50 8 * * *'   # PROD
     
 jobs:
   Conditional-Environment:
