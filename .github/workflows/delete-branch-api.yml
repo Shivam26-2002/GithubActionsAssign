@@ -9,7 +9,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         run: |
           curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/git/refs/heads/workflow-test"
+            "https://api.github.com/repos/${{ github.repository }}/git/refs/heads/Testing"
             
       - name: Create dev branch
         env:
