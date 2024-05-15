@@ -12,7 +12,9 @@ jobs:
     environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || (github.event_name == 'schedule' && (startsWith(github.event.schedule, '10 8') || startsWith(github.event.schedule, '20 8'))) && 'ole' || (github.event_name == 'schedule' && startsWith(github.event.schedule, '25 8')) && 'jlg' }} 
     steps:
       - name: Dummy step
-        run: echo "Dummy"
+        run: |
+          echo "Dummy"
+          echo "${{ inputs.environment }}"
 
 
 # inputs:
