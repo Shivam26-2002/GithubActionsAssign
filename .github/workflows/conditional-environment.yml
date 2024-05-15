@@ -1,12 +1,15 @@
 name: Conditional Environment
 on: 
   workflow_dispatch:
-  push:
+  schedule:
+    - cron: '10 8 * * *'   # TEST
+    - cron: '20 8 * * *'   # TEST
+    - cron: '25 8 * * *'   # PROD
     
 jobs:
   Conditional-Environment:
     runs-on: ubuntu-latest
-    environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || github.event_name == 'push' && 'ole' || 'PROD' }} 
+    environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || (github.event_name == 'schedule' && (startsWith(github.event.schedule, '10 8') || startsWith(github.event.schedule, '20 8'))) && 'ole' || (github.event_name == 'schedule' && startsWith(github.event.schedule, '25 8')) && 'jlg' }} 
     steps:
       - name: Dummy step
         run: echo "Dummy"
