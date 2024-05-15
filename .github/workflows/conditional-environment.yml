@@ -1,0 +1,19 @@
+name: Conditional Environment
+on: 
+  workflow_dispatch:
+    inputs:
+      Environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'Testing'
+          - 'ole'
+        default : 'Testing'
+jobs:
+  Conditional-Environment:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.Environment }}
+    steps:
+      - name: Dummy step
+        run: echo "Dummy"
