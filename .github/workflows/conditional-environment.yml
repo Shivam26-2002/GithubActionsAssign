@@ -2,21 +2,27 @@ name: Conditional Environment
 on: 
   workflow_dispatch:
   schedule:
-    - cron: '30 8 * * *'   # TEST
-    - cron: '40 8 * * *'   # TEST
-    - cron: '50 8 * * *'   # PROD
+    - cron: '50 8 * * *'   # TEST
+    - cron: '0 9 * * *'   # TEST
+    - cron: '10 9 * * *'   # PROD
     
 jobs:
   Conditional-Environment:
     runs-on: ubuntu-latest
-    environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || (github.event_name == 'schedule' && (startsWith(github.event.schedule, '10 8') || startsWith(github.event.schedule, '20 8'))) && 'ole' || (github.event_name == 'schedule' && startsWith(github.event.schedule, '25 8')) && 'jlg' }} 
+    environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || 
+                (github.event_name == 'schedule' && (
+                  (startsWith(github.event.schedule, '50 8') || startsWith(github.event.schedule, '0 9')) && 'ole' || 
+                  startsWith(github.event.schedule, '10 9') && 'jlg')) }}
     steps:
       - name: Dummy step
         run: |
           echo "Dummy"
-          echo "${{ inputs.environment }}"
 
 
+          
+
+
+# environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || (github.event_name == 'schedule' && (startsWith(github.event.schedule, '10 8') || startsWith(github.event.schedule, '20 8'))) && 'ole' || (github.event_name == 'schedule' && startsWith(github.event.schedule, '25 8')) && 'jlg' }} 
 # inputs:
 #       Environment:
 #         required: true
