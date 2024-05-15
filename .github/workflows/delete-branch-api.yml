@@ -1,5 +1,7 @@
 name: Delete Branch using api
-on: workflow_dispatch
+on: 
+  push:
+  workflow_dispatch:
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
@@ -22,3 +24,10 @@ jobs:
               "ref": "refs/heads/new-dev",
               "sha": "${{ github.sha }}"
             }'
+
+      - name: Run if dev branch is being pushed
+        run: |
+          BRANCH_NAME=$(echo "${{ github.ref }}" | sed -e 's#refs/heads/##' -e 's/[^[:alnum:]-]/-/g')
+          if [[ $BRANCH_NAME == 'dev' ]]; then
+            echo "Dev branch updated"
+          fi
