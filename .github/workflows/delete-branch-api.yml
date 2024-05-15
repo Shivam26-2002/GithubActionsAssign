@@ -30,4 +30,6 @@ jobs:
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed -e 's#refs/heads/##' -e 's/[^[:alnum:]-]/-/g')
           if [[ $BRANCH_NAME == 'DEV' ]]; then
             echo "Dev branch updated"
+          else
+            echo "Not a dev branch"
           fi
