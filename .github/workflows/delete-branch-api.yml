@@ -9,7 +9,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         run: |
           curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/git/refs/heads/Testing"
+            "https://api.github.com/repos/${{ github.repository }}/git/refs/heads/dev-test"
             
       - name: Create dev branch
         env:
@@ -19,6 +19,6 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/${{ github.repository }}/git/refs \
             -d '{
-              "ref": "refs/heads/dev-test",
+              "ref": "refs/heads/new-dev",
               "sha": "${{ github.sha }}"
             }'
