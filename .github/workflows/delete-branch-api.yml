@@ -20,5 +20,5 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/git/refs \
             -d '{
               "ref": "refs/heads/dev-test",
-              "sha": "main"
+              "sha": "${{ github.sha }}"
             }'
