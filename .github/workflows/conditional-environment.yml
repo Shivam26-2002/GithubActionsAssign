@@ -1,19 +1,23 @@
 name: Conditional Environment
 on: 
   workflow_dispatch:
-    inputs:
-      Environment:
-        required: true
-        type: choice
-        description: Select the environment
-        options:
-          - 'Testing'
-          - 'ole'
-        default : 'Testing'
+  push:
+    
 jobs:
   Conditional-Environment:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.Environment }}
+    environment: ${{ github.event_name == 'workflow_dispatch' && 'Testing' || github.event_name == 'push' && 'ole' || 'PROD' }} 
     steps:
       - name: Dummy step
         run: echo "Dummy"
+
+
+# inputs:
+#       Environment:
+#         required: true
+#         type: choice
+#         description: Select the environment
+#         options:
+#           - 'Testing'
+#           - 'ole'
+#         default : 'Testing'
