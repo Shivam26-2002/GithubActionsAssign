@@ -13,17 +13,17 @@ jobs:
           curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}/git/refs/heads/DEV"
             
-      # - name: Create dev branch
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      #   run: |
-      #     curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
-      #       -H "Accept: application/vnd.github.v3+json" \
-      #       https://api.github.com/repos/${{ github.repository }}/git/refs \
-      #       -d '{
-      #         "ref": "refs/heads/DEV",
-      #         "sha": "${{ github.sha }}"
-      #       }'
+      - name: Create dev branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        run: |
+          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/git/refs \
+            -d '{
+              "ref": "refs/heads/DEV",
+              "sha": "${{ github.sha }}"
+            }'
 
       - name: Run if dev branch is being pushed
         run: |
