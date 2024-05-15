@@ -10,3 +10,15 @@ jobs:
         run: |
           curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}/git/refs/heads/workflow-test"
+            
+      - name: Create dev branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        run: |
+          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/git/refs \
+            -d '{
+              "ref": "refs/heads/dev-test",
+              "sha": "main"
+            }'
