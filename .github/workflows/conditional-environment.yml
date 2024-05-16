@@ -14,8 +14,7 @@ jobs:
                        (
                           ((startsWith(github.event.schedule, '32 9') || startsWith(github.event.schedule, '42 9')) && 'ole') || 
                           (startsWith(github.event.schedule, '52 9') && 'jlg')
-                       )
-                      )
+                       ))
                   }}
     steps:
       - name: Dummy step
