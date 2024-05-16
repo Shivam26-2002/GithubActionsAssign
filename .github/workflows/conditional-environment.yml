@@ -18,9 +18,11 @@ jobs:
   Conditional-Environment:
     runs-on: ubuntu-latest
     environment: ${{ (github.event_name == 'workflow_dispatch' && 'Testing') || 
-                     (github.event_name == 'schedule' && 
+                     (github.event_name == 'schedule'
+                               && 
                        (
-                          ((startsWith(github.event.schedule, '32 9') || startsWith(github.event.schedule, '42 9')) && 'ole') || 
+                          ((startsWith(github.event.schedule, '32 9') || startsWith(github.event.schedule, '42 9')) && 'ole') 
+                                || 
                           (startsWith(github.event.schedule, '52 9') && 'jlg')
                        ))
                   }}
