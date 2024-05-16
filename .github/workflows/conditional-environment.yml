@@ -21,9 +21,9 @@ jobs:
                      (github.event_name == 'schedule'
                                && 
                        (
-                          ((startsWith(github.event.schedule, '32 9') || startsWith(github.event.schedule, '42 9')) && 'ole') 
+                          ((startsWith(github.event.schedule, '54 10') || startsWith(github.event.schedule, '04 11')) && 'ole') 
                                 || 
-                          (startsWith(github.event.schedule, '52 9') && 'jlg')
+                          (startsWith(github.event.schedule, '13 11') && 'jlg')
                        ))
                   }}
     steps:
