@@ -1,10 +1,18 @@
 name: Conditional Environment
+run-name: >-
+  ${{ (github.event_name == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV'))
+            || 
+      (github.event_name == 'schedule' && (startsWith(github.event.schedule, '54 10') || startsWith(github.event.schedule, '04 11'))
+          && format('Push Schematics From Build Server - TEST'))
+            ||
+      (github.event_name == 'schedule' && startsWith(github.event.schedule, '13 11') && format('Push Schematics From Build Server - PROD')) 
+    }}
 on: 
   workflow_dispatch:
   schedule:
-    - cron: '32 9 * * *'   # TEST
-    - cron: '42 9 * * *'   # TEST
-    - cron: '52 9 * * *'   # PROD
+    - cron: '54 10 * * *'   # TEST
+    - cron: '04 11 * * *'   # TEST
+    - cron: '13 11 * * *'   # PROD
     
 jobs:
   Conditional-Environment:
