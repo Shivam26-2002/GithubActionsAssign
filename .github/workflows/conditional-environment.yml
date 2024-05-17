@@ -4,7 +4,7 @@ env:
   SCHEDULE_TEST_NEW: "05 15"
   SCHEDULE_PROD: "11 15"
 run-name: >-
-  ${{ (github.event_name == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV,${{ env.SCHEDULE_TEST }}'))
+  ${{ (github.event_name == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV,  env.SCHEDULE_TEST'))
             || 
       (github.event_name == 'schedule' && (startsWith(github.event.schedule, '${{ env.SCHEDULE_TEST }}') || startsWith(github.event.schedule, '${{ env.SCHEDULE_TEST_NEW }}'))
           && format('Push Schematics From Build Server - TEST'))
