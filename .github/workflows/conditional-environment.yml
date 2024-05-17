@@ -1,4 +1,8 @@
 name: Conditional Environment
+env:
+  SCHEDULE_DEV: "30 6-23/3"
+  SCHEDULE_TEST: "30 0-4/3"
+  SCHEDULE_PROD: "0 3"
 run-name: >-
   ${{ (github.event_name == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV'))
             || 
@@ -30,6 +34,8 @@ jobs:
       - name: Dummy step
         run: |
           echo "Dummy"
+          echo "Print schedule DEV"
+          echo env.SCHEDULE_DEV
 
 
           
