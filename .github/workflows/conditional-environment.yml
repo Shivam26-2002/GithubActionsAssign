@@ -1,16 +1,27 @@
 name: Conditional Environment
 env:
+  SCHEDULE_DEV: 'workflow_dispatch'
   SCHEDULE_TEST: "55 14"
   SCHEDULE_TEST_NEW: "05 15"
   SCHEDULE_PROD: "11 15"
 run-name: >-
-  ${{ (github.event_name == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV,  env.SCHEDULE_TEST'))
+  ${{ ("${{ env.SCHEDULE_DEV }}" == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV,  env.SCHEDULE_TEST'))
             || 
       (github.event_name == 'schedule' && (startsWith(github.event.schedule, '${{ env.SCHEDULE_TEST }}') || startsWith(github.event.schedule, '${{ env.SCHEDULE_TEST_NEW }}'))
           && format('Push Schematics From Build Server - TEST'))
             ||
       (github.event_name == 'schedule' && startsWith(github.event.schedule, '${{ env.SCHEDULE_PROD }}') && format('Push Schematics From Build Server - PROD')) 
     }}
+    
+# run-name: >-
+#   ${{ (github.event_name == 'workflow_dispatch' && format('Push Schematics From Build Server - DEV,  env.SCHEDULE_TEST'))
+#             || 
+#       (github.event_name == 'schedule' && (startsWith(github.event.schedule, '${{ env.SCHEDULE_TEST }}') || startsWith(github.event.schedule, '${{ env.SCHEDULE_TEST_NEW }}'))
+#           && format('Push Schematics From Build Server - TEST'))
+#             ||
+#       (github.event_name == 'schedule' && startsWith(github.event.schedule, '${{ env.SCHEDULE_PROD }}') && format('Push Schematics From Build Server - PROD')) 
+#     }}
+
 on: 
   workflow_dispatch:
   schedule:
