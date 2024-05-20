@@ -1,0 +1,12 @@
+name: Github SHA
+on: workflow_dispatch
+jobs:
+  Github_SHA:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Github SHA
+        run: |
+          SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`
+          echo $SHORT_SHA
+          echo "$SHORT_SHA"
+          echo ${{ github.sha }}
