@@ -1,12 +1,14 @@
 name: A
 on: 
   workflow_dispatch:
-    inputs:
-      Branch:
-        description: 'Do not select main branch'
 jobs:
   D:
     runs-on: ubuntu-latest
     steps:
       - name: See what happens
-        run: echo "Test"
+        id: test-output
+        run: echo "ALIAS=Test" >> $GITHUB_STEP_SUMMARY >> "$GITHUB_OUTPUT"
+
+      - name: Print output
+        run: |
+          echo ${{ steps.test-output.outputs.ALIAS }}
