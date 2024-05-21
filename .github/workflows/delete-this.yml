@@ -4,6 +4,7 @@ on:
 jobs:
   D:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: See what happens
         id: test-output
