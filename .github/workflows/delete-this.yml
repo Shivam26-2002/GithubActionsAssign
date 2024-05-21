@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: See what happens
         id: test-output
-        run: echo "ALIAS=Test" >> $GITHUB_STEP_SUMMARY
+        run: echo "ALIAS=Test" >> "$GITHUB_OUTPUT" >> $GITHUB_STEP_SUMMARY
 
       - name: Print output
         run: |
