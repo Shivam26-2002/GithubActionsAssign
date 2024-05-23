@@ -4,12 +4,15 @@ on:
 jobs:
   D:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
     steps:
-      - name: See what happens
-        id: test-output
-        run: echo "ALIAS=Test" >> "$GITHUB_OUTPUT" >> $GITHUB_STEP_SUMMARY
-
-      - name: Print output
+      - name: Set Environment
+        id: set-environment
         run: |
-          echo ${{ steps.test-output.outputs.ALIAS }}
+          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+          if [ $BRANCH_NAME == 'main' ]; then
+            echo "DEPLOYMENT_ENVIRONMENT=production" >> "$GITHUB_OUTPUT"
+          else
+            echo "DEPLOYMENT_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Print Deployment Environment
+        run: echo ${{ steps.set-environment.outputs.DEPLOYMENT_ENVIRONMENT }}
