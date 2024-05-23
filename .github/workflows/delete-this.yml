@@ -10,7 +10,8 @@ jobs:
         id: set-environment
         run: |
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
-          if [ $BRANCH_NAME == 'main' && github.event_name == 'push' ]; then
+          echo ${{ github.event_name }}
+          if [ $BRANCH_NAME == 'main' && ${{ github.event_name }} == 'push' ]; then
             echo "DEPLOYMENT_ENVIRONMENT=production" >> "$GITHUB_OUTPUT"
           else
             echo "DEPLOYMENT_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
