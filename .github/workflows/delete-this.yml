@@ -8,9 +8,9 @@ jobs:
     steps:
       - name: Print Random
         run: |
-          random_number=$RANDOM
-          echo $RANDOM
-          sleep $(( $RANDOM % 5 ))
+          random_sleep_time=$((RANDOM % 5))
+          echo "Sleeping for $random_sleep_time seconds"
+          sleep $random_sleep_time
       - name: Set Environment
         id: set-environment
         run: |
