@@ -8,8 +8,9 @@ jobs:
     steps:
       - name: Print Random
         run: |
-          echo RANDOM
-          sleep $(( RANDOM % 5 ))
+          random_number=$RANDOM
+          echo $RANDOM
+          sleep $(( $RANDOM % 5 ))
       - name: Set Environment
         id: set-environment
         run: |
