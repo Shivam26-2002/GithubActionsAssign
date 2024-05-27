@@ -6,6 +6,10 @@ jobs:
   D:
     runs-on: ubuntu-latest
     steps:
+      - name: Print Random
+        run: |
+          echo RANDOM
+          sleep $(( RANDOM % 5 ))
       - name: Set Environment
         id: set-environment
         run: |
