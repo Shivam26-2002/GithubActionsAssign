@@ -8,9 +8,10 @@ jobs:
     steps:
       - name: Print Random
         run: |
-          random_sleep_time=$((RANDOM % 5))
-          echo "Sleeping for $random_sleep_time seconds"
-          sleep $random_sleep_time
+          url="https://nx-pawley93n-advanced-digital-solutions.vercel.app"
+          cleaned_url=$(echo "$url" | sed 's/^https:\/\///')
+          echo "$cleaned_url"
+
       - name: Set Environment
         id: set-environment
         run: |
