@@ -6,6 +6,12 @@ jobs:
   D:
     runs-on: ubuntu-latest
     steps:
+      - name: Print hyperlink
+        run: |
+          alias_value="jdid-127.auth-t.jerrdan.com"
+          hyperlink="\033]8;;http://$alias_value\033\\$alias_value\033]8;;\033\\"
+          echo $hyperlink >> $GITHUB_STEP_SUMMARY
+
       - name: Print Random
         run: |
           url="https://nx-pawley93n-advanced-digital-solutions.vercel.app"
