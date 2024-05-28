@@ -6,6 +6,19 @@ jobs:
   D:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Extract Test Results
+        id: extract-report
+        if: always()
+        run: |
+          echo "Worked"
+  
+      - name: Print Test Report To Summary
+        id: print-report
+        if: steps.extract-report.outcome == 'success'
+        run: |
+             echo "Worked too"
+      
       - name: Print hyperlink
         run: |
           URL="example.com"
