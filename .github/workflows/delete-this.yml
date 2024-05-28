@@ -12,6 +12,7 @@ jobs:
         if: always()
         run: |
           echo "Worked"
+          exit 1
   
       - name: Print Test Report To Summary
         id: print-report
