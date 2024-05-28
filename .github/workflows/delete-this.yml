@@ -8,8 +8,15 @@ jobs:
     steps:
       - name: Print hyperlink
         run: |
+          URL="http://example.com"
+          LINK_TEXT="Click Here"
+          echo -e "\e]8;;$URL\e\\$LINK_TEXT\e]8;;\e\\"
+          echo "\n"
+          echo "\n"
+          echo "\n"
           alias_value="jdid-127.auth-t.jerrdan.com"
-          hyperlink="\033]8;;http://$alias_value\033\\$alias_value\033]8;;\033\\"
+          # hyperlink="\033]8;;http://$alias_value\033\\$alias_value\033]8;;\033\\"
+          hyperlink="http://$alias_value\033\\$alias_value\033]8;;\033\\"
           echo $hyperlink >> $GITHUB_STEP_SUMMARY
 
       - name: Print Random
