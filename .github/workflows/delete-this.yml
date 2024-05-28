@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Print hyperlink
         run: |
-          URL="http://example.com"
+          URL="example.com"
           LINK_TEXT="Click Here"
           echo -e "$URL" >> $GITHUB_STEP_SUMMARY
           echo \n
