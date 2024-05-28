@@ -11,9 +11,10 @@ jobs:
           URL="example.com"
           LINK_TEXT="Click Here"
           echo -e "$URL" >> $GITHUB_STEP_SUMMARY
-          echo \n
-          echo \n
-          echo \n
+          echo -e "\e]8;;$URL\e\\$LINK_TEXT\e]8;;\e\\" >> $GITHUB_STEP_SUMMARY
+          echo -e \n
+          echo -e \n
+          echo -e \n
           alias_value="jdid-127.auth-t.jerrdan.com"
           # hyperlink="\033]8;;http://$alias_value\033\\$alias_value\033]8;;\033\\"
           hyperlink="http://$alias_value\033\\$alias_value\033]8;;\033\\"
