@@ -10,7 +10,7 @@ jobs:
         run: |
           URL="http://example.com"
           LINK_TEXT="Click Here"
-          echo -e "$URL\e\\" >> $GITHUB_STEP_SUMMARY
+          echo -e "$URL" >> $GITHUB_STEP_SUMMARY
           echo \n
           echo \n
           echo \n
