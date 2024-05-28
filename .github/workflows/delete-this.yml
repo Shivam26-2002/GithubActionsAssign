@@ -15,7 +15,7 @@ jobs:
   
       - name: Print Test Report To Summary
         id: print-report
-        if: always() && steps.extract-report.outcome == 'success'
+        if: ${{ always() && steps.extract-report.outcome == 'success' }}
         run: |
              echo "Worked too"
       
