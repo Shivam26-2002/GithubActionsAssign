@@ -17,3 +17,7 @@ jobs:
         if: steps.extract-report.outcome == 'success'
         run: |
              echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+             exit 1
+             
+      - run: echo "OK"
+        if: job.steps.bad.status == failure()
