@@ -18,8 +18,11 @@ jobs:
         run: |
              echo "## Test Results" >> $GITHUB_STEP_SUMMARY
              
-      - run: exit 1
+      - name: Fail step    
+        run: exit 1
         id: bad
         continue-on-error: true
-      - run: echo "OK"
-        if: job.steps.bad.status == failure()
+      #   id: bad
+      #   continue-on-error: true
+      # - run: echo "OK"
+      #   if: job.steps.bad.status == failure()
