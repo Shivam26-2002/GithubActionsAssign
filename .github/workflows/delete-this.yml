@@ -6,50 +6,14 @@ jobs:
   D:
     runs-on: ubuntu-latest
     steps:
-
       - name: Extract Test Results
         id: extract-report
         if: always()
         run: |
-          echo "Worked"
-  
+           echo "Worked" 
+           
       - name: Print Test Report To Summary
         id: print-report
         if: steps.extract-report.outcome == 'success'
-        # if: ${{ always() && steps.extract-report.outcome == 'success' }}
         run: |
-          echo ${{ steps.extract-report.outcome }}
-          echo "Worked too"
-      
-      - name: Print hyperlink
-        run: |
-          URL="example.com"
-          LINK_TEXT="Click Here"
-          echo -e "$URL" >> $GITHUB_STEP_SUMMARY
-          echo -e "\e]8;;$URL\e\\$LINK_TEXT\e]8;;\e\\" >> $GITHUB_STEP_SUMMARY
-          echo -e \n
-          echo -e \n
-          echo -e \n
-          alias_value="jdid-127.auth-t.jerrdan.com"
-          # hyperlink="\033]8;;http://$alias_value\033\\$alias_value\033]8;;\033\\"
-          hyperlink="http://$alias_value\033\\$alias_value\033]8;;\033\\"
-          echo $hyperlink >> $GITHUB_STEP_SUMMARY
-
-      - name: Print Random
-        run: |
-          url="https://nx-pawley93n-advanced-digital-solutions.vercel.app"
-          cleaned_url=$(echo "$url" | sed 's/^https:\/\///')
-          echo "$cleaned_url"
-
-      - name: Set Environment
-        id: set-environment
-        run: |
-          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
-          echo ${{ github.event_name }}
-          if [[ $BRANCH_NAME == 'main' && ${{ github.event_name }} == 'push' ]]; then
-            echo "DEPLOYMENT_ENVIRONMENT=production" >> "$GITHUB_OUTPUT"
-          else
-            echo "DEPLOYMENT_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Print Deployment Environment
-        run: echo ${{ steps.set-environment.outputs.DEPLOYMENT_ENVIRONMENT }}
+             echo "## Test Results" >> $GITHUB_STEP_SUMMARY
