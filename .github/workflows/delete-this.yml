@@ -22,6 +22,9 @@ jobs:
         run: exit 1
         id: bad
         continue-on-error: true
+
+      - name: Fail step
+        run: exit 1
       #   id: bad
       #   continue-on-error: true
       # - run: echo "OK"
