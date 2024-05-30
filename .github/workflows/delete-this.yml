@@ -1,31 +1,23 @@
 name: A
 on: 
   workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'Testing'
+          - 'ole'
+        default : 'DEV'
   push:
 jobs:
   D:
     runs-on: ubuntu-latest
+    environment:  ${{ ((inputs.environment == 'Testing' || inputs.environment == 'ole') && 'Testing') || 'jlg' }}
     steps:
       - name: Extract Test Results
         id: extract-report
-        if: always()
         run: |
            echo "Worked" 
            
-      - name: Print Test Report To Summary
-        id: print-report
-        if: steps.extract-report.outcome == 'success'
-        run: |
-             echo "## Test Results" >> $GITHUB_STEP_SUMMARY
-             
-      - name: Fail step    
-        run: exit 1
-        id: bad
-        continue-on-error: true
-
-      - name: Fail step
-        run: exit 1
-      #   id: bad
-      #   continue-on-error: true
-      # - run: echo "OK"
-      #   if: job.steps.bad.status == failure()
