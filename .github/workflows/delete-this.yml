@@ -20,7 +20,7 @@ jobs:
       - name: Extract Test Results
         id: extract-report
         run: |
-          if [[ ${{github.event_name}} == 'workflow_dispatch' ]]; then
+          if [[ '${{github.event_name}}' == 'workflow_dispatch' ]]; then
             echo "Worked"
           else
             echo "PUSH"
