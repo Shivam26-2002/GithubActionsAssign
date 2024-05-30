@@ -9,11 +9,12 @@ on:
         options:
           - 'Testing'
           - 'ole'
+          - 'ubuntu-latest'
         default : 'DEV'
   push:
 jobs:
   D:
-    runs-on: ${{ ( github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || 'windows-latest' ) }}
+    runs-on: "${{ inputs.environment || 'windows-latest' }}" 
     # environment:  ${{ ((inputs.environment == 'Testing' || inputs.environment == 'ole') && 'Testing') || 'jlg' }}
     steps:
       - name: Extract Test Results
