@@ -19,7 +19,7 @@ jobs:
       - name: Extract Test Results
         id: extract-report
         run: |
-          if[[ ${{inputs.environment}} == 'Testing' || ${{inputs.environment}} == 'ole' ]]; then
+          if [[ ${{inputs.environment}} == 'Testing' || ${{inputs.environment}} == 'ole' ]]; then
             echo "Worked"
           else
             echo "PUSH"
