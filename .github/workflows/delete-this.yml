@@ -14,7 +14,7 @@ on:
 jobs:
   D:
     runs-on: ubuntu-latest
-    environment:  ${{ ((inputs.environment == 'Testing' || inputs.environment == 'ole') && 'Testing') || 'jlg' }}
+    # environment:  ${{ ((inputs.environment == 'Testing' || inputs.environment == 'ole') && 'Testing') || 'jlg' }}
     steps:
       - name: Extract Test Results
         id: extract-report
