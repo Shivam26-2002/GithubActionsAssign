@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Extract Test Results
         id: extract-report
-        run: echo "Worked"
+        run: exit 1
 
   A:
     if: always()
