@@ -36,8 +36,8 @@ jobs:
         run: |
           if [[ -z "${{ inputs.environment }}" ]]; then
             ENV="PROD"
-          elif [[ "${{ inputs.environment }}" == "DEV" ]]; then
-            ENV="DEV"
+          elif [[ "${{ inputs.environment }}" == "ubuntu-latest" ]]; then
+            ENV="ubuntu-latest"
           elif [[ "${{ inputs.environment }}" == "TEST" ]]; then
             ENV="TEST"
           fi
