@@ -42,3 +42,4 @@ jobs:
             ENV="TEST"
           fi
           echo "Environment is $ENV"
+        shell: bash
