@@ -34,11 +34,11 @@ jobs:
         run: echo "Dummy step"
       - name: Move Generated Sitemap
         run: |
-          if [[ "${{ inputs.environment }}" == "DEV" ]]; then
+          if [[ -z "${{ inputs.environment }}" ]]; then
+            ENV="PROD"
+          elif [[ "${{ inputs.environment }}" == "DEV" ]]; then
             ENV="DEV"
           elif [[ "${{ inputs.environment }}" == "TEST" ]]; then
             ENV="TEST"
-          else
-            ENV="PROD"
           fi
           echo "Environment is $ENV"
