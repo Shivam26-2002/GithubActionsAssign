@@ -15,7 +15,7 @@ on:
         description: Select the environment
         options:
           - 'ubuntu-latest'
-          - 'TEST'
+          - 'windows-latest'
         default : 'ubuntu-latest'
   push:
     
@@ -38,8 +38,8 @@ jobs:
             ENV="PROD"
           elif [[ "${{ inputs.environment }}" == "ubuntu-latest" ]]; then
             ENV="ubuntu-latest"
-          elif [[ "${{ inputs.environment }}" == "TEST" ]]; then
-            ENV="TEST"
+          else
+            ENV="windows-latest"
           fi
           echo "Environment is $ENV"
         shell: bash
