@@ -38,3 +38,11 @@ jobs:
     uses: ./.github/workflows/project-cicd-1.yml
     with:
       environment: 'jlg'
+
+  slack-rejected:
+    runs-on: ubuntu-latest
+    needs: [build-and-deploy-id,build-and-deploy-ole,build-and-deploy-jlg]
+    if: ${{ ( failure('build-and-deploy-id')  &&  needs.build-and-deploy-id.outputs.REVIEWED != 'true') || ( failure('build-and-deploy-ole')  &&  needs.build-and-deploy-id.outputs.REVIEWED != 'true') || ( failure('build-and-deploy-jlg')  &&  needs.build-and-deploy-id.outputs.REVIEWED != 'true') }}
+    steps:
+       - name: Print rejected
+         run: echo "Rejected"
