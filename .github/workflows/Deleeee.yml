@@ -1,0 +1,30 @@
+name: A
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+
+      - name: Initalize Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          
+      - name: Run nodejs step
+        run: |
+          npm install fs
+          npm install @actions/core
+          node - <<EOF
+            const fs = require('fs');
+            const core = require('@actions/core');
+            console.log("Print workspace");
+            console.log(${{ github.workspace }});
+          EOF
+              
+          
