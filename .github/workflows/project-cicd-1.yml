@@ -37,10 +37,10 @@ jobs:
       - name: Print success or failure
         run: echo "Success or failure"
 
-  # slack-rejected:
-  #   runs-on: ubuntu-latest
-  #   needs: [wait_for_approval]
-  #   if: ${{ always() && needs.wait_for_approval.outputs.reviewed != 'true' }}
-  #   steps:
-  #      - name: Print rejected
-  #        run: echo "Rejected"
+  slack-rejected:
+    runs-on: ubuntu-latest
+    needs: [wait_for_approval]
+    if: ${{ always() && needs.wait_for_approval.outputs.reviewed != 'true' }}
+    steps:
+       - name: Print rejected
+         run: echo "Rejected"
