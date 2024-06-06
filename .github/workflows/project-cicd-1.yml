@@ -4,6 +4,10 @@ on:
     inputs:
       environment:
         type: string
+    outputs:
+      REVIEWED:
+        description: "Output to check if the job was approved"
+        value: ${{ jobs.wait_for_approval.outputs.reviewed }}
 
 jobs:
   wait_for_approval:    
