@@ -1,16 +1,16 @@
 name: CICD-1
 on:
   workflow_dispatch:
-    inputs:
-      nx-Apps:
-        required: true
-        type: choice
-        description: Select the App
-        options:
-          - 'nx-id'
-          - 'nx-ole'
-          - 'nx-jlg'
-        default : 'nx-id'
+    # inputs:
+    #   nx-Apps:
+    #     required: true
+    #     type: choice
+    #     description: Select the App
+    #     options:
+    #       - 'nx-id'
+    #       - 'nx-ole'
+    #       - 'nx-jlg'
+    #     default : 'nx-id'
 jobs:
   check-affected-projects:
     runs-on: ubuntu-latest
@@ -19,21 +19,21 @@ jobs:
         run: echo "Dummy step"
 
   build-and-deploy-id:
-    if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-id') }}
+    # if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-id') }}
     needs: [check-affected-projects]
     uses: ./.github/workflows/project-cicd-1.yml
     with:
       environment: 'Testing'
     
   build-and-deploy-ole:
-    if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-ole') }}
+    # if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-ole') }}
     needs: [check-affected-projects]
     uses: ./.github/workflows/project-cicd-1.yml
     with:
       environment: 'ole'
     
   build-and-deploy-jlg:
-    if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-jlg') }}
+    # if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-jlg') }}
     needs: [check-affected-projects]
     uses: ./.github/workflows/project-cicd-1.yml
     with:
