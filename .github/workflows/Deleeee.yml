@@ -5,7 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print environment variable
+        env:
+          MY_ENV_VARIABLE: ${{ secrets.TEST_ENV }}
         run: |
-          echo "Environment variable : ${{ env.TEST_ENV }}"
-          echo "Environment variable : $env.TEST_ENV"
-          echo "Environment variable : $TEST_ENV"
+          echo "Environment variable : ${{ env.MY_ENV_VARIABLE }}"
+          echo "Environment variable : $env.MY_ENV_VARIABLE"
+          echo "Environment variable : $MY_ENV_VARIABLE"
