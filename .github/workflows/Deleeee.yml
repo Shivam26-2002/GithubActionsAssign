@@ -7,3 +7,5 @@ jobs:
       - name: Print environment variable
         run: |
           echo "Environment variable : ${{ env.TEST_ENV }}"
+          echo "Environment variable : $env.TEST_ENV"
+          echo "Environment variable : $TEST_ENV"
