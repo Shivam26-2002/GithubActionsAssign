@@ -39,6 +39,14 @@ jobs:
     with:
       environment: 'jlg'
 
+  send-slack-message-failure-check-affected-projects: 
+    runs-on: ubuntu-latest
+    if: ${{ failure('check-affected-projects') }}    
+    needs: [check-affected-projects]
+    steps:
+      - name: Failure of check affected step
+        run: echo "Failure of check affected step"
+
   send-slack-message-cancelled:
     runs-on: ubuntu-latest
     if: ${{ cancelled() }} 
