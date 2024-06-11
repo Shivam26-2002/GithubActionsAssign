@@ -38,3 +38,11 @@ jobs:
     uses: ./.github/workflows/project-cicd-1.yml
     with:
       environment: 'jlg'
+
+  send-slack-message-cancelled:
+    runs-on: ubuntu-latest
+    if: ${{ cancelled() }} 
+    needs: [check-affected-projects,build-and-deploy-id,build-and-deploy-ole,build-and-deploy-jlg]
+    steps:
+      - name: Cancel step
+        run: echo "Cacelled"
