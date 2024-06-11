@@ -29,7 +29,7 @@ jobs:
     - name: Print output
       run: |
        echo "Printing output: "
-       echo ${{jobs.cicd.outputs.reviewed}}
+       echo ${{needs.cicd.outputs.reviewed}}
 
   slack-success-failure:
     runs-on: ubuntu-latest
