@@ -7,40 +7,32 @@ on:
     outputs:
       REVIEWED:
         description: "Output to check if the job was approved"
-        value: ${{ jobs.wait_for_approval.outputs.reviewed }}
+        value: ${{ jobs.cicd.outputs.reviewed }}
 
-jobs:
-  wait_for_approval:    
+jobs:    
+  cicd:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     outputs: 
-      reviewed: ${{ steps.set-output.outputs.reviewed }}    
-    steps:
-    - name: Deployment approved
-      id: set-output
-      run: |
-        echo 'Deployment approved'
-        echo "reviewed=true" >> $GITHUB_OUTPUT
-    
-  cicd:
-    runs-on: ubuntu-latest
-    needs: [wait_for_approval]
+      reviewed: ${{ steps.set-output.outputs.reviewed }}  
     steps:
       - name: Dummy cicd
-        run: echo "cicd"
+        run: |
+         echo "reviewed=true" >> $GITHUB_OUTPUT
+         echo "cicd"
 
   slack-success-failure:
     runs-on: ubuntu-latest
-    needs: [wait_for_approval, cicd]
-    if: ${{ ( success('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.wait_for_approval.outputs.reviewed == 'true' ) }}
+    needs: [cicd]
+    if: ${{ ( success('cicd') && needs.cicd.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.cicd.outputs.reviewed == 'true' ) }}
     steps:
       - name: Print success or failure
         run: echo "Success or failure"
 
   slack-rejected:
     runs-on: ubuntu-latest
-    needs: [wait_for_approval]
-    if: ${{ always() && needs.wait_for_approval.outputs.reviewed != 'true' }}
+    needs: [cicd]
+    if: ${{ always() && needs.cicd.outputs.reviewed != 'true' }}
     steps:
        - name: Print rejected
          run: echo "Rejected"
