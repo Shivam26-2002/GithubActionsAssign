@@ -17,9 +17,19 @@ jobs:
       reviewed: ${{ steps.set-output.outputs.reviewed }}  
     steps:
       - name: Dummy cicd
+        id: set-output
         run: |
          echo "reviewed=true" >> $GITHUB_OUTPUT
          echo "cicd"
+
+  print-output:
+   runs-on: ubuntu-latest
+   needs: [cicd]
+   steps:
+    - name: Print output
+      run: |
+       echo "Printing output: "
+       echo ${{jobs.cicd.outputs.reviewed}}
 
   slack-success-failure:
     runs-on: ubuntu-latest
