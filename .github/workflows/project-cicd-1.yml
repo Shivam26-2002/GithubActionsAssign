@@ -33,7 +33,7 @@ jobs:
   slack-rejected:
     runs-on: ubuntu-latest
     needs: [cicd]
-    if: ${{ always() && needs.cicd.outputs.reviewed != 'true' }}
+    if: ${{ failure('cicd') && needs.cicd.outputs.reviewed != 'true' }}
     steps:
        - name: Print rejected
          run: echo "Rejected"
