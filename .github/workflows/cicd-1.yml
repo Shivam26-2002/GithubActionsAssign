@@ -16,7 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dummy step
-        run: echo "Dummy step"
+        run: |
+          sleep 30
+          echo "Dummy step"
 
   build-and-deploy-id:
     if: ${{ (success('check-affected-projects') && inputs.nx-Apps == 'nx-id') }}
