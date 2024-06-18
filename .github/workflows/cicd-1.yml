@@ -45,15 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     # if: ${{ failure('check-affected-projects') }}  
     if: ${{ cancelled() || failure('check-affected-projects') }}
-    needs: [check-affected-projects]
+    needs: [check-affected-projects, build-and-deploy-ole, build-and-deploy-id, build-and-deploy-jlg]
     steps:
       - name: Failure of check affected step
         run: echo "Failure of check affected step or cancelled"
-
-  # send-slack-message-cancelled:
-  #   runs-on: ubuntu-latest
-  #   if: ${{ cancelled() }} 
-  #   needs: [check-affected-projects,build-and-deploy-id,build-and-deploy-ole,build-and-deploy-jlg]
-  #   steps:
-  #     - name: Cancel step
-  #       run: echo "Cacelled"
