@@ -21,6 +21,7 @@ jobs:
         run: |
          echo "reviewed=true" >> $GITHUB_OUTPUT
          echo "cicd"
+         sleep 30
 
   slack-success-failure:
     runs-on: ubuntu-latest
