@@ -44,7 +44,7 @@ jobs:
   send-slack-message-failure-check-affected-projects: 
     runs-on: ubuntu-latest
     # if: ${{ failure('check-affected-projects') }}  
-    if: ${{ failure('check-affected-projects') || cancelled() }}
+    if: ${{ cancelled() || failure('check-affected-projects') }}
     needs: [check-affected-projects]
     steps:
       - name: Failure of check affected step
