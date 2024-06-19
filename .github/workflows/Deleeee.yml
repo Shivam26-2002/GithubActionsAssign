@@ -1,5 +1,17 @@
 name: A (Alphabet's)
-on: workflow_dispatch
+run-name: UX Translations (OCID's) - ${{ inputs.environment }}
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'DEV'
+          - 'TEST'
+          - 'PROD'
+        default : 'DEV'
 jobs:
   test:
     runs-on: ubuntu-latest
