@@ -1,4 +1,4 @@
-name: A Same name
+name: Reusable A Same name
 on: workflow_call
 jobs:
   empty-reusable:
