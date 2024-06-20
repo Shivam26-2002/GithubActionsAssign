@@ -1,0 +1,8 @@
+name: A Same name
+on: workflow_call
+jobs:
+  empty-reusable:
+    runs-on: ubuntu-latest
+    steps:
+       - name: Dummy
+         run: echo "Dummy being called"
