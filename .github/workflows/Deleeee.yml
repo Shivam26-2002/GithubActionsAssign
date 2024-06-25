@@ -14,8 +14,9 @@ on:
         options:
           - 'DEV'
           - 'TEST'
-          - 'PROD'
         default : 'DEV'
+  schedule:
+    - cron: '* * * * *'   # PROD
 jobs:
   test:
     runs-on: ubuntu-latest
