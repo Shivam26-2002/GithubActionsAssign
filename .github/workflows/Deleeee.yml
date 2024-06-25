@@ -1,6 +1,12 @@
 name: A (Alphabet's)
-run-name: UX Translations (OCID's) - ${{ inputs.environment }}
-on:
+run-name: >-
+  ${{ (inputs.environment == 'DEV' && format('Endeca Sitemap Generator - DEV'))
+            || 
+      (inputs.environment == 'TEST' && format('Endeca Sitemap Generator - TEST'))
+            ||
+      format('Endeca Sitemap Generator - PROD')
+    }}
+on: 
   workflow_dispatch:
     inputs:
       environment:
