@@ -1,6 +1,6 @@
 name: A (Alphabet's)
 run-name: >-
-  ${{ (inputs.environment == 'DEV' && format('Endeca Sitemap Generator - {0}', inputs.environment ))
+  ${{ format('Endeca Sitemap Generator - {0}', inputs.environment ))
             ||
       format('Endeca Sitemap Generator - PROD')
     }}
