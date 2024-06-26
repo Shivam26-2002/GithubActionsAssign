@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Dummy step
         run: |
-          sleep 30
+          # sleep 30
           echo "Dummy step"
 
   build-and-deploy-id:
@@ -42,9 +42,8 @@ jobs:
       environment: 'jlg'
 
   send-slack-message-failure-check-affected-projects: 
-    runs-on: ubuntu-latest
-    # if: ${{ failure('check-affected-projects') }}  
-    if: ${{ cancelled() || failure('check-affected-projects') }}
+    runs-on: ubuntu-latest 
+    if: ${{ failure('check-affected-projects') || cancelled() }}  
     needs: [check-affected-projects, build-and-deploy-ole, build-and-deploy-id, build-and-deploy-jlg]
     steps:
       - name: Failure of check affected step
