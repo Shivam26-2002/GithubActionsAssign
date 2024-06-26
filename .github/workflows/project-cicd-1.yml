@@ -31,7 +31,10 @@ jobs:
     if: ${{ ( success('cicd') && needs.cicd.outputs.reviewed == 'true' ) || ( failure('cicd') && needs.cicd.outputs.reviewed == 'true' ) || failure('cicd') && needs.cicd.outputs.reviewed != 'true' }}
     steps:
       - name: Print success or failure
-        run: echo "Success or failure"
+        run: |
+          echo "Success or failure"
+          echo ${{ needs.cicd.outputs.reviewed }}
+        
       - name: Print reject
         if: ${{ needs.cicd.outputs.reviewed != 'true' }}
         run: echo "Rejected"
