@@ -33,7 +33,7 @@ jobs:
       - name: Print success or failure
         run: echo "Success or failure"
       - name: Print reject
-        if: ${{ needs.cicd.outputs.reviewed }} != 'true'
+        if: ${{ needs.cicd.outputs.reviewed != 'true' }}
         run: echo "Rejected"
 
   # slack-rejected:
