@@ -1,12 +1,23 @@
 name: A Same name
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'DEV'
+          - 'TEST'
+        default : 'DEV'
+  
 jobs:
   empty:
     runs-on: ubuntu-latest
     steps:
        - name: Dummy
          run: |
-           echo "Dummy"
+           echo "Input is ${{ inputs.environment }}"
            exit 1
 
   uses-another:
