@@ -10,9 +10,6 @@ on:
           - 'DEV'
           - 'TEST'
         default : 'DEV'
-
-  schedule:
-    - cron: '* * * * *'   # PROD
 jobs:
   empty:
     runs-on: ubuntu-latest
