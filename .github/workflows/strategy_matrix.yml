@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [1, 2, 3]
-    runs-on: [ubuntu-latest, "${{ matrix.runner == 3 && 'windows-latest' || matrix.runner }}" ]
+    runs-on: [ubuntu-latest, "${{ matrix.runner == 3 && 'windows-latest' || 'matrix.runner' }}" ]
     # runs-on: [ubuntu-latest, "${{ matrix.runner == 3 && 'windows-latest' || 'matrix.runner' }}"]
     steps:
       - name: Print the OS
