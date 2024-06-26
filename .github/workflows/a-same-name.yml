@@ -5,7 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: Dummy
-         run: echo "Dummy"
+         run: |
+           echo "Dummy"
+           exit 1
 
   uses-another:
     needs: empty
