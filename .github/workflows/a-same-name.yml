@@ -12,7 +12,7 @@ on:
         default : 'DEV'
 
   schedule:
-    - cron: '50 12 * * *'   # PROD
+    - cron: '* * * * *'   # PROD
 jobs:
   empty:
     runs-on: ubuntu-latest
