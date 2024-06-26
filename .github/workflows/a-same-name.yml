@@ -20,6 +20,7 @@ jobs:
        - name: Dummy
          run: |
            echo "Input is ${{ inputs.environment }}"
+           echo "Github event name is: ${{ github.event_name }}"
 
   uses-another:
     needs: empty
