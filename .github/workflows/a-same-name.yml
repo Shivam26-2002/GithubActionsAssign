@@ -12,7 +12,11 @@ on:
         default : 'DEV'
 jobs:
   empty:
+    strategy:
+      matrix:
+        runner: [nx-id, nx-ole, nx-jlg]
     runs-on: ubuntu-latest
+    environment: ${{ matrix.runner }}
     steps:
        - name: Dummy
          run: |
