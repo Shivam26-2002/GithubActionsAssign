@@ -1,0 +1,12 @@
+name: Checkout
+on: workflow_dispatch
+
+jobs:
+  Print-Brnach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          ref: 'JDID-151'
+      - name: Print the branch name
+        run: echo ${ github.ref_name }}
