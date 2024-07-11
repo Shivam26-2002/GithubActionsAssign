@@ -9,4 +9,4 @@ jobs:
         with: 
           ref: 'JDID-151'
       - name: Print the branch name
-        run: echo ${ github.ref_name }}
+        run: echo ${{ github.ref_name }}
