@@ -1,0 +1,20 @@
+name: By-pass environment protection
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'nx-id'
+          - 'TEST'
+          - 'Testing'
+        default : 'nx-id'
+
+jobs:
+  Env-Protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy
+        run: echo "Dummy workflow"
