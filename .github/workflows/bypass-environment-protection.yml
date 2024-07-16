@@ -15,6 +15,7 @@ on:
 jobs:
   Env-Protection:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Dummy
         run: echo "Dummy workflow"
