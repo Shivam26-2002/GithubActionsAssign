@@ -25,3 +25,6 @@ jobs:
           
       - name: Dummy
         run: echo "Dummy workflow"
+
+      - name: Print branch name
+        run: echo ${{ github.ref_name }}
