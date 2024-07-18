@@ -1,4 +1,4 @@
-name: By-pass environment protection
+name: Conditional Checkout
 on: 
   workflow_dispatch:
     inputs:
@@ -11,11 +11,17 @@ on:
           - 'TEST'
           - 'Testing'
         default : 'nx-id'
+  push:
 
 jobs:
   Env-Protection:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && 'dev' || github.ref_name }}
+          
       - name: Dummy
         run: echo "Dummy workflow"
