@@ -1,12 +1,12 @@
 name: Actor Schedule trigger
-run-name: Schedule Actor Shivam
+run-name: Schedule Actor
 on: 
   schedule:
     - cron: '*/2 * * * *'
 
 jobs:
   dev_job:
-    name: DEV Environment
+    name: Actor name
     runs-on: ubuntu-latest
     steps:
       - name: First Step for DEV
