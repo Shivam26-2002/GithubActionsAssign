@@ -1,0 +1,13 @@
+name: Schedule trigger
+run-name: Schedule
+on: 
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  dev_job:
+    name: DEV Environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: First Step for DEV
+        run: echo "This is the first step for DEV"
