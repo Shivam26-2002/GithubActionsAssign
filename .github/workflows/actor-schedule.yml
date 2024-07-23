@@ -2,7 +2,7 @@ name: Actor Schedule trigger
 run-name: Schedule Actor Shivam
 on: 
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/2 * * * *'
 
 jobs:
   dev_job:
