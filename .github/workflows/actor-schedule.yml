@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: First Step for DEV
-        run: echo "This is the first step for DEV"
+        run: echo "This is the test first step for DEV"
