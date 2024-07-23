@@ -1,5 +1,5 @@
-name: Schedule trigger
-run-name: Schedule
+name: Actor Schedule trigger
+run-name: Schedule Actor
 on: 
   schedule:
     - cron: '* * * * *'
