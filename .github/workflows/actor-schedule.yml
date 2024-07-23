@@ -11,3 +11,9 @@ jobs:
     steps:
       - name: First Step for DEV
         run: echo "This is the test first step for DEV"
+        
+  dev_job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Second Step for DEV
+        run: echo "This is the test first step for DEV"
