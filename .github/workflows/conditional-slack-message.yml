@@ -40,7 +40,7 @@ jobs:
         id: set-environment
         run: |
           if [[ "${{ github.event_name }}" == 'workflow_dispatch' ]]; then
-            ENVIRONMENT="DEV" >> $GITHUB_OUTPUT
+            echo "ENVIRONMENT=DEV" >> $GITHUB_OUTPUT
           elif [[ "${{ github.event_name }}" == 'schedule' ]]; then
             if [[ "${{ github.event.schedule }}" == '*/10 * * * *' ]]; then
               echo "ENVIRONMENT=TEST" >> $GITHUB_OUTPUT
