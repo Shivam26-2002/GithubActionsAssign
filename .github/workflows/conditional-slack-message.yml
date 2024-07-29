@@ -2,7 +2,7 @@ name: Conditional Slack message
 run-name: >-
   ${{ (github.event_name == 'workflow_dispatch' && format('Conditional Slack message - DEV'))
             || 
-      (github.event_name == 'schedule' && (startsWith(github.event.schedule, '*/10') && format('Conditional Slack message - TEST'))
+      (github.event_name == 'schedule' && startsWith(github.event.schedule, '*/10') && format('Conditional Slack message - TEST'))
             ||
       (github.event_name == 'schedule' && startsWith(github.event.schedule, '*/15') && format('Conditional Slack message - PROD')) 
     }}
