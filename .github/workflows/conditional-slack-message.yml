@@ -36,12 +36,12 @@ jobs:
           echo "PROD step"
           exit 1
 
-      - name: Print slack message
+      - name: Print slack Successful message
         if: ${{ always() && ( steps.build-dev.outcome != 'failure' && steps.build-test != 'failure' && steps.build-prod.outcome != 'failure' ) }}
         run: |
           echo "Successful message"
           
-      - name: Print slack message
+      - name: Print slack Failure message
         if: ${{ failure() && ( steps.build-dev.outcome == 'failure' || steps.build-test == 'failure' || steps.build-prod.outcome == 'failure' ) }}
         run: |
           echo "Failure message"
