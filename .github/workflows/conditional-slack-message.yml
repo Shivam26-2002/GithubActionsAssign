@@ -37,6 +37,7 @@ jobs:
           exit 1
 
       - name: Set Environment to display in slack message
+        if: always()
         id: set-environment
         run: |
           if [[ "${{ github.event_name }}" == 'workflow_dispatch' ]]; then
