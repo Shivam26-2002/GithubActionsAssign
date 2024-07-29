@@ -25,13 +25,13 @@ jobs:
         
       - name: Push Schematics From Build Server - TEST
         id: build-test
-        if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '30 6-23/3') || startsWith(github.event.schedule, '30 0-4/3'))
+        if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '*/10'))
         run: |
          echo "TEST step"
 
       - name: Push Schematics From Build Server - PROD
         id: build-prod
-        if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 3')
+        if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '*/15'))
         run: |
           echo "PROD step"
 
