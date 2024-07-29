@@ -22,6 +22,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: |
           echo "DEV step"
+          exit 1
         
       - name: Push Schematics From Build Server - TEST
         id: build-test
@@ -37,5 +38,10 @@ jobs:
 
       - name: Print slack message
         if: ${{ always() && ( steps.build-dev.outcome != 'failure' && steps.build-test != 'failure' && steps.build-prod.outcome != 'failure' ) }}
+        run: |
+          echo "Successful message"
+          
+      - name: Print slack message
+        if: ${{ failure() && ( steps.build-dev.outcome == 'failure' || steps.build-test == 'failure' || steps.build-prod.outcome == 'failure' ) }}
         run: |
           echo "Successful message"
