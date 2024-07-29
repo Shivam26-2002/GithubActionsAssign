@@ -1,0 +1,41 @@
+name: Conditional Slack message
+run-name: >-
+  ${{ (github.event_name == 'workflow_dispatch' && format('Conditional Slack message - DEV'))
+            || 
+      (github.event_name == 'schedule' && (startsWith(github.event.schedule, '*/10') && format('Conditional Slack message - TEST'))
+            ||
+      (github.event_name == 'schedule' && startsWith(github.event.schedule, '*/15') && format('Conditional Slack message - PROD')) 
+    }}
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'
+    - cron: '*/15 * * * *'
+
+jobs:
+  dev_job:
+    name: Actor name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push Schematics From Build Server - DEV
+        id: build-dev
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "DEV step"
+        
+      - name: Push Schematics From Build Server - TEST
+        id: build-test
+        if: github.event_name == 'schedule' && (startsWith(github.event.schedule, '30 6-23/3') || startsWith(github.event.schedule, '30 0-4/3'))
+        run: |
+         echo "TEST step"
+
+      - name: Push Schematics From Build Server - PROD
+        id: build-prod
+        if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 3')
+        run: |
+          echo "PROD step"
+
+      - name: Print slack message
+        if: ${{ always() && ( steps.build-dev.outcome != 'failure' && steps.build-test != 'failure' && steps.build-prod.outcome != 'failure' ) }}
+        run: |
+          echo "Successful message"
