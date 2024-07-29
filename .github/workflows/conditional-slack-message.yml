@@ -39,7 +39,7 @@ jobs:
       - name: Set Environment to display in slack message
         id: set-environment
         run: |
-          if [[ ${{ github.event_name }} == 'workflow_dispatch' ]]; then
+          if [[ "${{ github.event_name }}" == 'workflow_dispatch' ]]; then
             ENVIRONMENT="DEV" >> $GITHUB_OUTPUT
           elif [[ "${{ github.event_name }}" == 'schedule' ]]; then
             if [[ "${{ github.event.schedule }}" == '*/10 * * * *' ]]; then
@@ -52,7 +52,7 @@ jobs:
       - name: Print slack Successful message
         if: ${{ always() && ( steps.build-dev.outcome != 'failure' && steps.build-test != 'failure' && steps.build-prod.outcome != 'failure' ) }}
         run: |
-          echo "${{ steps.set-environment.outputs.ENVIRONMENT }}"
+          echo ${{ steps.set-environment.outputs.ENVIRONMENT }}
           echo "Successful message"
           
       - name: Print slack Failure message
