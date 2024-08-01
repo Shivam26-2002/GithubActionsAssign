@@ -1,30 +1,21 @@
 name: A Same name
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: choice
-        description: Select the environment
-        options:
-          - 'DEV'
-          - 'TEST'
-        default : 'DEV'
+
 jobs:
   empty:
-    strategy:
-      matrix:
-        runner: [nx-id, nx-ole, nx-jlg]
     runs-on: ubuntu-latest
-    environment: ${{ matrix.runner }}
     steps:
        - name: Dummy
          run: |
-           echo "Input is ${{ inputs.environment }}"
+           echo "Input is this"
            echo "Github event name is: ${{ github.event_name }}"
 
   uses-another:
     needs: empty
-    if: ${{ github.event_name != 'workflow_dispatch' }}
-    uses: ./.github/workflows/reusable-a-same-name.yml
-    
+    runs-on: ubuntu-latest
+    steps:
+       - name: Dummy
+         run: |
+           echo "This is second job"
+           echo "Github event name is: ${{ github.event_name }}"
