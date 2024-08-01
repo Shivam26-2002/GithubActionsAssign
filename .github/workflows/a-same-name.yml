@@ -10,12 +10,14 @@ jobs:
          run: |
            echo "Input is this"
            echo "Github event name is: ${{ github.event_name }}"
+           exit 1
 
   uses-another:
     needs: empty
     runs-on: ubuntu-latest
     steps:
        - name: Dummy
+         if: always()
          run: |
            echo "This is second job"
            echo "Github event name is: ${{ github.event_name }}"
