@@ -72,16 +72,16 @@ jobs:
       if: ${{ (steps.ocid-scheduler.outcome != 'failure') && (steps.push-ocids-to-nx-repo.outcome != 'failure') }}
       run: echo "Success"
       
-    # - name: Post skipped message to slack
-    #   if: always()
-    #   # if: ${{ (steps.ocid-scheduler.outcome == 'skipped') || (steps.push-ocids-to-nx-repo.outcome == 'skipped') }}
-    #   run: |
-    #     if [[ ${{ steps.ocid-scheduler.outcome }} == 'skipped' || ${{ steps.push-ocids-to-nx-repo.outcome }} == 'skipped' ]]; then
-    #       echo "Skipped"
-    #     else
-    #       echo "Failed"
-    #     fi
+    - name: Post skipped message to slack
+      if: skipped()
+      # if: ${{ (steps.ocid-scheduler.outcome == 'skipped') || (steps.push-ocids-to-nx-repo.outcome == 'skipped') }}
+      run: |
+        if [[ ${{ steps.ocid-scheduler.outcome }} == 'skipped' || ${{ steps.push-ocids-to-nx-repo.outcome }} == 'skipped' ]]; then
+          echo "Skipped"
+        else
+          echo "Failed"
+        fi
       
-    # - name: Post failure message to slack
-    #   if: ${{ failure() }}
-    #   run: echo "Failure"
+    - name: Post failure message to slack
+      if: ${{ failure() }}
+      run: echo "Failure"
