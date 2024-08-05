@@ -8,9 +8,9 @@ run-name: >-
     }}
 on: 
   workflow_dispatch:
-  schedule:
-    - cron: '*/10 * * * *'
-    - cron: '*/15 * * * *'
+  # schedule:
+  #   - cron: '*/10 * * * *'
+  #   - cron: '*/15 * * * *'
 
 jobs:
   dev_job:
