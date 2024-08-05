@@ -1,23 +1,76 @@
 name: A Same name
+run-name: UX Translations (OCID's) - ${{ inputs.environment }}
 on:
   workflow_dispatch:
-
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the environment
+        options:
+          - 'DEV'
+          - 'TEST'
+          - 'PROD'
+        default : 'DEV'
 jobs:
-  empty:
+  ux-translations:    
     runs-on: ubuntu-latest
-    steps:
-       - name: Dummy
-         run: |
-           echo "Input is this"
-           echo "Github event name is: ${{ github.event_name }}"
-           exit 1
+    steps:    
+    - name: Create github app token
+      run: echo "Small"
+    
+    - name: Checkout repository     
+      run: echo "Small"
 
-  uses-another:
-    needs: empty
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-       - name: Dummy
-         run: |
-           echo "This is second job"
-           echo "Github event name is: ${{ github.event_name }}"
+    - name: Copy files
+      run: |
+        exit 1
+
+    - name: OCID SCHEDULER
+      id: ocid-scheduler
+      run: echo "Small"
+
+    - name: Checkout OnlineExpress repository     
+      if: ${{ inputs.environment == 'TEST' || inputs.environment == 'PROD' }}
+      run: echo "Small"
+        
+    - name: Create translation files
+      if: ${{ inputs.environment == 'TEST' || inputs.environment == 'PROD' }}
+      run: echo "Small"           
+
+    - name: Checkout Access-Nx repository
+      if: ${{ inputs.environment == 'TEST' || inputs.environment == 'PROD' }}
+      run: echo "Small"
+
+    - name: Push ocids to Nx repo
+      id: push-ocids-to-nx-repo
+      if: ${{ inputs.environment == 'TEST' || inputs.environment == 'PROD' }}
+      run: echo "Small"
+
+    - name: Get triggering user name
+      if: always()
+      id: triggered-by
+      run: |
+        TRIGGERED_BY=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/users/${{ github.triggering_actor }} | grep -o '"name": *"[^"]*"' | sed 's/"name": "\(.*\)"/\1/')
+        [ -z "$TRIGGERED_BY" ] && TRIGGERED_BY=${{ github.triggering_actor }}
+        echo "TRIGGERED_BY=$TRIGGERED_BY" >> "$GITHUB_OUTPUT"
+
+    - name: Print the outcome
+      if: always()
+      run: |
+        echo "Print the outcome of steps"
+        echo "OCID scheduler -> ${{ steps.ocid-scheduler.outcome }}"
+        echo "Push OCID -> ${{ steps.push-ocids-to-nx-repo.outcome }}"
+        if [[ ${{ steps.ocid-scheduler.outcome }} == 'failure' ]]; then
+          echo "Failure"
+        else
+          echo "Success"
+        fi
+        
+    - name: Post success message to slack
+      if: ${{ (steps.ocid-scheduler.outcome != 'failure') && (steps.push-ocids-to-nx-repo.outcome != 'failure') }}
+      run: echo "Success"
+      
+    - name: Post failure message to slack
+      if: ${{ failure() }}
+      run: echo "Failure"
