@@ -6,7 +6,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: .github/workflows/A-delete-2.yml@main
+    uses: ./.github/workflows/A-delete-2.yml
     # runs-on: ubuntu-latest
     # steps:
     #   - name: Get triggering user name
