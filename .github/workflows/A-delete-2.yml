@@ -1,6 +1,10 @@
 name: A-Called workflow
 on: 
   workflow_call:
+    inputs:
+      slack_message:
+        type: string
+        required: true
 
 jobs:
   called-workflow:
@@ -15,4 +19,7 @@ jobs:
           echo "TRIGGERED_BY=$TRIGGERED_BY" >> "$GITHUB_OUTPUT"
           
       - name: Print actor name
-        run: echo ${{ steps.triggered-by.outputs.TRIGGERED_BY }}
+        run: |
+          echo ${{ steps.triggered-by.outputs.TRIGGERED_BY }}
+          echo ${{ inputs.slack_message }}
+        
