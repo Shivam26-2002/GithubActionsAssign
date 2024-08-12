@@ -2,6 +2,9 @@ name: A-Called workflow
 on: 
   workflow_call:
     inputs:
+      slack_message:
+        type: string
+        required: true
       workflow_status:
         type: string
         required: true
@@ -24,5 +27,6 @@ jobs:
       - name: Print actor name
         run: |
           echo ${{ steps.triggered-by.outputs.TRIGGERED_BY }}
+          echo ${{ inputs.workflow_status }}
           echo ${{ inputs.slack_message }}
         
