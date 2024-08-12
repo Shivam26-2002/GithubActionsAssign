@@ -1,12 +1,26 @@
 name: A-Caller workflow
 on: 
   workflow_dispatch:
-  schedule:
-    - cron: '*/5 * * * *'
+  # schedule:
+  #   - cron: '*/5 * * * *'
 
 jobs:
+  matrix-job:
+    strategy:
+      matrix:
+        runner: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Print matrix
+        run: |
+          echo "Print matrix i.e, -> ${{ matrix.runner }}"
+    
+  
   call-workflow:
+    needs: matrix-job
     uses: ./.github/workflows/A-delete-2.yml
+    with:
+      slack_message: "${{ matrix.runner }} Deploy Ghost Part Category Mapping to Endeca"
     # runs-on: ubuntu-latest
     # steps:
     #   - name: Get triggering user name
