@@ -13,6 +13,14 @@ jobs:
     steps:
       - name: Dummy step
         run: echo Dummy
+      - name: Exit
+        run: |
+          if [[ ${{ matrix.runner }} == 'ubuntu-latest']]; then
+            exit 1
+          else
+            echo "Dummy"
+          fi
+          
         
   slack-post:
     needs: deploy-ghost-part-category-mapping-to-endeca
