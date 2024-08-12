@@ -5,31 +5,57 @@ on:
   #   - cron: '*/5 * * * *'
 
 jobs:
-  matrix-job:
+  deploy-ghost-part-category-mapping-to-endeca:
     strategy:
       matrix:
         runner: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.runner }}
+    runs-on: ${{ matrix.runner }}    
     steps:
-      - name: Print matrix
-        run: |
-          echo "Print matrix i.e, -> ${{ matrix.runner }}"
-    
-  
-  call-workflow:
-    needs: matrix-job
+      - name: Dummy step
+        run: echo Dummy
+        
+  slack-post:
+    needs: deploy-ghost-part-category-mapping-to-endeca
+    if: ${{ !cancelled() }}
+    strategy:
+      matrix:
+        runner: [ubuntu-latest, windows-latest]
     uses: ./.github/workflows/A-delete-2.yml
     with:
       slack_message: "${{ matrix.runner }} Deploy Ghost Part Category Mapping to Endeca"
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - name: Get triggering user name
-    #     if: always()
-    #     id: triggered-by
-    #     run: |
-    #       TRIGGERED_BY=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/users/${{ github.triggering_actor }} | grep -o '"name": *"[^"]*"' | sed 's/"name": "\(.*\)"/\1/')
-    #       [ -z "$TRIGGERED_BY" ] && TRIGGERED_BY=${{ github.triggering_actor }}
-    #       echo "TRIGGERED_BY=$TRIGGERED_BY" >> "$GITHUB_OUTPUT"
-          
-    #   - name: Print actor name
-    #     run: echo ${{ steps.triggered-by.outputs.TRIGGERED_BY }}
+      workflow_status: "${{ needs.deploy-ghost-part-category-mapping-to-endeca.result }}"
+      runner: |
+        ${{ matrix.runner }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# jobs:
+#   matrix-job:
+#     strategy:
+#       matrix:
+#         runner: [ubuntu-latest, windows-latest]
+#     runs-on: ${{ matrix.runner }}
+#     steps:
+#       - name: Print matrix
+#         run: |
+#           echo "Print matrix i.e, -> ${{ matrix.runner }}"
+    
+  
+#   call-workflow:
+#     needs: matrix-job
+#     uses: ./.github/workflows/A-delete-2.yml
+#     with:
+#       slack_message: "${{ matrix.runner }} Deploy Ghost Part Category Mapping to Endeca"
