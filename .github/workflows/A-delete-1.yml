@@ -15,7 +15,7 @@ jobs:
         run: echo Dummy
       - name: Exit
         run: |
-          if [[ ${{ matrix.runner }} == 'ubuntu-latest']]; then
+          if [[ "${{ matrix.runner }}" = "ubuntu-latest" ]]; then
             exit 1
           else
             echo "Dummy"
