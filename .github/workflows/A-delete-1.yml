@@ -24,8 +24,7 @@ jobs:
     with:
       slack_message: "${{ matrix.runner }} Deploy Ghost Part Category Mapping to Endeca"
       workflow_status: "${{ needs.deploy-ghost-part-category-mapping-to-endeca.result }}"
-      runner: |
-        ${{ matrix.runner }}
+      runner: ${{ matrix.runner }}
 
 
 
