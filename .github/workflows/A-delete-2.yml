@@ -5,10 +5,13 @@ on:
       slack_message:
         type: string
         required: true
+      runner:
+        type: string
+        required: true
 
 jobs:
   called-workflow:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner }}
     steps:
       - name: Get triggering user name
         if: always()
