@@ -2,7 +2,7 @@ name: A-Called workflow
 on: 
   workflow_call:
     inputs:
-      slack_message:
+      workflow_status:
         type: string
         required: true
       runner:
