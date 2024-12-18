@@ -1,38 +1,45 @@
 name: A-Caller workflow
 on: 
   workflow_dispatch:
-  # schedule:
-  #   - cron: '*/5 * * * *'
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Select the App
+        options:
+          - 'nx-id'
+          - 'nx-ole'
+        default : 'nx-id'
 
 jobs:
   deploy-ghost-part-category-mapping-to-endeca:
-    strategy:
-      matrix:
-        runner: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.runner }}    
+    # strategy:
+    #   matrix:
+    #     runner: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest    
     steps:
       - name: Dummy step
         run: echo Dummy
       - name: Exit
         run: |
-          if [[ "${{ matrix.runner }}" = "ubuntu-latest" ]]; then
-            exit 1
+          if [[  $([[ ${{ inputs.environment }} == 'nx-id' ]] ]]; then
+            echo "Correct"
           else
-            echo "Dummy"
+            echo "Wrong"
           fi
           
         
-  slack-post:
-    needs: deploy-ghost-part-category-mapping-to-endeca
-    if: ${{ !cancelled() }}
-    strategy:
-      matrix:
-        runner: [ubuntu-latest, windows-latest]
-    uses: ./.github/workflows/A-delete-2.yml
-    with:
-      slack_message: "${{ matrix.runner }} Deploy Ghost Part Category Mapping to Endeca"
-      workflow_status: "${{ needs.deploy-ghost-part-category-mapping-to-endeca.result }}"
-      runner: ${{ matrix.runner }}
+  # slack-post:
+  #   needs: deploy-ghost-part-category-mapping-to-endeca
+  #   if: ${{ !cancelled() }}
+  #   strategy:
+  #     matrix:
+  #       runner: [ubuntu-latest, windows-latest]
+  #   uses: ./.github/workflows/A-delete-2.yml
+  #   with:
+  #     slack_message: "${{ matrix.runner }} Deploy Ghost Part Category Mapping to Endeca"
+  #     workflow_status: "${{ needs.deploy-ghost-part-category-mapping-to-endeca.result }}"
+  #     runner: ${{ matrix.runner }}
 
 
 
