@@ -22,7 +22,7 @@ jobs:
         run: echo Dummy
       - name: Exit
         run: |
-          if [[  $([[ ${{ inputs.environment }} == 'nx-id' ]] ]]; then
+          if [[ ${{ inputs.environment }} == 'nx-id' ]]; then
             echo "Correct"
           else
             echo "Wrong"
