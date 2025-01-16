@@ -19,14 +19,15 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - name: Dummy step
+        id: dummy-step-1
         run: echo Dummy
-      - name: Exit
-        run: |
-          if [[ ${{ inputs.environment }} == 'nx-id' ]]; then
-            echo "Correct"
-          else
-            echo "Wrong"
-          fi
+      - name: Dummy step
+        id: dummy-step-2
+        run: echo Dummy
+      - name: Dummy step
+        if: steps.dummy-step-2.outcome == 'failure'
+        run: echo Dummy
+      
           
         
   # slack-post:
