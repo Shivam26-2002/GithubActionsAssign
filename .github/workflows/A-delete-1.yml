@@ -25,7 +25,7 @@ jobs:
         id: dummy-step-2
         run: exit 1
       - name: Dummy step
-        if: steps.dummy-step-2.outcome == failure
+        if: steps.dummy-step-2.outcome == 'failure'
         run: echo Dummy
       
           
