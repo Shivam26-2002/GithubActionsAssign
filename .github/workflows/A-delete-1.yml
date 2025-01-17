@@ -23,7 +23,7 @@ jobs:
         run: echo Dummy
       - name: Dummy step
         id: dummy-step-2
-        run: exit 1
+        run: echo "TEST"
       - name: Dummy step
         if:  always() && steps.dummy-step-2.outcome == 'failure'
         run: echo Dummy
