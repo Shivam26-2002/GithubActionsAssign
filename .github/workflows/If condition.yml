@@ -1,0 +1,24 @@
+name: Test If Condition
+on: 
+  workflow_dispatch:
+    inputs:
+     alias_mode:
+        required: true
+        type: boolean
+        default: false
+        description: Type mock
+
+jobs:
+  if_condition:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Build and deploy
+         run: |
+          if [[ ${{ inputs.alias_mode == 'mock' }} ]]; then
+            echo "mock Alias one"
+             echo "mock Alias two"
+          else  
+             echo "mock Alias three"
+             echo "mock Alias four"
+          fi;
