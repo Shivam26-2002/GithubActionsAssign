@@ -4,7 +4,7 @@ on:
     inputs:
      alias_mode:
         required: true
-        type: boolean
+        type: string
         default: false
         description: Type mock
 
